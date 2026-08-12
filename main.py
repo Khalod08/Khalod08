@@ -8,8 +8,7 @@ import sys
 
 # ── Install ffmpeg if not present (Replit auto-handles this via replit.nix) ──
 # ── Config ───────────────────────────────────────────────────────────────────
-TOKEN = "DISCORD_TOKEN"  # Set this in Replit Secrets
-
+TOKEN = os.environ.get("DISCORD_TOKEN")
 # Drake songs to randomly pick from
 DRAKE_SONGS = [
     "Drake God's Plan",
