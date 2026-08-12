@@ -163,4 +163,4 @@ async def on_message(message: discord.Message):
 
 
 # ── Run ───────────────────────────────────────────────────────────────────────
-bot.run(DiscordBot)
+bot.run(TOKEN)
