@@ -8,7 +8,7 @@ import sys
 
 # ── Install ffmpeg if not present (Replit auto-handles this via replit.nix) ──
 # ── Config ───────────────────────────────────────────────────────────────────
-TOKEN = os.environ.get("MTUzNjk1NDg2ODM5MTIxNTEyNA.Grvvox.UTUzxzjuIxyRyCWlzHvBiflMt9SVVvCo7ZDb3U")  # Set this in Replit Secrets
+TOKEN = os.environ.get("DiscordBot")  # Set this in Replit Secrets
 
 # Drake songs to randomly pick from
 DRAKE_SONGS = [
@@ -163,4 +163,4 @@ async def on_message(message: discord.Message):
 
 
 # ── Run ───────────────────────────────────────────────────────────────────────
-bot.run(MTUzNjk1NDg2ODM5MTIxNTEyNA.Grvvox.UTUzxzjuIxyRyCWlzHvBiflMt9SVVvCo7ZDb3U)
+bot.run(DiscordBot)
