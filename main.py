@@ -8,7 +8,7 @@ import sys
 
 # ── Install ffmpeg if not present (Replit auto-handles this via replit.nix) ──
 # ── Config ───────────────────────────────────────────────────────────────────
-TOKEN = os.environ.get("DiscordBot")  # Set this in Replit Secrets
+TOKEN = os.environ.get("DISCORD_TOKEN")  # Set this in Replit Secrets
 
 # Drake songs to randomly pick from
 DRAKE_SONGS = [
