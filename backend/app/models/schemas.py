@@ -39,9 +39,23 @@ class JobStatus(str, Enum):
     FAILED = "failed"
 
 
+class RenderStatus(str, Enum):
+    PENDING = "pending"
+    RENDERING = "rendering"
+    DONE = "done"
+    FAILED = "failed"
+
+
 class Job(BaseModel):
     id: str
     status: JobStatus
     filename: str
     error: Optional[str] = None
     result: Optional[TranscriptionResult] = None
+
+    # Stage 4: chosen background, either "preset:<name>" or "upload" (an
+    # uploaded file stored under BACKGROUNDS_DIR/{job_id}.<ext>).
+    background: Optional[str] = None
+
+    render_status: Optional[RenderStatus] = None
+    render_error: Optional[str] = None

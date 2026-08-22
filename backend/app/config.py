@@ -6,9 +6,10 @@ STORAGE_DIR = BACKEND_DIR / "storage"
 UPLOADS_DIR = STORAGE_DIR / "uploads"
 AUDIO_DIR = STORAGE_DIR / "audio"
 OUTPUTS_DIR = STORAGE_DIR / "outputs"
+BACKGROUNDS_DIR = STORAGE_DIR / "backgrounds"
 MODELS_CACHE_DIR = BACKEND_DIR / ".models_cache"
 
-for d in (UPLOADS_DIR, AUDIO_DIR, OUTPUTS_DIR, MODELS_CACHE_DIR):
+for d in (UPLOADS_DIR, AUDIO_DIR, OUTPUTS_DIR, BACKGROUNDS_DIR, MODELS_CACHE_DIR):
     d.mkdir(parents=True, exist_ok=True)
 
 # Whisper transcription settings. "large-v3" gives the best accuracy on

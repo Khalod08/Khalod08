@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import TranscriptEditor from "./components/TranscriptEditor";
+import BackgroundAndRender from "./components/BackgroundAndRender";
 import { getJob, jobAudioUrl, saveTranscript, uploadForTranscription } from "./api";
 import type { Job, TranscriptionResult } from "./types";
 
@@ -87,13 +88,16 @@ export default function App() {
       )}
 
       {job && transcript && (
-        <TranscriptEditor
-          transcript={transcript}
-          audioUrl={jobAudioUrl(job.id)}
-          onChange={setTranscript}
-          onSave={handleSave}
-          saving={saving}
-        />
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <TranscriptEditor
+            transcript={transcript}
+            audioUrl={jobAudioUrl(job.id)}
+            onChange={setTranscript}
+            onSave={handleSave}
+            saving={saving}
+          />
+          <BackgroundAndRender job={job} onJobChange={setJob} />
+        </div>
       )}
     </main>
   );

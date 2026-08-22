@@ -26,10 +26,15 @@ export type JobStatus =
   | "done"
   | "failed";
 
+export type RenderStatus = "pending" | "rendering" | "done" | "failed";
+
 export interface Job {
   id: string;
   status: JobStatus;
   filename: string;
   error?: string | null;
   result?: TranscriptionResult | null;
+  background?: string | null;
+  render_status?: RenderStatus | null;
+  render_error?: string | null;
 }

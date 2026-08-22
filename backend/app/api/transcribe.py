@@ -9,12 +9,9 @@ from app.config import AUDIO_DIR, UPLOADS_DIR
 from app.models.schemas import Job, JobStatus, TranscriptionResult
 from app.pipeline.audio_extract import AudioExtractionError, extract_audio
 from app.pipeline.transcribe import transcribe
+from app.state import jobs as _jobs
 
 router = APIRouter(prefix="/api", tags=["transcription"])
-
-# In-memory job store. Fine for a single-process MVP; swap for Redis/DB
-# before running more than one worker.
-_jobs: dict[str, Job] = {}
 
 
 def _run_pipeline(job_id: str, upload_path: Path):

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.render import router as render_router
 from app.api.transcribe import router as transcribe_router
 
 app = FastAPI(title="Lyric Video Generator API")
@@ -13,6 +14,7 @@ app.add_middleware(
 )
 
 app.include_router(transcribe_router)
+app.include_router(render_router)
 
 
 @app.get("/health")

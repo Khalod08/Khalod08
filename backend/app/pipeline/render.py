@@ -6,6 +6,8 @@ import subprocess
 from pathlib import Path
 from typing import Optional
 
+from app.pipeline.backgrounds import resolve_background_input
+
 
 class RenderError(RuntimeError):
     pass
@@ -15,8 +17,8 @@ def render_burn_in(
     audio_path: Path,
     ass_path: Path,
     output_path: Path,
-    background_image: Optional[Path] = None,
-    background_color: str = "0x14141a",
+    background_media: Optional[Path] = None,
+    background_preset: Optional[str] = None,
     width: int = 1080,
     height: int = 1920,
     fps: int = 30,
@@ -28,10 +30,7 @@ def render_burn_in(
     ass_arg = str(ass_path).replace("\\", "\\\\").replace(":", "\\:")
     vf = f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},ass='{ass_arg}'"
 
-    if background_image is not None:
-        bg_input = ["-loop", "1", "-i", str(background_image)]
-    else:
-        bg_input = ["-f", "lavfi", "-i", f"color=c={background_color}:s={width}x{height}:r={fps}"]
+    bg_input = resolve_background_input(background_media, background_preset, width, height, fps)
 
     cmd = [
         "ffmpeg", "-y",
