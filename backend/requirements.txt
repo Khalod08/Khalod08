@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic>=2
+whisperx>=3.8.0
