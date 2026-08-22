@@ -8,9 +8,13 @@ long as the word timings we feed in are accurate, what's on screen tracks the
 audio exactly (only quantized by the output frame rate itself, same as any
 video). This module does no timestamp rounding of its own.
 
-Styling here is deliberately basic (hard color/size switch on the active
-word, no motion) — easing/animation is stage 6's job. This stage exists to
-prove the sync pipeline end-to-end.
+Word entrances use ASS's \t animated-transform tag, which interpolates
+between two override-tag states over a time window with a power-curve
+acceleration parameter (accel < 1 fronts-loads the motion, accel > 1
+back-loads it) — chaining a fast eased rise into an eased settle produces a
+genuine spring/overshoot pop rather than an instant cut or a linear tween.
+Timings are computed per word from its own duration so the pop always
+resolves before the word's turn is over, however short.
 """
 
 from dataclasses import dataclass
@@ -29,8 +33,17 @@ class CaptionStyle:
     active_color: str = "&H0000E5FF"     # opaque accent (amber/yellow-orange)
     outline_color: str = "&H00000000"    # opaque black outline
     outline_width: int = 4
-    shadow: int = 0
-    active_scale_pct: int = 112          # simple static "pop" on the active word
+    shadow: int = 2
+    letter_spacing: float = 0.6
+
+    # Active-word entrance pop: starts small/faded, overshoots past 100%,
+    # then eases back to rest.
+    pop_start_scale_pct: int = 74
+    pop_overshoot_scale_pct: int = 122
+    pop_rise_ease: float = 0.55          # <1: fast start, eases into the overshoot
+    pop_settle_ease: float = 1.7         # >1: eases out of the overshoot into rest
+    pop_rise_max_ms: int = 90
+    pop_settle_max_ms: int = 80
 
     # Real short-form captions show a handful of words at a time, not a whole
     # sentence — this bounds how many words share one on-screen line.
@@ -56,15 +69,31 @@ def _escape(text: str) -> str:
     return text.replace("\\", r"\\").replace("{", r"\{").replace("}", r"\}")
 
 
-def _line_with_active_word(words: list[str], active_index: int, style: CaptionStyle) -> str:
+def _pop_in_override(word_duration_s: float, style: CaptionStyle) -> str:
+    duration_ms = max(1, round(word_duration_s * 1000))
+    rise_ms = min(style.pop_rise_max_ms, max(15, round(duration_ms * 0.5)))
+    settle_ms = min(style.pop_settle_max_ms, max(10, round(duration_ms * 0.35)))
+    # keep the whole pop inside the word's own on-screen window
+    settle_ms = min(settle_ms, max(5, duration_ms - rise_ms))
+    settle_end = rise_ms + settle_ms
+
+    initial = f"\\c{style.text_color}\\alpha&H90&\\fscx{style.pop_start_scale_pct}\\fscy{style.pop_start_scale_pct}"
+    rise_target = f"\\c{style.active_color}\\alpha&H00&\\fscx{style.pop_overshoot_scale_pct}\\fscy{style.pop_overshoot_scale_pct}"
+    settle_target = "\\fscx100\\fscy100"
+    return (
+        f"{{{initial}"
+        f"\\t(0,{rise_ms},{style.pop_rise_ease},{rise_target})"
+        f"\\t({rise_ms},{settle_end},{style.pop_settle_ease},{settle_target})}}"
+    )
+
+
+def _line_with_active_word(words: list[Word], active_index: int, style: CaptionStyle) -> str:
     parts = []
     for i, w in enumerate(words):
-        escaped = _escape(w)
+        escaped = _escape(w.text)
         if i == active_index:
-            parts.append(
-                f"{{\\c{style.active_color}\\fscx{style.active_scale_pct}\\fscy{style.active_scale_pct}}}"
-                f"{escaped}{{\\c{style.text_color}\\fscx100\\fscy100}}"
-            )
+            override = _pop_in_override(w.end - w.start, style)
+            parts.append(f"{override}{escaped}{{\\c{style.text_color}\\fscx100\\fscy100}}")
         else:
             parts.append(escaped)
     return " ".join(parts)
@@ -84,7 +113,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,{style.font},{style.font_size},{style.text_color},{style.text_color},{style.outline_color},&H00000000,1,0,0,0,100,100,0,0,1,{style.outline_width},{style.shadow},2,{style.margin_left},{style.margin_right},{style.margin_bottom},1
+Style: Default,{style.font},{style.font_size},{style.text_color},{style.text_color},{style.outline_color},&H00000000,1,0,0,0,100,100,{style.letter_spacing},0,1,{style.outline_width},{style.shadow},2,{style.margin_left},{style.margin_right},{style.margin_bottom},1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -92,9 +121,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     lines = []
     for seg in transcript.segments:
         for group in chunk_words(seg.words, style.max_words_per_line):
-            word_texts = [w.text for w in group]
             for i, w in enumerate(group):
-                text = _line_with_active_word(word_texts, i, style)
+                text = _line_with_active_word(group, i, style)
                 lines.append(
                     f"Dialogue: 0,{_ass_time(w.start)},{_ass_time(w.end)},Default,,0,0,0,,{text}"
                 )
