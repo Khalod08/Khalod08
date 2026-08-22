@@ -37,4 +37,8 @@ export interface Job {
   background?: string | null;
   render_status?: RenderStatus | null;
   render_error?: string | null;
+  export_status?: RenderStatus | null;
+  export_error?: string | null;
+  export_resolution?: string | null;
+  export_codec?: string | null;
 }

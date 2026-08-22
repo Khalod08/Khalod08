@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import TranscriptEditor from "./components/TranscriptEditor";
 import BackgroundAndRender from "./components/BackgroundAndRender";
+import ExportPanel from "./components/ExportPanel";
 import { getJob, jobAudioUrl, saveTranscript, uploadForTranscription } from "./api";
 import type { Job, TranscriptionResult } from "./types";
 
@@ -97,6 +98,7 @@ export default function App() {
             saving={saving}
           />
           <BackgroundAndRender job={job} onJobChange={setJob} />
+          <ExportPanel job={job} onJobChange={setJob} />
         </div>
       )}
     </main>

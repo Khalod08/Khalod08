@@ -30,6 +30,11 @@ PRESETS: dict[str, dict] = {
 }
 
 
+def uploaded_background_path(backgrounds_dir: Path, job_id: str) -> Optional[Path]:
+    matches = list(backgrounds_dir.glob(f"{job_id}.*"))
+    return matches[0] if matches else None
+
+
 def list_presets() -> list[dict]:
     return [{"id": k, "label": v["label"]} for k, v in PRESETS.items()]
 

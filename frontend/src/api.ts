@@ -66,3 +66,28 @@ export async function startRender(jobId: string): Promise<Job> {
   if (!res.ok) throw new Error(`start render failed: ${res.status}`);
   return res.json();
 }
+
+export interface ExportOptions {
+  resolutions: string[];
+  codecs: string[];
+}
+
+export async function getExportOptions(): Promise<ExportOptions> {
+  const res = await fetch("/api/export/options");
+  if (!res.ok) throw new Error(`get export options failed: ${res.status}`);
+  return res.json();
+}
+
+export async function startExport(jobId: string, resolution: string, codec: string): Promise<Job> {
+  const res = await fetch(`/api/jobs/${jobId}/export`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ resolution, codec }),
+  });
+  if (!res.ok) throw new Error(`start export failed: ${res.status}`);
+  return res.json();
+}
+
+export function jobExportVideoUrl(jobId: string): string {
+  return `/api/jobs/${jobId}/export/video`;
+}

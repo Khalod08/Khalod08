@@ -59,3 +59,10 @@ class Job(BaseModel):
 
     render_status: Optional[RenderStatus] = None
     render_error: Optional[str] = None
+
+    # Stage 5: final export (higher quality / configurable resolution &
+    # codec than the quick preview render above).
+    export_status: Optional[RenderStatus] = None
+    export_error: Optional[str] = None
+    export_resolution: Optional[str] = None
+    export_codec: Optional[str] = None

@@ -22,6 +22,10 @@ def render_burn_in(
     width: int = 1080,
     height: int = 1920,
     fps: int = 30,
+    codec: str = "h264",
+    preset: str = "medium",
+    crf: int = 18,
+    audio_bitrate: str = "192k",
 ) -> Path:
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -32,14 +36,21 @@ def render_burn_in(
 
     bg_input = resolve_background_input(background_media, background_preset, width, height, fps)
 
+    if codec == "h265":
+        video_codec_args = ["-c:v", "libx265", "-preset", preset, "-crf", str(crf), "-tag:v", "hvc1"]
+    else:
+        video_codec_args = ["-c:v", "libx264", "-preset", preset, "-crf", str(crf)]
+
     cmd = [
         "ffmpeg", "-y",
         *bg_input,
         "-i", str(audio_path),
         "-vf", vf,
         "-map", "0:v:0", "-map", "1:a:0",
-        "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
-        "-c:a", "aac", "-b:a", "192k",
+        *video_codec_args,
+        "-pix_fmt", "yuv420p",
+        "-c:a", "aac", "-b:a", audio_bitrate,
+        "-movflags", "+faststart",
         "-shortest",
         str(output_path),
     ]
