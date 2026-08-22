@@ -3,9 +3,10 @@ import uuid
 from pathlib import Path
 
 from fastapi import APIRouter, BackgroundTasks, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 
 from app.config import AUDIO_DIR, UPLOADS_DIR
-from app.models.schemas import Job, JobStatus
+from app.models.schemas import Job, JobStatus, TranscriptionResult
 from app.pipeline.audio_extract import AudioExtractionError, extract_audio
 from app.pipeline.transcribe import transcribe
 
@@ -57,4 +58,23 @@ async def get_job(job_id: str):
     job = _jobs.get(job_id)
     if job is None:
         raise HTTPException(status_code=404, detail="job not found")
+    return job
+
+
+@router.get("/jobs/{job_id}/audio")
+async def get_job_audio(job_id: str):
+    if job_id not in _jobs:
+        raise HTTPException(status_code=404, detail="job not found")
+    audio_path = AUDIO_DIR / f"{job_id}.wav"
+    if not audio_path.exists():
+        raise HTTPException(status_code=404, detail="audio not ready yet")
+    return FileResponse(audio_path, media_type="audio/wav")
+
+
+@router.put("/jobs/{job_id}/transcript", response_model=Job)
+async def update_job_transcript(job_id: str, transcript: TranscriptionResult):
+    job = _jobs.get(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="job not found")
+    job.result = transcript
     return job
