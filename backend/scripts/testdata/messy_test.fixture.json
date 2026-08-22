@@ -1,0 +1,414 @@
+{
+  "language": "en",
+  "duration": 13.931,
+  "segments": [
+    {
+      "text": "Yeah I run through the block with the static in my veins",
+      "start": 0.0,
+      "end": 2.24,
+      "words": [
+        {
+          "text": "Yeah",
+          "start": 0.0,
+          "end": 0.199,
+          "score": null
+        },
+        {
+          "text": "I",
+          "start": 0.199,
+          "end": 0.249,
+          "score": null
+        },
+        {
+          "text": "run",
+          "start": 0.249,
+          "end": 0.398,
+          "score": null
+        },
+        {
+          "text": "through",
+          "start": 0.398,
+          "end": 0.747,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 0.747,
+          "end": 0.896,
+          "score": null
+        },
+        {
+          "text": "block",
+          "start": 0.896,
+          "end": 1.145,
+          "score": null
+        },
+        {
+          "text": "with",
+          "start": 1.145,
+          "end": 1.344,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 1.344,
+          "end": 1.493,
+          "score": null
+        },
+        {
+          "text": "static",
+          "start": 1.493,
+          "end": 1.792,
+          "score": null
+        },
+        {
+          "text": "in",
+          "start": 1.792,
+          "end": 1.891,
+          "score": null
+        },
+        {
+          "text": "my",
+          "start": 1.891,
+          "end": 1.991,
+          "score": null
+        },
+        {
+          "text": "veins",
+          "start": 1.991,
+          "end": 2.24,
+          "score": null
+        }
+      ]
+    },
+    {
+      "text": "Counting every second while the pressure hits the brain",
+      "start": 2.24,
+      "end": 4.573,
+      "words": [
+        {
+          "text": "Counting",
+          "start": 2.24,
+          "end": 2.637,
+          "score": null
+        },
+        {
+          "text": "every",
+          "start": 2.637,
+          "end": 2.885,
+          "score": null
+        },
+        {
+          "text": "second",
+          "start": 2.885,
+          "end": 3.183,
+          "score": null
+        },
+        {
+          "text": "while",
+          "start": 3.183,
+          "end": 3.431,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 3.431,
+          "end": 3.58,
+          "score": null
+        },
+        {
+          "text": "pressure",
+          "start": 3.58,
+          "end": 3.977,
+          "score": null
+        },
+        {
+          "text": "hits",
+          "start": 3.977,
+          "end": 4.176,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 4.176,
+          "end": 4.325,
+          "score": null
+        },
+        {
+          "text": "brain",
+          "start": 4.325,
+          "end": 4.573,
+          "score": null
+        }
+      ]
+    },
+    {
+      "text": "Static on the mic but the message stays the same",
+      "start": 4.573,
+      "end": 6.728,
+      "words": [
+        {
+          "text": "Static",
+          "start": 4.573,
+          "end": 4.905,
+          "score": null
+        },
+        {
+          "text": "on",
+          "start": 4.905,
+          "end": 5.015,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 5.015,
+          "end": 5.181,
+          "score": null
+        },
+        {
+          "text": "mic",
+          "start": 5.181,
+          "end": 5.347,
+          "score": null
+        },
+        {
+          "text": "but",
+          "start": 5.347,
+          "end": 5.513,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 5.513,
+          "end": 5.678,
+          "score": null
+        },
+        {
+          "text": "message",
+          "start": 5.678,
+          "end": 6.065,
+          "score": null
+        },
+        {
+          "text": "stays",
+          "start": 6.065,
+          "end": 6.342,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 6.342,
+          "end": 6.507,
+          "score": null
+        },
+        {
+          "text": "same",
+          "start": 6.507,
+          "end": 6.728,
+          "score": null
+        }
+      ]
+    },
+    {
+      "text": "Never took a loss I just added to the flame",
+      "start": 6.728,
+      "end": 8.585,
+      "words": [
+        {
+          "text": "Never",
+          "start": 6.728,
+          "end": 7.002,
+          "score": null
+        },
+        {
+          "text": "took",
+          "start": 7.002,
+          "end": 7.22,
+          "score": null
+        },
+        {
+          "text": "a",
+          "start": 7.22,
+          "end": 7.275,
+          "score": null
+        },
+        {
+          "text": "loss",
+          "start": 7.275,
+          "end": 7.493,
+          "score": null
+        },
+        {
+          "text": "I",
+          "start": 7.493,
+          "end": 7.548,
+          "score": null
+        },
+        {
+          "text": "just",
+          "start": 7.548,
+          "end": 7.766,
+          "score": null
+        },
+        {
+          "text": "added",
+          "start": 7.766,
+          "end": 8.039,
+          "score": null
+        },
+        {
+          "text": "to",
+          "start": 8.039,
+          "end": 8.148,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 8.148,
+          "end": 8.312,
+          "score": null
+        },
+        {
+          "text": "flame",
+          "start": 8.312,
+          "end": 8.585,
+          "score": null
+        }
+      ]
+    },
+    {
+      "text": "We don't stop when the night falls down we don't stop",
+      "start": 8.585,
+      "end": 11.598,
+      "words": [
+        {
+          "text": "We",
+          "start": 8.585,
+          "end": 8.725,
+          "score": null
+        },
+        {
+          "text": "don't",
+          "start": 8.725,
+          "end": 9.076,
+          "score": null
+        },
+        {
+          "text": "stop",
+          "start": 9.076,
+          "end": 9.356,
+          "score": null
+        },
+        {
+          "text": "when",
+          "start": 9.356,
+          "end": 9.636,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 9.636,
+          "end": 9.846,
+          "score": null
+        },
+        {
+          "text": "night",
+          "start": 9.846,
+          "end": 10.196,
+          "score": null
+        },
+        {
+          "text": "falls",
+          "start": 10.196,
+          "end": 10.547,
+          "score": null
+        },
+        {
+          "text": "down",
+          "start": 10.547,
+          "end": 10.827,
+          "score": null
+        },
+        {
+          "text": "we",
+          "start": 10.827,
+          "end": 10.967,
+          "score": null
+        },
+        {
+          "text": "don't",
+          "start": 10.967,
+          "end": 11.317,
+          "score": null
+        },
+        {
+          "text": "stop",
+          "start": 11.317,
+          "end": 11.598,
+          "score": null
+        }
+      ]
+    },
+    {
+      "text": "Counting every second while the pressure hits the brain",
+      "start": 11.598,
+      "end": 13.931,
+      "words": [
+        {
+          "text": "Counting",
+          "start": 11.598,
+          "end": 11.995,
+          "score": null
+        },
+        {
+          "text": "every",
+          "start": 11.995,
+          "end": 12.243,
+          "score": null
+        },
+        {
+          "text": "second",
+          "start": 12.243,
+          "end": 12.541,
+          "score": null
+        },
+        {
+          "text": "while",
+          "start": 12.541,
+          "end": 12.789,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 12.789,
+          "end": 12.938,
+          "score": null
+        },
+        {
+          "text": "pressure",
+          "start": 12.938,
+          "end": 13.335,
+          "score": null
+        },
+        {
+          "text": "hits",
+          "start": 13.335,
+          "end": 13.534,
+          "score": null
+        },
+        {
+          "text": "the",
+          "start": 13.534,
+          "end": 13.683,
+          "score": null
+        },
+        {
+          "text": "brain",
+          "start": 13.683,
+          "end": 13.931,
+          "score": null
+        }
+      ]
+    }
+  ]
+}
