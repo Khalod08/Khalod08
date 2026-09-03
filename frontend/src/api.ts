@@ -53,11 +53,14 @@ export async function chooseBackgroundPreset(jobId: string, preset: string): Pro
   return res.json();
 }
 
-export async function uploadBackground(jobId: string, file: File): Promise<Job> {
+export async function uploadBackground(jobId: string, files: File[]): Promise<Job> {
   const form = new FormData();
-  form.append("file", file);
+  for (const file of files) form.append("files", file);
   const res = await fetch(`/api/jobs/${jobId}/background/upload`, { method: "POST", body: form });
-  if (!res.ok) throw new Error(`upload background failed: ${res.status}`);
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new Error(body?.detail ?? `upload background failed: ${res.status}`);
+  }
   return res.json();
 }
 

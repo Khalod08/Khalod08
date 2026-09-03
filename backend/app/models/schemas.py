@@ -57,6 +57,13 @@ class Job(BaseModel):
     # uploaded file stored under BACKGROUNDS_DIR/{job_id}.<ext>).
     background: Optional[str] = None
 
+    # A multi-image slideshow background takes real time to build (ffmpeg
+    # crossfade encode); this tracks that background job so the UI can wait
+    # for it before offering render/export. Single-file uploads and presets
+    # go straight to "done" since there's no encode to wait on.
+    background_status: Optional[RenderStatus] = None
+    background_error: Optional[str] = None
+
     render_status: Optional[RenderStatus] = None
     render_error: Optional[str] = None
 

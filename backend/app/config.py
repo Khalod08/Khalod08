@@ -22,3 +22,7 @@ WHISPER_BATCH_SIZE = int(os.environ.get("WHISPER_BATCH_SIZE", "8"))
 
 # Target sample rate Whisper/wav2vec2 expect.
 TARGET_SAMPLE_RATE = 16000
+
+# Tracks longer than this are rejected after extraction (before the slow
+# transcription/alignment pass) — MVP scope is short-form (up to 5 min).
+MAX_DURATION_SECONDS = int(os.environ.get("MAX_DURATION_SECONDS", "300"))

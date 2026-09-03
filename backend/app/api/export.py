@@ -59,6 +59,8 @@ def _run_export(job_id: str, resolution: str, codec: str):
 @router.post("/jobs/{job_id}/export")
 async def start_export(job_id: str, req: ExportRequest, background_tasks: BackgroundTasks):
     job = get_ready_job(job_id)
+    if job.background_status in (RenderStatus.PENDING, RenderStatus.RENDERING):
+        raise HTTPException(status_code=409, detail="background is still building")
     if req.resolution not in RESOLUTIONS:
         raise HTTPException(status_code=400, detail=f"unknown resolution: {req.resolution}")
     if req.codec not in CODEC_QUALITY:

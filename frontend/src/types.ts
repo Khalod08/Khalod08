@@ -35,6 +35,8 @@ export interface Job {
   error?: string | null;
   result?: TranscriptionResult | null;
   background?: string | null;
+  background_status?: RenderStatus | null;
+  background_error?: string | null;
   render_status?: RenderStatus | null;
   render_error?: string | null;
   export_status?: RenderStatus | null;

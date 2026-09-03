@@ -75,7 +75,12 @@ export default function ExportPanel({ job, onJobChange }: { job: Job; onJobChang
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <button
           onClick={runExport}
-          disabled={!job.background || busy}
+          disabled={
+            !job.background ||
+            job.background_status === "pending" ||
+            job.background_status === "rendering" ||
+            busy
+          }
           style={{
             background: "#a855f7",
             color: "#0b0b0f",

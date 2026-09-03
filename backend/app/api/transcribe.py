@@ -5,9 +5,9 @@ from pathlib import Path
 from fastapi import APIRouter, BackgroundTasks, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 
-from app.config import AUDIO_DIR, UPLOADS_DIR
+from app.config import AUDIO_DIR, MAX_DURATION_SECONDS, UPLOADS_DIR
 from app.models.schemas import Job, JobStatus, TranscriptionResult
-from app.pipeline.audio_extract import AudioExtractionError, extract_audio
+from app.pipeline.audio_extract import AudioExtractionError, extract_audio, probe_duration
 from app.pipeline.transcribe import transcribe
 from app.state import jobs as _jobs
 
@@ -20,6 +20,16 @@ def _run_pipeline(job_id: str, upload_path: Path):
         job.status = JobStatus.EXTRACTING_AUDIO
         audio_path = AUDIO_DIR / f"{job_id}.wav"
         extract_audio(upload_path, audio_path)
+
+        duration = probe_duration(audio_path)
+        if duration > MAX_DURATION_SECONDS:
+            job.status = JobStatus.FAILED
+            job.error = (
+                f"Track is {duration / 60:.1f} min long; this MVP supports up to "
+                f"{MAX_DURATION_SECONDS / 60:.0f} min. Trim it and re-upload."
+            )
+            audio_path.unlink(missing_ok=True)
+            return
 
         job.status = JobStatus.TRANSCRIBING
         result = transcribe(audio_path)

@@ -13,33 +13,42 @@ import type { Job } from "../types";
 export default function BackgroundAndRender({ job, onJobChange }: { job: Job; onJobChange: (j: Job) => void }) {
   const [presets, setPresets] = useState<BackgroundPreset[]>([]);
   const [busy, setBusy] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [pickedCount, setPickedCount] = useState(0);
 
   useEffect(() => {
     getBackgroundPresets().then(setPresets);
   }, []);
 
   useEffect(() => {
-    if (job.render_status !== "pending" && job.render_status !== "rendering") return;
+    const buildingBackground = job.background_status === "pending" || job.background_status === "rendering";
+    const rendering = job.render_status === "pending" || job.render_status === "rendering";
+    if (!buildingBackground && !rendering) return;
     const interval = window.setInterval(async () => {
       const updated = await getJob(job.id);
       onJobChange(updated);
     }, 1500);
     return () => window.clearInterval(interval);
-  }, [job.id, job.render_status]);
+  }, [job.id, job.background_status, job.render_status]);
 
   async function pickPreset(id: string) {
     setBusy(true);
     try {
       onJobChange(await chooseBackgroundPreset(job.id, id));
+      setPickedCount(0);
     } finally {
       setBusy(false);
     }
   }
 
-  async function pickUpload(file: File) {
+  async function pickUpload(files: File[]) {
     setBusy(true);
+    setUploadError(null);
     try {
-      onJobChange(await uploadBackground(job.id, file));
+      onJobChange(await uploadBackground(job.id, files));
+      setPickedCount(files.length);
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : String(err));
     } finally {
       setBusy(false);
     }
@@ -91,23 +100,45 @@ export default function BackgroundAndRender({ job, onJobChange }: { job: Job; on
             cursor: "pointer",
           }}
         >
-          Upload image/video…
+          {pickedCount > 1 ? `${pickedCount}-image slideshow` : "Upload image(s) or a video…"}
           <input
             type="file"
             accept="image/*,video/*"
+            multiple
             style={{ display: "none" }}
             onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) pickUpload(file);
+              const files = Array.from(e.target.files ?? []);
+              if (files.length > 0) pickUpload(files);
             }}
           />
         </label>
       </div>
+      {uploadError && <span style={{ color: "#ff6b6b" }}>{uploadError}</span>}
+      {(job.background_status === "pending" || job.background_status === "rendering") && (
+        <span style={{ opacity: 0.7, fontSize: 13 }}>
+          Building your {pickedCount}-image slideshow (crossfaded across the full track — this can take a
+          minute or two)…
+        </span>
+      )}
+      {job.background_status === "failed" && (
+        <span style={{ color: "#ff6b6b" }}>Slideshow build failed: {job.background_error}</span>
+      )}
+      {job.background === "upload" && job.background_status === "done" && pickedCount > 1 && (
+        <span style={{ opacity: 0.7, fontSize: 13 }}>
+          Captions will play over a crossfaded slideshow of your {pickedCount} images, timed to the full track.
+        </span>
+      )}
 
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <button
           onClick={render}
-          disabled={!job.background || job.render_status === "rendering" || job.render_status === "pending"}
+          disabled={
+            !job.background ||
+            job.background_status === "pending" ||
+            job.background_status === "rendering" ||
+            job.render_status === "rendering" ||
+            job.render_status === "pending"
+          }
           style={{
             background: "#22c55e",
             color: "#0b0b0f",
