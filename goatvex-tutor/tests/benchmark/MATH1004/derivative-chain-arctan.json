@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-chain-arctan",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = arctan(2x).",
+  "given": {
+    "function": "arctan(2x)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "2/(1 + 4x^2)"
+  }
+}

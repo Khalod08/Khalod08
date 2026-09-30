@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-quotient-tan",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = tan(x)/x.",
+  "given": {
+    "function": "tan(x)/x",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "(x sec(x)^2 - tan(x))/x^2"
+  }
+}

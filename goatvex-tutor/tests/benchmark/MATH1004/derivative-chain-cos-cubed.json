@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-chain-cos-cubed",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = cos(x)^3.",
+  "given": {
+    "function": "cos(x)^3",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "-3cos(x)^2 sin(x)"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-chain-power",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = (3x^2 + 1)^5.",
+  "given": {
+    "function": "(3x^2 + 1)^5",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "30x(3x^2 + 1)^4"
+  },
+  "topic": "derivatives"
+}

@@ -1,0 +1,9 @@
+[project]
+name = "goatvex-tutor"
+version = "0.1.0"
+description = "GoatVex: a verified Linear Algebra + Calculus tutor (MATH 1104 / MATH 1004)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

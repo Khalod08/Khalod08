@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-chain-sqrt",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = sqrt(2x + 1).",
+  "given": {
+    "function": "sqrt(2x + 1)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "1/sqrt(2x + 1)"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-quotient-rational",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = (x + 1)/(x^2 + 1).",
+  "given": {
+    "function": "(x + 1)/(x^2 + 1)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "(1 - 2x - x^2)/(x^2 + 1)^2"
+  }
+}

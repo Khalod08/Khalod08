@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "slug": "rref-zero-pivot-swap",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Row reduce to RREF (the first pivot position is 0).",
+  "given": {
+    "matrix": [
+      [
+        "0",
+        "2",
+        "4"
+      ],
+      [
+        "1",
+        "1",
+        "1"
+      ],
+      [
+        "2",
+        "4",
+        "6"
+      ]
+    ],
+    "augmented": false
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "0",
+        "-1"
+      ],
+      [
+        "0",
+        "1",
+        "2"
+      ],
+      [
+        "0",
+        "0",
+        "0"
+      ]
+    ]
+  }
+}

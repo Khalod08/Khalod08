@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "slug": "rref-sys-fractions-2x2",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Solve 3x + y = 5, x + 2y = 5.",
+  "given": {
+    "matrix": [
+      [
+        "3",
+        "1",
+        "5"
+      ],
+      [
+        "1",
+        "2",
+        "5"
+      ]
+    ],
+    "augmented": true
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "0",
+        "1"
+      ],
+      [
+        "0",
+        "1",
+        "2"
+      ]
+    ],
+    "system": {
+      "status": "unique",
+      "x": [
+        "1",
+        "2"
+      ]
+    }
+  }
+}
