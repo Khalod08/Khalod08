@@ -73,6 +73,38 @@ true`), default to hint mode or solve a *parallel* problem with changed numbers,
 so they learn the method and do their own submission. Textbook practice, past
 tests and studying get full solutions.
 
+MATH 1104 specifics (from the course outline):
+- Grades come only from 4 in-class tests (best 3, 15% each) and the final (55%).
+  WeBWorK problems are recommended practice, not graded, so full solutions are fine.
+- **No aids of any kind on tests or the final: no calculators, no AI.** GoatVex is
+  a study tool only. Practice and mock tests must be doable **by hand**: small
+  integers, friendly fractions, determinants that come out clean. Encourage the
+  student to try each step on paper before revealing it.
+- The outline forbids copying answers from AI into work. Keep the focus on the student
+  understanding and reproducing the method themselves.
+- Course materials (notes, slides, tests, the outline PDF) are the instructor's
+  intellectual property and must not be redistributed. Keep PDFs and extracted
+  text local (git-ignored). Only commit our own summaries and page references.
+
+## The student's courses
+
+**MATH 1104 (Fall 2026), Dr. Inna Bumagin.** Full week-by-week plan with textbook
+sections and test dates: `materials/MATH1104/course_plan.json`.
+- Main textbook: **Nicholson, *Linear Algebra with Applications* (2025)**. Poole is
+  secondary. Cite Nicholson section numbers first.
+- Tests (cumulative, 50 min, in tutorial): Sep 28, **Oct 19**, Nov 16, Nov 30.
+  Final exam Dec 12–23.
+- Topic order: complex numbers and De Moivre → vectors, lines, planes, dot product
+  → systems and echelon forms → matrix operations → inverses, determinants,
+  Cramer's rule → Rⁿ, span, subspaces, column and null space → independence,
+  basis, dimension → rank and the Invertible Matrix Theorem → linear
+  transformations → eigenvalues, diagonalization, complex eigenvalues →
+  orthogonality, projections, Gram–Schmidt.
+- Nicholson's "Gaussian algorithm" (leading 1, zeros below, then zeros above)
+  is what `row_ops.gauss_jordan` implements.
+
+**MATH 1004**: no outline yet. Ask for it.
+
 ## Commands (run inside the activated `.venv`, from this folder)
 
 ```

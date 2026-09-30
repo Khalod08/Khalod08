@@ -17,3 +17,6 @@ videos/**/frames/
 # Your textbook / lecture PDFs are copyrighted — keep them local only
 materials/**/*.pdf
 materials/**/*.pptx
+# Text extracted from course materials is also the instructor's IP — local only
+materials/**/extracted/
+materials/**/*.txt
