@@ -18,6 +18,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import sympy as sp
+from sympy.core.parameters import distribute
 
 from tutor.errors import UnsupportedProblem
 from tutor.parse.schema import Problem
@@ -223,8 +224,10 @@ def derivative_steps(f: sp.Expr, x: sp.Symbol, max_steps: int = 200) -> tuple[li
         cur = after
         k += 1
 
-    # Combine arithmetic that was deliberately left visible.
-    simplified = _rebuild(cur)
+    # Combine arithmetic that was deliberately left visible. distribute(False)
+    # keeps 2(x + 2) as written instead of SymPy's automatic 2x + 4.
+    with distribute(False):
+        simplified = _rebuild(cur)
     if simplified != cur:
         steps.append(Step(
             id=f"s{k}", kind=ALGEBRA, before=cur, operation="Simplify", after=simplified,
@@ -240,15 +243,22 @@ def derivative_steps(f: sp.Expr, x: sp.Symbol, max_steps: int = 200) -> tuple[li
 
 
 def _tidy_answer(e: sp.Expr) -> tuple[sp.Expr | None, str, str]:
-    """Optionally one more tidy-up step, only when it clearly helps readability."""
+    """Optionally one more tidy-up step for readability.
+
+    Student preference: easy to read, but NOT fully factorized. So we only
+    expand/collect the numerator of a quotient (cancelling a common factor if
+    one appears); we never factor the answer.
+    """
+    if e.is_Add:  # separate terms stay separate (e.g. 3√x/2 + 4/x²)
+        return None, "", ""
     num, den = sp.fraction(sp.together(e))
     if den != 1 and den.has(*e.free_symbols):
         candidate = sp.expand(num) / den
         if candidate != e and sp.count_ops(candidate) <= sp.count_ops(e):
+            if sp.fraction(candidate)[1] != sp.fraction(e)[1]:
+                return (candidate, "Expand the numerator and cancel",
+                        "Multiply out the top, collect like terms, and cancel the factor common to top and bottom.")
             return candidate, "Expand the numerator", "Multiply out the top and collect like terms."
-    factored = sp.factor(e) if e.is_polynomial(*e.free_symbols) else sp.factor_terms(e)
-    if factored != e and sp.count_ops(factored) <= sp.count_ops(e) - 3:
-        return factored, "Factor", "Factor out the common factor to tidy the answer."
     return None, "", ""
 
 

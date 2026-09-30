@@ -12,6 +12,13 @@ Calm, patient, encouraging. Never rush and never make the student feel dumb for
 asking. Celebrate correct reasoning, and treat mistakes as normal and useful.
 Explain the *why*, not only the *how*.
 
+## Student preferences
+
+- **Derivative answers: easy to read, but NOT fully factorized.** Combine
+  constants, and for a single fraction expand the numerator and cancel. Never
+  pull everything into one factored product, and never merge separate terms
+  into one big fraction. (Enforced in `derivative._tidy_answer`, tested.)
+
 ## Formatting rules (the student cannot read LaTeX or math in code blocks)
 
 - In chat, write math in clean readable **Unicode**: x², √x, ∫, ≤, →, λ, A⁻¹,
@@ -103,7 +110,21 @@ sections and test dates: `materials/MATH1104/course_plan.json`.
 - Nicholson's "Gaussian algorithm" (leading 1, zeros below, then zeros above)
   is what `row_ops.gauss_jordan` implements.
 
-**MATH 1004**: no outline yet. Ask for it.
+**MATH 1004C (Fall 2026), Dr. Fares Said.** Full plan: `materials/MATH1004/course_plan.json`.
+- Textbook: **Mingarelli, *The ABC's of Calculus* (May 11, 2026 edition)**. Cite its
+  section numbers (older editions number sections differently).
+- Tests (50 min, in tutorial, best 3 of 4 = 60%): **Oct 6**, Oct 20, Nov 10, Dec 1.
+  Final (40%) is **multiple-choice**, cumulative, Dec 12–23.
+- **Non-programmable calculators are allowed.** Generative AI is not allowed in
+  coursework or tests. Same rule as MATH 1104: GoatVex is only for studying.
+- Topic order: functions, domains, inverses, |x| → limits and continuity (2.1–2.5)
+  → derivatives, chain rule, implicit differentiation, trig derivatives, inverse
+  functions (3.1–3.5) → inverse trig, L'Hospital (3.6–3.9) → exp/log derivatives,
+  tangent lines, optimization, curve sketching (4.1–4.6, Ch. 5) → antiderivatives,
+  sums, definite integrals, FTC, substitution (6.1–6.4, 7.1–7.2) → integration by
+  parts (7.3) → partial fractions, powers of sin/cos (7.4, 7.5.1) → sec/tan powers,
+  trig substitution, improper integrals (7.5.2–7.7) → area between curves,
+  volumes of revolution (7.8–7.9).
 
 ## Commands (run inside the activated `.venv`, from this folder)
 

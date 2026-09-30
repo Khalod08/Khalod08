@@ -97,3 +97,13 @@ def test_unicode_formatting():
     assert to_text(3 * x**4 - 5 * x**2 + 7 * x - 2) == "3x⁴ − 5x² + 7x − 2"
     assert to_text(sp.sqrt(x)) == "√x"
     assert to_text(sp.log(x)) == "ln(x)"
+
+
+def test_derivatives_are_not_factorized():
+    """Student preference: easy to read, not fully factorized."""
+    p = prob(course="MATH1004", type="derivative", given={"function": "(2x-1)^3 (x+2)^2", "variable": "x"},
+             confirmed_by_student=True)
+    result = solve_problem(p)
+    assert result.verified
+    assert all(s.operation != "Factor" for s in result.solution.steps)
+    assert result.solution.answer.is_Add  # a sum of product-rule terms, not one fully factored product
