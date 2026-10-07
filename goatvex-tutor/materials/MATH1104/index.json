@@ -1,0 +1,152 @@
+{
+  "course": "MATH1104",
+  "generated": "2026-10-07T22:43:01",
+  "note": "Locations only (file, page, our labels). The materials themselves stay local.",
+  "files": [
+    {
+      "file": "CourseOutline-1104_1107B.pdf",
+      "kind": "outline",
+      "label": "CourseOutline 1104 1107B",
+      "pages": 5,
+      "slides": false
+    }
+  ],
+  "types": {},
+  "plan_topics": {
+    "Applications of linear systems": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Bases": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Column space and null space of a matrix": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Complex eigenvalues": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Complex numbers": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Determinants": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Diagonalization": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Dimension": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Dot product and orthogonality": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Linear independence": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Linear transformations": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Matrix inverses": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Matrix operations": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Orthogonal projections": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Planes in 3D": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Rank of a matrix": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Spanning sets": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Systems of linear equations": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ],
+    "Vectors and lines in 2D and 3D": [
+      {
+        "file": "CourseOutline-1104_1107B.pdf",
+        "page": 3,
+        "where": "CourseOutline 1104 1107B, p. 3"
+      }
+    ]
+  },
+  "sections": {},
+  "not_read": []
+}

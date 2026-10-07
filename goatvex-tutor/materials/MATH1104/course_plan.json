@@ -17,53 +17,290 @@
     "final": "3-hour closed-book final, 55%, Dec 12-23, 2026",
     "aids": "NO aids of any kind on tests or the final: no calculators, no generative AI",
     "cumulative": "Each test covers everything so far, focused on recent topics",
-    "to_pass": ["at least 40% on the tests (18/45)", "at least 40% on the final", "at least 50% overall"]
+    "to_pass": [
+      "at least 40% on the tests (18/45)",
+      "at least 40% on the final",
+      "at least 50% overall"
+    ]
   },
   "tests": [
-    {"name": "Test 1", "date": "2026-09-28"},
-    {"name": "Test 2", "date": "2026-10-19"},
-    {"name": "Test 3", "date": "2026-11-16"},
-    {"name": "Test 4", "date": "2026-11-30"}
+    {
+      "name": "Test 1",
+      "date": "2026-09-28"
+    },
+    {
+      "name": "Test 2",
+      "date": "2026-10-19"
+    },
+    {
+      "name": "Test 3",
+      "date": "2026-11-16"
+    },
+    {
+      "name": "Test 4",
+      "date": "2026-11-30"
+    }
   ],
   "weeks": [
-    {"week": 1, "dates": "Sep 9, 14-16", "topics": ["Complex numbers", "De Moivre's theorem"],
-     "poole": ["App. C"], "nicholson": ["App. A"],
-     "goatvex_types": ["complex_arithmetic", "complex_polar", "de_moivre", "complex_roots"]},
-    {"week": 2, "dates": "Sep 21-23", "topics": ["Vectors and lines in 2D and 3D", "Dot product and orthogonality", "Planes in 3D"],
-     "poole": ["1.1", "1.2", "1.3"], "nicholson": ["4.1", "4.2"],
-     "goatvex_types": ["vector_ops", "dot_product_angle", "projection", "line_equations", "plane_equations", "line_plane_intersection"]},
-    {"week": 3, "dates": "Sep 28-30", "test": "Test 1 (Sep 28)", "topics": ["Systems of linear equations", "Echelon forms of a matrix", "Applications of linear systems"],
-     "poole": ["2.1", "2.2", "2.4"], "nicholson": ["1.1", "1.2", "1.3", "1.4", "1.6"],
-     "goatvex_types": ["rref", "linear_system"]},
-    {"week": 4, "dates": "Oct 5-7", "topics": ["Matrix operations", "Matrix form of a system of equations"],
-     "poole": ["3.1", "3.2"], "nicholson": ["2.1", "2.2", "2.3"],
-     "goatvex_types": ["matrix_arithmetic", "matrix_form_of_system"]},
-    {"week": "5-6", "dates": "Oct 14, 19-21", "test": "Test 2 (Oct 19)", "topics": ["Matrix inverses", "Determinants", "Cramer's rule"],
-     "poole": ["3.3", "4.2"], "nicholson": ["2.4", "3.1", "3.2"],
-     "goatvex_types": ["matrix_inverse", "determinant", "cramers_rule"]},
-    {"week": "break", "dates": "Oct 26-30", "topics": ["Fall break"]},
-    {"week": 7, "dates": "Nov 2-4", "topics": ["Operations in Rⁿ", "Spanning sets", "Subspaces of Rⁿ", "Column space and null space of a matrix"],
-     "poole": ["3.5", "6.1"], "nicholson": ["5.1"],
-     "goatvex_types": ["span_membership", "subspace_test", "column_null_space"]},
-    {"week": 8, "dates": "Nov 9-11", "topics": ["Linear independence", "Bases", "Dimension"],
-     "poole": ["6.2"], "nicholson": ["5.2"],
-     "goatvex_types": ["linear_independence", "basis_dimension"]},
-    {"week": 9, "dates": "Nov 16-18", "test": "Test 3 (Nov 16)", "topics": ["Rank of a matrix", "The Invertible Matrix Theorem"],
-     "poole": [], "nicholson": ["5.4"],
-     "goatvex_types": ["rank", "invertible_matrix_theorem"]},
-    {"week": 10, "dates": "Nov 23-25", "topics": ["Linear transformations"],
-     "poole": ["3.6", "6.4", "6.5", "6.6"], "nicholson": ["7.1", "7.2"],
-     "goatvex_types": ["linear_transformation_matrix", "kernel_range"]},
-    {"week": 11, "dates": "Nov 30 - Dec 2", "test": "Test 4 (Nov 30)", "topics": ["Eigenvalues and eigenvectors", "Diagonalization", "Complex eigenvalues"],
-     "poole": ["4.1", "4.3", "4.4"], "nicholson": ["3.3", "3.4", "5.5"],
-     "goatvex_types": ["eigen", "diagonalization", "complex_eigenvalues"]},
-    {"week": 12, "dates": "Dec 7-11", "topics": ["Dot product and orthogonality in Rⁿ", "Orthogonal sets", "Orthogonal projections", "The Gram-Schmidt process", "Review"],
-     "poole": ["5.1", "5.2", "5.3"], "nicholson": ["5.3", "8.1"],
-     "goatvex_types": ["orthogonal_sets", "orthogonal_projection", "gram_schmidt"]}
+    {
+      "week": 1,
+      "dates": "Sep 9, 14-16",
+      "topics": [
+        "Complex numbers",
+        "De Moivre's theorem"
+      ],
+      "poole": [
+        "App. C"
+      ],
+      "nicholson": [
+        "App. A"
+      ],
+      "goatvex_types": [
+        "complex"
+      ],
+      "start": "2026-09-09"
+    },
+    {
+      "week": 2,
+      "dates": "Sep 21-23",
+      "topics": [
+        "Vectors and lines in 2D and 3D",
+        "Dot product and orthogonality",
+        "Planes in 3D"
+      ],
+      "poole": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "nicholson": [
+        "4.1",
+        "4.2"
+      ],
+      "goatvex_types": [
+        "geometry"
+      ],
+      "start": "2026-09-21"
+    },
+    {
+      "week": 3,
+      "dates": "Sep 28-30",
+      "test": "Test 1 (Sep 28)",
+      "topics": [
+        "Systems of linear equations",
+        "Echelon forms of a matrix",
+        "Applications of linear systems"
+      ],
+      "poole": [
+        "2.1",
+        "2.2",
+        "2.4"
+      ],
+      "nicholson": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.6"
+      ],
+      "goatvex_types": [
+        "rref"
+      ],
+      "start": "2026-09-28"
+    },
+    {
+      "week": 4,
+      "dates": "Oct 5-7",
+      "topics": [
+        "Matrix operations",
+        "Matrix form of a system of equations"
+      ],
+      "poole": [
+        "3.1",
+        "3.2"
+      ],
+      "nicholson": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ],
+      "goatvex_types": [
+        "matrix_arithmetic"
+      ],
+      "start": "2026-10-05"
+    },
+    {
+      "week": "5-6",
+      "dates": "Oct 14, 19-21",
+      "test": "Test 2 (Oct 19)",
+      "topics": [
+        "Matrix inverses",
+        "Determinants",
+        "Cramer's rule"
+      ],
+      "poole": [
+        "3.3",
+        "4.2"
+      ],
+      "nicholson": [
+        "2.4",
+        "3.1",
+        "3.2"
+      ],
+      "goatvex_types": [
+        "matrix_inverse",
+        "determinant",
+        "cramers_rule"
+      ],
+      "start": "2026-10-14"
+    },
+    {
+      "week": "break",
+      "dates": "Oct 26-30",
+      "topics": [
+        "Fall break"
+      ],
+      "start": "2026-10-26"
+    },
+    {
+      "week": 7,
+      "dates": "Nov 2-4",
+      "topics": [
+        "Operations in Rⁿ",
+        "Spanning sets",
+        "Subspaces of Rⁿ",
+        "Column space and null space of a matrix"
+      ],
+      "poole": [
+        "3.5",
+        "6.1"
+      ],
+      "nicholson": [
+        "5.1"
+      ],
+      "goatvex_types": [
+        "subspaces:span",
+        "subspaces:bases"
+      ],
+      "start": "2026-11-02"
+    },
+    {
+      "week": 8,
+      "dates": "Nov 9-11",
+      "topics": [
+        "Linear independence",
+        "Bases",
+        "Dimension"
+      ],
+      "poole": [
+        "6.2"
+      ],
+      "nicholson": [
+        "5.2"
+      ],
+      "goatvex_types": [
+        "subspaces:independence",
+        "subspaces:bases"
+      ],
+      "start": "2026-11-09"
+    },
+    {
+      "week": 9,
+      "dates": "Nov 16-18",
+      "test": "Test 3 (Nov 16)",
+      "topics": [
+        "Rank of a matrix",
+        "The Invertible Matrix Theorem"
+      ],
+      "poole": [],
+      "nicholson": [
+        "5.4"
+      ],
+      "goatvex_types": [
+        "subspaces:bases"
+      ],
+      "start": "2026-11-16"
+    },
+    {
+      "week": 10,
+      "dates": "Nov 23-25",
+      "topics": [
+        "Linear transformations"
+      ],
+      "poole": [
+        "3.6",
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "nicholson": [
+        "7.1",
+        "7.2"
+      ],
+      "goatvex_types": [
+        "linear_transformation"
+      ],
+      "start": "2026-11-23"
+    },
+    {
+      "week": 11,
+      "dates": "Nov 30 - Dec 2",
+      "test": "Test 4 (Nov 30)",
+      "topics": [
+        "Eigenvalues and eigenvectors",
+        "Diagonalization",
+        "Complex eigenvalues"
+      ],
+      "poole": [
+        "4.1",
+        "4.3",
+        "4.4"
+      ],
+      "nicholson": [
+        "3.3",
+        "3.4",
+        "5.5"
+      ],
+      "goatvex_types": [
+        "eigen:eigen",
+        "eigen:diagonalize"
+      ],
+      "start": "2026-11-30"
+    },
+    {
+      "week": 12,
+      "dates": "Dec 7-11",
+      "topics": [
+        "Dot product and orthogonality in Rⁿ",
+        "Orthogonal sets",
+        "Orthogonal projections",
+        "The Gram-Schmidt process",
+        "Review"
+      ],
+      "poole": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ],
+      "nicholson": [
+        "5.3",
+        "8.1"
+      ],
+      "goatvex_types": [
+        "orthogonality:gram_schmidt",
+        "orthogonality:projection"
+      ],
+      "start": "2026-12-07"
+    }
   ],
   "notes": [
     "Textbook sections are copied exactly from the outline's table (checked against the rendered page). Week 9 lists no Poole section.",
     "Calendar also lists: Cramer's rule, kernel/range, inner product spaces. Complex numbers include De Moivre's theorem.",
-    "goatvex_types are the solver types GoatVex needs for each week. Only rref and matrix_inverse exist so far (Phase 1)."
-  ]
+    "goatvex_types are registry problem types ('type' or 'type:variant') used by /practice and /testprep. 'start' is the first lecture date of the week; a test covers every week that starts before the test date."
+  ],
+  "final": {
+    "name": "Final exam",
+    "date": "2026-12-12",
+    "window": "Dec 12-23, 2026"
+  }
 }

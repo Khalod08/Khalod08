@@ -30,6 +30,13 @@ from tutor.text.unicode_math import sub, to_text
 SWAP, SCALE, REPLACE = "swap", "scale", "replace"
 
 
+def _style() -> tuple[str, str]:
+    from tutor.materials.notation import settings_for
+
+    st = settings_for("MATH1104")
+    return st.get("rowop_style", "right_arrow"), ("r" if st.get("row_letter") == "r" else "R")
+
+
 @dataclass(frozen=True)
 class RowOp:
     """One elementary row operation.
@@ -58,26 +65,37 @@ class RowOp:
 
     # ---- student-facing notation --------------------------------------------------
     def text(self) -> str:
-        """Unicode notation, e.g. ``R₂ → R₂ − 3R₁``."""
-        ri = f"R{sub(self.i + 1)}"
+        """Unicode notation in the professor's style (materials/MATH1104/notation.json), default ``R₂ → R₂ − 3R₁``."""
+        style, letter = _style()
+        ri = f"{letter}{sub(self.i + 1)}"
         if self.kind == SWAP:
-            return f"{ri} ↔ R{sub(self.j + 1)}"
+            return f"{ri} ↔ {letter}{sub(self.j + 1)}"
         if self.kind == SCALE:
-            return f"{ri} → {_coef_text(self.c)}{ri}"
-        rj = f"R{sub(self.j + 1)}"
-        sign = "−" if self.c < 0 else "+"
-        mag = abs(self.c)
-        return f"{ri} → {ri} {sign} {_coef_text(mag)}{rj}"
+            rhs = f"{_coef_text(self.c)}{ri}"
+        else:
+            sign = "−" if self.c < 0 else "+"
+            rhs = f"{ri} {sign} {_coef_text(abs(self.c))}{letter}{sub(self.j + 1)}"
+        if style == "left_arrow":
+            return f"{ri} ← {rhs}"
+        if style == "result_right":
+            return f"{rhs} → {ri}"
+        return f"{ri} → {rhs}"
 
     def latex(self) -> str:
-        ri = f"R_{{{self.i + 1}}}"
+        style, letter = _style()
+        ri = f"{letter}_{{{self.i + 1}}}"
         if self.kind == SWAP:
-            return rf"{ri} \leftrightarrow R_{{{self.j + 1}}}"
+            return rf"{ri} \leftrightarrow {letter}_{{{self.j + 1}}}"
         if self.kind == SCALE:
-            return rf"{ri} \to {_coef_latex(self.c)}{ri}"
-        rj = f"R_{{{self.j + 1}}}"
-        sign = "-" if self.c < 0 else "+"
-        return rf"{ri} \to {ri} {sign} {_coef_latex(abs(self.c))}{rj}"
+            rhs = f"{_coef_latex(self.c)}{ri}"
+        else:
+            sign = "-" if self.c < 0 else "+"
+            rhs = f"{ri} {sign} {_coef_latex(abs(self.c))}{letter}_{{{self.j + 1}}}"
+        if style == "left_arrow":
+            return rf"{ri} \leftarrow {rhs}"
+        if style == "result_right":
+            return rf"{rhs} \to {ri}"
+        return rf"{ri} \to {rhs}"
 
     def as_data(self) -> dict:
         d = {"op": self.kind, "row": self.i + 1}

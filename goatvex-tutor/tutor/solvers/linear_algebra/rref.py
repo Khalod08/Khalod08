@@ -55,6 +55,11 @@ def row_op_steps(trace, *, id_prefix: str = "s", start: int = 1) -> list[Step]:
 
 
 def param_names(k: int) -> list[sp.Symbol]:
+    from tutor.materials.notation import param_letters
+
+    custom = param_letters(k)  # the professor's letters, if detected in the course materials
+    if custom:
+        return [sp.Symbol(n) for n in custom]
     names = {0: [], 1: ["t"], 2: ["s", "t"], 3: ["r", "s", "t"]}.get(k)
     if names is None:
         names = [f"t{sub(i + 1)}" for i in range(k)]

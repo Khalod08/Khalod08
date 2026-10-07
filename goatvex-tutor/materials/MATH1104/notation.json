@@ -1,0 +1,11 @@
+{
+  "rowop_style": "right_arrow",
+  "row_letter": "R",
+  "transpose": "Aᵀ",
+  "determinant": "det(A)",
+  "derivative": "f′(x)",
+  "inverse_trig": "arcsin",
+  "natural_log": "ln",
+  "rref_term": "reduced row echelon form (RREF)",
+  "params": null
+}

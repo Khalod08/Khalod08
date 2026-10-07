@@ -68,7 +68,19 @@ cd C:\Users\<you>\goatvex-tutor
 ```
 
 Then start Claude Code **from inside the `goatvex-tutor` folder** so it
-loads GoatVex's `CLAUDE.md` and the slash commands.
+loads GoatVex's `CLAUDE.md` and the slash commands (`/solve`, `/hint`, `/check`,
+`/explain`, `/practice`, `/testprep`, `/progress`).
+
+## Adding your course materials
+
+1. Copy your PDFs (lecture notes, slides, the textbook, past tests) into
+   `materials\MATH1104\` or `materials\MATH1004\`. PowerPoint files: open them and
+   *Save As → PDF* first.
+2. Run `python -m tutor materials ingest`.
+
+GoatVex then knows where each topic is in your materials ("this is in Lecture 7,
+slide 12") and uses your professor's notation (see `materials\<course>\notation.md`).
+The PDFs and their extracted text never leave your PC and are never committed to git.
 
 ## Troubleshooting
 

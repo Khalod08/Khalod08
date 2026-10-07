@@ -1,0 +1,298 @@
+{
+  "course": "MATH1004",
+  "generated": "2026-10-07T22:43:01",
+  "note": "Locations only (file, page, our labels). The materials themselves stay local.",
+  "files": [
+    {
+      "file": "MATH_1004C_Outline-F2026.pdf",
+      "kind": "outline",
+      "label": "MATH 1004C Outline F2026",
+      "pages": 4,
+      "slides": false
+    }
+  ],
+  "types": {},
+  "plan_topics": {
+    "Compositions": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Curve sketching": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Definite integrals": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Derivatives": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Domains": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Functions": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Fundamental Theorem of Calculus": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Improper integrals": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Indeterminate forms": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      }
+    ],
+    "Inverses": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Optimization": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Volumes of solids of revolution": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 1,
+        "where": "MATH 1004C Outline F2026, p. 1"
+      },
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Absolute-value functions": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Antiderivatives": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Area between curves": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Chain rule": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Comprehensive review": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Derivatives of trigonometric functions": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Evaluating limits": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Exponential and logarithmic functions and derivatives": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Implicit differentiation": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Infinite limits": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Integration applications": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Integration by substitution and applications": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Inverse functions": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Limits and continuity": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Partial fractions": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Powers of secant and tangent": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Substitution": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Summation and area": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Trigonometric identities": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ],
+    "Trigonometric substitution": [
+      {
+        "file": "MATH_1004C_Outline-F2026.pdf",
+        "page": 3,
+        "where": "MATH 1004C Outline F2026, p. 3"
+      }
+    ]
+  },
+  "sections": {},
+  "not_read": []
+}

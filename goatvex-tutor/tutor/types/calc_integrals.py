@@ -85,7 +85,8 @@ register(ProblemType(
                                                  up_to_constant="initial" not in sol.facts),
     answer_format="an antiderivative in x (the + C is optional)", template="integral",
     sections={"Mingarelli": ["6.1", "7.1", "7.2", "7.3", "7.4", "7.5", "7.6"]},
-    keywords=("antiderivative", "integral", "integrate", "substitution", "by parts", "partial fractions"),
+    keywords=("antiderivative", "integral", "integrate", "substitution", "u-sub", "by parts", "partial fractions",
+              "trig substitution"),
 ))
 
 register(ProblemType(

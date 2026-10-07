@@ -14,13 +14,14 @@ from manim import (DEGREES, DOWN, LEFT, RIGHT, UP, Create, Dot, FadeIn, FadeOut,
                    MathTex, Matrix, NumberPlane, ReplacementTransform, Surface, SurroundingRectangle, ThreeDAxes,
                    VGroup, Write, Text)
 
+from tutor.text.latex import tex
 from tutor.narration.scripts import row_reduction as script_mod
 from tutor.video import style as S
 from tutor.video.base import GoatVex3DScene
 
 
 def latex_matrix_entries(m: sp.Matrix) -> list[list[str]]:
-    return [[sp.latex(m[i, j]) for j in range(m.cols)] for i in range(m.rows)]
+    return [[tex(m[i, j]) for j in range(m.cols)] for i in range(m.rows)]
 
 
 class MatrixView:
@@ -30,8 +31,12 @@ class MatrixView:
         self.m = m
         self.bar_at = bar_at
         has_frac = any(e.is_Rational and not e.is_Integer for e in m)
-        self.mob = Matrix(latex_matrix_entries(m), element_to_mobject=lambda s: MathTex(s, color=S.TEXT),
-                          h_buff=1.45 if has_frac else 1.35, v_buff=1.5 if has_frac else 0.85, bracket_h_buff=0.2)
+        entries = latex_matrix_entries(m)
+        # column spacing (centre to centre) must clear the widest entry, e.g. 4 − λ
+        widest = max(MathTex(t).width for row in entries for t in row)
+        h_buff = max(1.45 if has_frac else 1.35, widest + 0.7)
+        self.mob = Matrix(entries, element_to_mobject=lambda s: MathTex(s, color=S.TEXT),
+                          h_buff=h_buff, v_buff=1.5 if has_frac else 0.85, bracket_h_buff=0.2)
         self.mob.scale(S.MATRIX_SIZE / 34)
         self.bar = None
         if bar_at is not None:
@@ -153,7 +158,7 @@ class Video(GoatVex3DScene):
             if a == 0 and b == 0:
                 continue
             eqs.append((a, b, c, S.SERIES[i % len(S.SERIES)]))
-        labels = [MathTex(sp.latex(sp.Eq(a * x + b * y, c)), color=col, font_size=38) for a, b, c, col in eqs]
+        labels = [MathTex(tex(sp.Eq(a * x + b * y, c)), color=col, font_size=38) for a, b, c, col in eqs]
         legend = VGroup(*labels).arrange(DOWN, aligned_edge=LEFT, buff=0.2)
         legend.next_to(plane, RIGHT, buff=0.25)
         self.fit(VGroup(plane, legend))  # position FIRST, then draw lines in the final coordinates
@@ -291,7 +296,7 @@ class Video(GoatVex3DScene):
             t.qa_name = "answer"
             return t
         vals = system["particular"] if system["status"] == "unique" else system["general"]
-        eqs = ",\\quad ".join(sp.latex(sp.Eq(v, val)) for v, val in zip(names, vals))
+        eqs = ",\\quad ".join(tex(sp.Eq(v, val)) for v, val in zip(names, vals))
         tex = MathTex(eqs, color=S.RESULT, font_size=S.MATH_SIZE)
         tex.qa_name = "answer"
         return tex
@@ -310,13 +315,13 @@ class Video(GoatVex3DScene):
                     a = m0[i, j]
                     if a == 0:
                         continue
-                    piece = rf"{sp.latex(abs(a))}\left({sp.latex(xp[j])}\right)"
+                    piece = rf"{tex(abs(a))}\left({tex(xp[j])}\right)"
                     terms.append(("-" if a < 0 else "+", piece))
                 body = "".join(f" {sg} {pc}" for sg, pc in terms).strip()
                 body = body[2:] if body.startswith("+ ") else body
-                tex = MathTex(body + " = " + sp.latex(m0[i, n]), color=S.TEXT, font_size=S.MATH_SIZE - 6)
+                eq = MathTex(body + " = " + tex(m0[i, n]), color=S.TEXT, font_size=S.MATH_SIZE - 6)
                 tick = self.text("✓", size=S.BODY_SIZE + 6, color=S.RESULT)
-                rows.append(VGroup(tex, tick).arrange(RIGHT, buff=0.3))
+                rows.append(VGroup(eq, tick).arrange(RIGHT, buff=0.3))
         else:
             rows.append(self.text("Independent check: SymPy's own rref() gives the same matrix ✓", size=S.BODY_SIZE))
         group = VGroup(*rows).arrange(DOWN, buff=0.35)

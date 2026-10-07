@@ -13,6 +13,7 @@ from pathlib import Path
 
 import sympy as sp
 
+from tutor.text.latex import tex
 from tutor.errors import NotConfirmed
 from tutor.parse.schema import Problem, save_problem
 from tutor.steps import Solution
@@ -60,9 +61,9 @@ def output_dir(problem: Problem, base: Path = VIDEOS_DIR) -> Path:
 def _jsonable(v):
     if isinstance(v, sp.MatrixBase):
         return {"matrix": [[str(v[i, j]) for j in range(v.cols)] for i in range(v.rows)],
-                "latex": sp.latex(v), "text": to_text(v)}
+                "latex": tex(v), "text": to_text(v)}
     if isinstance(v, sp.Basic):
-        return {"srepr": sp.srepr(v), "latex": sp.latex(v, order="none"), "text": to_text(v)}
+        return {"srepr": sp.srepr(v), "latex": tex(v, order="none"), "text": to_text(v)}
     if isinstance(v, dict):
         return {str(k): _jsonable(x) for k, x in v.items()}
     if isinstance(v, (list, tuple)):

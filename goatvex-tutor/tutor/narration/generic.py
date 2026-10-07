@@ -122,6 +122,33 @@ INTUITION = {
     "complex": "Complex numbers are points in the plane: {abi} sits at {ab}, at distance {r} from the origin and "
                "angle {theta}.",
     "geometry": "Vectors have length and direction; dot and cross products measure how a pair of vectors relate.",
+    "rref": "Each equation is a line or a plane, and the solution is where they all meet.",
+    "subspaces": "A span is everything you can reach with combinations of the vectors; a basis is a smallest set "
+                 "that still reaches all of it.",
+    "eigen": "Most vectors get turned by the matrix, but an eigenvector only gets stretched or flipped along its "
+             "own direction.",
+    "linear_transformation": "A linear transformation is decided by where it sends the standard basis vectors, "
+                             "and those images are the columns of its matrix.",
+    "orthogonality": "Projection drops a perpendicular onto the subspace; the closest point is the foot of that "
+                     "perpendicular.",
+    "optimization": "At a maximum or minimum inside the interval the graph is flat, so the tangent line is level; the "
+                    "endpoints are candidates too.",
+    "curve_sketching": "The first derivative tells where the graph rises and falls, and the second tells how it "
+                       "bends.",
+    "improper_integral": "An improper integral is a limit of ordinary integrals; it converges when the area "
+                         "settles to a finite value.",
+    "area_between_curves": "Slice the region into thin vertical strips; each strip reaches from the bottom curve up to the "
+                           "top curve, and the integral adds them up.",
+    "volume_of_revolution": "Spin the region around the axis; each thin slice becomes a disk, a washer, or a "
+                            "shell, and the integral adds up their volumes.",
+    "function_domain": "The domain is every input the formula can accept: no denominator that vanishes, no even root of "
+                       "a value below the axis, no log of a value that is not positive.",
+    "inverse_function": "The inverse undoes the function, so its graph is the mirror image across the diagonal "
+                        "line through the origin.",
+    "inverse_derivative": "Mirroring a graph across the diagonal flips each slope to its reciprocal.",
+    "linearization": "Close to the point, the curve and its tangent line are almost the same, so the line gives a "
+                     "good estimate.",
+    "higher_derivative": "Each derivative measures how the previous derivative changes: slope, then bending, and so on.",
 }
 
 RECAPS = {
@@ -149,6 +176,27 @@ RECAPS = {
     "complex": "Use {isq} to multiply, multiply by the conjugate to divide, and use polar form for powers and "
                "roots.",
     "geometry": "Turn the geometry into vectors, then use dot products for angles and cross products for normals.",
+    "rref": "Get a leading one, clear the column below it, move on, then clear above from the right.",
+    "subspaces": "Put the vectors in a matrix, row reduce, and read everything off the pivots.",
+    "eigen": "Find the characteristic polynomial, its roots are the eigenvalues, and row reduce for each "
+             "eigenspace.",
+    "linear_transformation": "Check that the map respects sums and scalar multiples, then apply it to each "
+                             "standard basis vector to build the matrix.",
+    "orthogonality": "Subtract from each vector its projections onto the vectors already found, and keep what "
+                     "is left.",
+    "optimization": "Write the quantity as a function of a single variable, find the critical points, and compare "
+                    "the candidates.",
+    "curve_sketching": "Find the domain, intercepts and asymptotes, then the sign charts of the first and second "
+                       "derivatives.",
+    "improper_integral": "Replace the bad limit by a letter, integrate, and take the limit.",
+    "area_between_curves": "Find where the curves meet, decide which curve is on top, and integrate the gap between "
+                           "them.",
+    "volume_of_revolution": "Choose disks, washers or shells, write the radius, and integrate.",
+    "function_domain": "List every restriction, solve each one, and intersect the results.",
+    "inverse_function": "Write the function, solve for the input, and swap the names.",
+    "inverse_derivative": "Find the input that gives the point, differentiate there, and take the reciprocal.",
+    "linearization": "Find the tangent line at a nearby easy point and use it as the estimate.",
+    "higher_derivative": "Differentiate again and again, tidying up after each round.",
 }
 
 

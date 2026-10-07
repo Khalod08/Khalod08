@@ -17,55 +17,282 @@
     "missed_tests": "Academic Consideration process; alternate assessment may be scheduled"
   },
   "tests": [
-    {"name": "Test 1", "date": "2026-10-06"},
-    {"name": "Test 2", "date": "2026-10-20"},
-    {"name": "Test 3", "date": "2026-11-10"},
-    {"name": "Test 4", "date": "2026-12-01"}
+    {
+      "name": "Test 1",
+      "date": "2026-10-06"
+    },
+    {
+      "name": "Test 2",
+      "date": "2026-10-20"
+    },
+    {
+      "name": "Test 3",
+      "date": "2026-11-10"
+    },
+    {
+      "name": "Test 4",
+      "date": "2026-12-01"
+    }
   ],
   "weeks": [
-    {"week": 1, "dates": "Sept 10", "sections": ["Ch. 1", "intro to Ch. 2"],
-     "topics": ["Functions", "Compositions", "Inverses", "Domains", "Absolute-value functions"],
-     "goatvex_types": ["domain", "composition", "inverse_function"]},
-    {"week": 2, "dates": "Sept 15, 17", "sections": ["2.1-2.5"],
-     "topics": ["Limits and continuity", "Evaluating limits", "Infinite limits", "Limits at infinity"],
-     "goatvex_types": ["limit", "continuity"]},
-    {"week": 3, "dates": "Sept 22, 24", "sections": ["3.1-3.5"],
-     "topics": ["Derivatives", "Chain rule", "Implicit differentiation", "Derivatives of trigonometric functions", "Inverse functions"],
-     "goatvex_types": ["derivative", "implicit_derivative", "inverse_function_derivative"]},
-    {"week": 4, "dates": "Sept 29, Oct 1", "sections": ["3.6-3.9"],
-     "topics": ["Inverse trigonometric functions and their derivatives", "Indeterminate forms", "L'Hospital's rule"],
-     "goatvex_types": ["derivative", "limit_lhospital"]},
-    {"week": 5, "dates": "Oct 6, 8", "test": "Test 1 (Oct 6)", "sections": ["4.1-4.6", "Ch. 5"],
-     "topics": ["Exponential and logarithmic functions and derivatives", "Tangent lines", "Optimization", "Curve sketching"],
-     "goatvex_types": ["derivative", "logarithmic_differentiation", "tangent_line", "optimization", "curve_sketching"]},
-    {"week": 6, "dates": "Oct 13, 15", "sections": ["6.1-6.4", "7.1-7.2"],
-     "topics": ["Antiderivatives", "Summation and area", "Definite integrals", "Fundamental Theorem of Calculus", "Trigonometric identities", "Substitution"],
-     "goatvex_types": ["antiderivative", "riemann_sum", "definite_integral", "ftc_derivative", "u_substitution"]},
-    {"week": 7, "dates": "Oct 20, 22", "test": "Test 2 (Oct 20)", "sections": ["7.1-7.2"],
-     "topics": ["Integration by substitution and applications", "Consolidation and problem solving"],
-     "goatvex_types": ["u_substitution"]},
-    {"week": "break", "dates": "Oct 26-30", "topics": ["Fall break"]},
-    {"week": 8, "dates": "Nov 3, 5", "sections": ["7.3", "7.3.1-7.3.4"],
-     "topics": ["Integration by parts (all assigned subsections)"],
-     "goatvex_types": ["integration_by_parts"]},
-    {"week": 9, "dates": "Nov 10, 12", "test": "Test 3 (Nov 10)", "sections": ["7.4", "7.4.1-7.4.2", "7.5.1"],
-     "topics": ["Partial fractions", "Integrals of powers of sine and cosine"],
-     "goatvex_types": ["partial_fractions", "trig_powers_sin_cos"]},
-    {"week": 10, "dates": "Nov 17, 19", "sections": ["7.5.2", "7.6-7.7"],
-     "topics": ["Powers of secant and tangent", "Trigonometric substitution", "Improper integrals"],
-     "goatvex_types": ["trig_powers_sec_tan", "trig_substitution", "improper_integral"]},
-    {"week": 11, "dates": "Nov 24, 26", "sections": ["7.7-7.9"],
-     "topics": ["Improper integrals", "Area between curves", "Introduction to volumes of solids of revolution"],
-     "goatvex_types": ["improper_integral", "area_between_curves", "volume_of_revolution"]},
-    {"week": 12, "dates": "Dec 1, 3", "test": "Test 4 (Dec 1)", "sections": ["7.9"],
-     "topics": ["Volumes of solids of revolution", "Integration applications"],
-     "goatvex_types": ["volume_of_revolution"]},
-    {"week": 13, "dates": "Dec 8, 10", "sections": [], "topics": ["Comprehensive review", "Final exam preparation"]}
+    {
+      "week": 1,
+      "dates": "Sept 10",
+      "sections": [
+        "Ch. 1",
+        "intro to Ch. 2"
+      ],
+      "topics": [
+        "Functions",
+        "Compositions",
+        "Inverses",
+        "Domains",
+        "Absolute-value functions"
+      ],
+      "goatvex_types": [
+        "function_domain",
+        "inverse_function"
+      ],
+      "start": "2026-09-10"
+    },
+    {
+      "week": 2,
+      "dates": "Sept 15, 17",
+      "sections": [
+        "2.1-2.5"
+      ],
+      "topics": [
+        "Limits and continuity",
+        "Evaluating limits",
+        "Infinite limits",
+        "Limits at infinity"
+      ],
+      "goatvex_types": [
+        "limit"
+      ],
+      "start": "2026-09-15"
+    },
+    {
+      "week": 3,
+      "dates": "Sept 22, 24",
+      "sections": [
+        "3.1-3.5"
+      ],
+      "topics": [
+        "Derivatives",
+        "Chain rule",
+        "Implicit differentiation",
+        "Derivatives of trigonometric functions",
+        "Inverse functions"
+      ],
+      "goatvex_types": [
+        "derivative",
+        "implicit_derivative",
+        "inverse_derivative"
+      ],
+      "start": "2026-09-22"
+    },
+    {
+      "week": 4,
+      "dates": "Sept 29, Oct 1",
+      "sections": [
+        "3.6-3.9"
+      ],
+      "topics": [
+        "Inverse trigonometric functions and their derivatives",
+        "Indeterminate forms",
+        "L'Hospital's rule"
+      ],
+      "goatvex_types": [
+        "derivative",
+        "limit:lhospital"
+      ],
+      "start": "2026-09-29"
+    },
+    {
+      "week": 5,
+      "dates": "Oct 6, 8",
+      "test": "Test 1 (Oct 6)",
+      "sections": [
+        "4.1-4.6",
+        "Ch. 5"
+      ],
+      "topics": [
+        "Exponential and logarithmic functions and derivatives",
+        "Tangent lines",
+        "Optimization",
+        "Curve sketching"
+      ],
+      "goatvex_types": [
+        "derivative",
+        "log_differentiation",
+        "tangent_line",
+        "linearization",
+        "optimization",
+        "curve_sketching",
+        "related_rates",
+        "higher_derivative"
+      ],
+      "start": "2026-10-06"
+    },
+    {
+      "week": 6,
+      "dates": "Oct 13, 15",
+      "sections": [
+        "6.1-6.4",
+        "7.1-7.2"
+      ],
+      "topics": [
+        "Antiderivatives",
+        "Summation and area",
+        "Definite integrals",
+        "Fundamental Theorem of Calculus",
+        "Trigonometric identities",
+        "Substitution"
+      ],
+      "goatvex_types": [
+        "indefinite_integral:basic",
+        "riemann_sum",
+        "definite_integral",
+        "ftc_derivative",
+        "indefinite_integral:substitution"
+      ],
+      "start": "2026-10-13"
+    },
+    {
+      "week": 7,
+      "dates": "Oct 20, 22",
+      "test": "Test 2 (Oct 20)",
+      "sections": [
+        "7.1-7.2"
+      ],
+      "topics": [
+        "Integration by substitution and applications",
+        "Consolidation and problem solving"
+      ],
+      "goatvex_types": [
+        "indefinite_integral:substitution",
+        "definite_integral"
+      ],
+      "start": "2026-10-20"
+    },
+    {
+      "week": "break",
+      "dates": "Oct 26-30",
+      "topics": [
+        "Fall break"
+      ],
+      "start": "2026-10-26"
+    },
+    {
+      "week": 8,
+      "dates": "Nov 3, 5",
+      "sections": [
+        "7.3",
+        "7.3.1-7.3.4"
+      ],
+      "topics": [
+        "Integration by parts (all assigned subsections)"
+      ],
+      "goatvex_types": [
+        "indefinite_integral:parts"
+      ],
+      "start": "2026-11-03"
+    },
+    {
+      "week": 9,
+      "dates": "Nov 10, 12",
+      "test": "Test 3 (Nov 10)",
+      "sections": [
+        "7.4",
+        "7.4.1-7.4.2",
+        "7.5.1"
+      ],
+      "topics": [
+        "Partial fractions",
+        "Integrals of powers of sine and cosine"
+      ],
+      "goatvex_types": [
+        "indefinite_integral:partial_fractions",
+        "indefinite_integral:trig_powers"
+      ],
+      "start": "2026-11-10"
+    },
+    {
+      "week": 10,
+      "dates": "Nov 17, 19",
+      "sections": [
+        "7.5.2",
+        "7.6-7.7"
+      ],
+      "topics": [
+        "Powers of secant and tangent",
+        "Trigonometric substitution",
+        "Improper integrals"
+      ],
+      "goatvex_types": [
+        "indefinite_integral:trig_powers",
+        "indefinite_integral:trig_sub",
+        "improper_integral"
+      ],
+      "start": "2026-11-17"
+    },
+    {
+      "week": 11,
+      "dates": "Nov 24, 26",
+      "sections": [
+        "7.7-7.9"
+      ],
+      "topics": [
+        "Improper integrals",
+        "Area between curves",
+        "Introduction to volumes of solids of revolution"
+      ],
+      "goatvex_types": [
+        "improper_integral",
+        "area_between_curves",
+        "volume_of_revolution"
+      ],
+      "start": "2026-11-24"
+    },
+    {
+      "week": 12,
+      "dates": "Dec 1, 3",
+      "test": "Test 4 (Dec 1)",
+      "sections": [
+        "7.9"
+      ],
+      "topics": [
+        "Volumes of solids of revolution",
+        "Integration applications"
+      ],
+      "goatvex_types": [
+        "volume_of_revolution"
+      ],
+      "start": "2026-12-01"
+    },
+    {
+      "week": 13,
+      "dates": "Dec 8, 10",
+      "sections": [],
+      "topics": [
+        "Comprehensive review",
+        "Final exam preparation"
+      ],
+      "start": "2026-12-08",
+      "goatvex_types": []
+    }
   ],
   "notes": [
     "The outline doesn't say exactly which weeks each test covers. Test 1 (Oct 6) falls on the first day of week 5, so it most likely covers weeks 1-4. Confirm on Brightspace.",
     "Related rates and tangent-line approximation are listed as learning outcomes but aren't named in the weekly schedule. They probably fall under the Ch. 5 applications in week 5, so GoatVex should support them.",
     "The final is multiple-choice, so /testprep for the final should include MC-style questions with verified distractors.",
-    "goatvex_types are the solver types GoatVex needs. Only 'derivative' exists so far (Phase 1)."
-  ]
+    "goatvex_types are registry problem types ('type' or 'type:variant') used by /practice and /testprep. 'start' is the first lecture date of the week; a test covers every week that starts before the test date."
+  ],
+  "final": {
+    "name": "Final exam",
+    "date": "2026-12-12",
+    "window": "Dec 12-23, 2026",
+    "format": "multiple choice"
+  }
 }

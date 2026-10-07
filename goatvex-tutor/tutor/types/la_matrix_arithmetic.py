@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import random
+import re
 
 import sympy as sp
 
@@ -22,8 +23,11 @@ def validate(p: Problem) -> None:
 
 def describe(p: Problem) -> str:
     mats = matrix_ops.matrices(p)
+    used = set(re.findall(r"[A-Z]", p.given["expression"].replace("^T", "")))
     body = []
     for name, m in mats.items():
+        if name not in used:
+            continue
         body.append(f"{name} =")
         body.append(matrix_text(m))
     return describe_lines(p, f"Compute {p.given['expression']}, where", body)
@@ -34,7 +38,9 @@ def generate(rng: random.Random, difficulty: int = 2):
     B = sp.Matrix(A.cols, 2, lambda i, j: rng.randint(-3, 4))
     C = sp.Matrix(2, 2, lambda i, j: rng.randint(-3, 4))
     expr = rng.choice(["AB", "AB - 2C", "C^T + 3C", "(AB)^T"] if difficulty > 1 else ["2C - C^T", "AB"])
-    return {"matrices": {"A": _gen.strs(A), "B": _gen.strs(B), "C": _gen.strs(C)}, "expression": expr}, f"Compute {expr}."
+    mats = {k: _gen.strs(v) for k, v in (("A", A), ("B", B), ("C", C)) if k in expr}
+    shown = expr.replace("^T", "ᵀ").replace(" - ", " − ")
+    return {"matrices": mats, "expression": expr}, f"Compute {shown}."
 
 
 def grade(solution, text: str):

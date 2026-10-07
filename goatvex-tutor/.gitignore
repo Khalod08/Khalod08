@@ -25,3 +25,8 @@ materials/**/*.txt
 videos/**/media/
 videos/**/frames/
 videos/**/render_job.json
+
+# generated study files (progress.json itself is kept)
+student/sessions/
+student/tests/
+student/progress.html

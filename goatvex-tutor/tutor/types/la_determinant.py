@@ -48,7 +48,9 @@ def generate(rng: random.Random, difficulty: int = 2):
     n = {1: 2, 2: 3, 3: 4}[max(1, min(3, difficulty))]
     while True:
         m = sp.Matrix(n, n, lambda i, j: rng.randint(-4, 5) if rng.random() > 0.3 else 0)
-        if abs(m.det()) <= 60:
+        zeros = sum(1 for e in m if e == 0)
+        # a real exercise: not mostly zeros, not a trivial 0 (unless that's the point at 3×3+)
+        if abs(m.det()) <= 60 and zeros <= n * n // 3 and (m.det() != 0 or n >= 3):
             break
     return {"matrix": _gen.strs(m)}, "Find det(A)."
 

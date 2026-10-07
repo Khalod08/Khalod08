@@ -62,6 +62,7 @@ T = [
                                    "variable": "x", "a": "1", "b": "oo"}, "Evaluate the improper integral."),
          grade=lambda sol, text: (("diverg" in text.lower()) == (not sol.facts["converges"]), "Check convergence first.")
          if not sol.facts["converges"] or "diverg" in text.lower() else num_grade(sol, text),
+         answer_text=lambda sol: str(sol.answer) if sol.facts["converges"] else "diverges",
          answer_format="a number, or 'diverges'", sections={"Mingarelli": ["7.7"]},
          keywords=("improper", "converge", "diverge", "infinite limit of integration")),
     dict(name="area_between_curves", topic="area-volume", title="Area between curves",

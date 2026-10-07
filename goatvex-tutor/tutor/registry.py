@@ -34,6 +34,8 @@ class ProblemType:
     verify: Callable[["Solution"], list["CheckResult"]]
     # practice: rng, difficulty (1-3) -> (given, statement)
     generate: Callable[[random.Random, int], tuple[dict[str, Any], str]] | None = None
+    # variants: named sub-generators, e.g. {"parts": ...} for integration by parts ("indefinite_integral:parts")
+    variants: dict[str, Callable[[random.Random, int], tuple[dict[str, Any], str]]] = field(default_factory=dict)
     # grade: verified solution + the student's answer text -> (correct?, explanation)
     grade: Callable[["Solution", str], tuple[bool, str]] | None = None
     # answer_text: the verified answer written the way a student would type it (for /practice and tests)
@@ -65,6 +67,9 @@ def load_all() -> dict[str, ProblemType]:
             if mod.name.startswith("_"):  # helpers, not problem types
                 continue
             importlib.import_module(f"tutor.types.{mod.name}")
+        from tutor.types import _variants
+
+        _variants.attach(TYPES)
         _loaded = True
     return TYPES
 

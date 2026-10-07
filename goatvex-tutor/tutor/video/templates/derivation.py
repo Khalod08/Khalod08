@@ -18,23 +18,10 @@ from manim import (DOWN, LEFT, ORIGIN, RIGHT, UP, Arrow, Axes, Circle, Create, D
                    TransformMatchingShapes, VGroup, Write, DashedLine, Angle)
 
 from tutor.narration import generic
-from tutor.text.unicode_math import _built_by_hand
+from tutor.text.latex import latex_of, tex
 from tutor.video import style as S
 from tutor.video.base import GoatVexScene
 from tutor.video.templates.row_reduction import MatrixView
-
-
-def latex_of(e) -> str:
-    """LaTeX for a verified step object; keeps the order of hand-built (unevaluated) lines."""
-    if isinstance(e, sp.MatrixBase):
-        return sp.latex(e)
-    if isinstance(e, (list, tuple)):
-        if e and all(isinstance(q, sp.Equality) for q in e):
-            return r"\begin{aligned}" + r"\\".join(latex_of(q).replace("=", "&=", 1) for q in e) + r"\end{aligned}"
-        return r",\quad ".join(latex_of(q) for q in e)
-    e = sp.sympify(e)
-    hand = any(_built_by_hand(n) for n in sp.preorder_traversal(e) if isinstance(n, (sp.Add, sp.Mul)))
-    return sp.latex(e, order="none") if hand else sp.latex(e)
 
 
 class Video(GoatVexScene):
@@ -237,6 +224,11 @@ class Video(GoatVexScene):
             "indefinite_integral": self.pic_antiderivative, "limit": self.pic_limit,
             "determinant": self.pic_determinant, "matrix_inverse": self.pic_inverse, "complex": self.pic_complex,
             "geometry": self.pic_vectors,
+            "optimization": self.pic_graph, "curve_sketching": self.pic_graph, "higher_derivative": self.pic_graph,
+            "function_domain": self.pic_graph, "inverse_derivative": self.pic_graph, "linearization": self.pic_tangent,
+            "area_between_curves": self.pic_between, "volume_of_revolution": self.pic_between,
+            "improper_integral": self.pic_improper, "inverse_function": self.pic_inverse_function,
+            "eigen": self.pic_eigen, "linear_transformation": self.pic_transformation,
         }.get(t)
         mobs = []
         try:
@@ -258,7 +250,9 @@ class Video(GoatVexScene):
             self.play(FadeOut(group), run_time=0.5)
             self.unregister(group)
 
-    def _axes_for(self, fns, x, x_range, y_clip=8.0):
+    def _axes_for(self, fns, x, x_range, y_clip=8.0, extra_y=(), square=False):
+        """Axes + graphs. ``extra_y``: values that must be visible (marked points, an axis of revolution).
+        ``square``: same scale on both axes (needed where angles matter, e.g. the mirror line y = x)."""
         xs = np.linspace(x_range[0], x_range[1], 400)
         ys = []
         lams = [sp.lambdify(x, f, "numpy") for f in fns]
@@ -270,11 +264,16 @@ class Video(GoatVexScene):
         allv = np.concatenate([v[np.isfinite(v)] for v in ys]) if ys else np.array([0.0])
         lo, hi = (np.percentile(allv, 3), np.percentile(allv, 97)) if allv.size else (-1, 1)
         lo, hi = max(lo, -y_clip), min(hi, y_clip)
+        for yv in extra_y:
+            lo, hi = min(lo, float(yv)), max(hi, float(yv))
         if hi - lo < 1:
             lo, hi = lo - 1, hi + 1
         pad = 0.15 * (hi - lo)
+        if square:
+            lo, hi, pad = x_range[0], x_range[1], 0.0
         axes = Axes(x_range=[x_range[0], x_range[1], max(1, round((x_range[1] - x_range[0]) / 8))],
-                    y_range=[lo - pad, hi + pad, max(0.5, round((hi - lo) / 6, 1))], x_length=8.5, y_length=4.6,
+                    y_range=[lo - pad, hi + pad, max(0.5, round((hi - lo) / 6, 1))],
+                    x_length=5.2 if square else 8.5, y_length=5.2 if square else 4.6,
                     axis_config={"color": S.MUTED, "include_ticks": True})
         graphs = []
         ylo, yhi = lo - pad, hi + pad
@@ -303,7 +302,7 @@ class Video(GoatVexScene):
         f = sol.facts.get("function") or sol.facts.get("f")
         rng = (0.05, 4) if sol.problem.type == "log_differentiation" else (-3, 3)
         axes, graphs = self._axes_for([f, sol.answer], x, rng)
-        lab = VGroup(MathTex("f(x) = " + sp.latex(f), color=S.SERIES[0], font_size=30),
+        lab = VGroup(MathTex("f(x) = " + tex(f), color=S.SERIES[0], font_size=30),
                      MathTex("f'(x)", color=S.SERIES[1], font_size=30)).arrange(DOWN, aligned_edge=LEFT)
         lab.next_to(axes, RIGHT, buff=0.2)
         return [axes, *graphs, lab]
@@ -412,6 +411,128 @@ class Video(GoatVexScene):
             r = abs(vals[0])
             mobs.append(Circle(radius=plane.c2p(r, 0)[0] - plane.c2p(0, 0)[0], color=S.MUTED).move_to(plane.c2p(0, 0)))
         return mobs
+
+    def _range_for(self, sol, default=(-4.0, 4.0)):
+        f = sol.facts
+        iv = f.get("interval")
+        if isinstance(iv, sp.Interval) and iv.inf.is_finite and iv.sup.is_finite:
+            lo, hi = float(iv.inf), float(iv.sup)
+            pad = 0.15 * (hi - lo)
+            return lo - pad, hi + pad
+        if "a" in f and "b" in f and f["a"].is_finite and f["b"].is_finite and f["a"] != f["b"]:
+            lo, hi = float(f["a"]), float(f["b"])
+            pad = 0.3 * (hi - lo)
+            return lo - pad, hi + pad
+        if "a" in f and f["a"].is_finite:
+            a = float(f["a"])
+            return a - 3, a + 3
+        return default
+
+    def pic_graph(self, sol):
+        """The function's graph; for optimization the absolute max/min points (verified values) are marked."""
+        f = sol.facts
+        x, fn = f["x"], f["f"]
+        marks = [f[k] for k in ("max", "min") if f.get("closed") and k in f]
+        if sol.problem.type == "inverse_derivative":
+            marks.append(f["b"])
+        axes, graphs = self._axes_for([fn], x, self._range_for(sol), extra_y=marks)
+        mobs = [axes, *graphs]
+        if f.get("closed") and "argmax" in f:
+            for xv, yv, col in ((f["argmax"], f["max"], S.PIVOT), (f["argmin"], f["min"], S.CHANGE)):
+                mobs.append(Dot(axes.c2p(float(xv), float(yv)), color=col, radius=0.09))
+        if sol.problem.type == "inverse_derivative":
+            mobs.append(Dot(axes.c2p(float(f["a"]), float(f["b"])), color=S.RESULT, radius=0.09))
+        return mobs
+
+    def pic_between(self, sol):
+        """The region between the curves (for volumes: the region that gets revolved)."""
+        f = sol.facts
+        x, a, b = f["x"], float(f["a"]), float(f["b"])
+        fns = [f["f"]] + ([f["g"]] if f.get("g") is not None else [])
+        axis = str(f.get("axis", "x"))
+        horizontal_axis = axis == "x" or axis.startswith("y=")  # revolved about a horizontal line y = c
+        extra = [float(f.get("c") or 0)] if sol.problem.type == "volume_of_revolution" and horizontal_axis else []
+        axes, graphs = self._axes_for(fns, x, self._range_for(sol), y_clip=1e9, extra_y=extra)
+        lams = [sp.lambdify(x, g_, "numpy") for g_ in fns]
+        top = axes.plot(lambda t: float(lams[0](t)), x_range=[a, b, (b - a) / 120], color=S.SERIES[0],
+                        use_smoothing=False)
+        if len(lams) > 1:
+            bot = axes.plot(lambda t: float(lams[1](t)), x_range=[a, b, (b - a) / 120], color=S.SERIES[1],
+                            use_smoothing=False)
+            area = axes.get_area(top, x_range=[a, b], bounded_graph=bot, color=S.CHANGE, opacity=0.35)
+        else:
+            area = axes.get_area(top, x_range=[a, b], color=S.CHANGE, opacity=0.35)
+        mobs = [axes, *graphs, area]
+        if sol.problem.type == "volume_of_revolution":
+            axis, c = str(f.get("axis", "x")), float(f.get("c") or 0)
+            horizontal = axis == "x" or axis.startswith("y=")  # revolve about a horizontal line y = c
+            if horizontal and axes.y_range[0] <= c <= axes.y_range[1]:
+                mobs.append(DashedLine(axes.c2p(axes.x_range[0], c), axes.c2p(axes.x_range[1], c), color=S.PIVOT))
+            elif not horizontal and axes.x_range[0] <= c <= axes.x_range[1]:
+                mobs.append(DashedLine(axes.c2p(c, axes.y_range[0]), axes.c2p(c, axes.y_range[1]), color=S.PIVOT))
+        return mobs
+
+    def pic_improper(self, sol):
+        f = sol.facts
+        x, fn = f["x"], f["f"]
+        a = float(f["a"]) if f["a"].is_finite else -10.0
+        b = float(f["b"]) if f["b"].is_finite else a + 10.0
+        axes, graphs = self._axes_for([fn], x, (a, b), y_clip=6.0)
+        lam = sp.lambdify(x, fn, "numpy")
+        eps = 1e-3 * (b - a)
+        lo_y, hi_y = axes.y_range[0], axes.y_range[1]
+        g = axes.plot(lambda t: float(min(max(lam(t), lo_y), hi_y)), x_range=[a + eps, b - eps, (b - a) / 200],
+                      color=S.SERIES[0], use_smoothing=False)
+        area = axes.get_area(g, x_range=[a + eps, b - eps], color=S.CHANGE, opacity=0.35)
+        return [axes, *graphs, area]
+
+    def pic_inverse_function(self, sol):
+        f = sol.facts
+        x = f["x"]
+        lo = f["domain"].inf
+        rng = (float(lo) - 0.5, float(lo) + 4.5) if lo.is_finite else (-4, 4)
+        axes, graphs = self._axes_for([f["f"], f["finv"], x], x, rng, square=True)
+        return [axes, *graphs]
+
+    def _plane(self, R):
+        return NumberPlane(x_range=[-R, R, 1], y_range=[-R, R, 1], x_length=5.4, y_length=5.4,
+                           background_line_style={"stroke_color": S.MUTED, "stroke_opacity": 0.3})
+
+    def pic_eigen(self, sol):
+        """Each eigenvector v and A·v = λv on the same line through the origin (2×2, real eigenvalues)."""
+        f = sol.facts
+        A = f["matrix"]
+        if A.shape != (2, 2) or not all(lv.is_real for lv in f["eigenvalues"]):
+            return []
+        pairs = [(lv, v) for lv in f["eigenvalues"] for v in f["spaces"][lv]]
+        unit = [(lv, v / sp.sqrt(v.dot(v))) for lv, v in pairs]
+        R = max(3.0, 1.3 * max(abs(float(lv)) for lv, _ in unit))
+        plane = self._plane(round(R))
+        mobs = [plane]
+        for k, (lv, u) in enumerate(unit):
+            ux, uy = float(u[0]), float(u[1])
+            col = S.SERIES[k % len(S.SERIES)]
+            mobs.append(DashedLine(plane.c2p(-R * ux, -R * uy), plane.c2p(R * ux, R * uy), color=col,
+                                   stroke_opacity=0.6))
+            Av = A * u  # = λu (verified eigenvector), drawn from the matrix product itself
+            mobs.append(Arrow(plane.c2p(0, 0), plane.c2p(float(Av[0]), float(Av[1])), buff=0, color=col))
+            mobs.append(Arrow(plane.c2p(0, 0), plane.c2p(ux, uy), buff=0, color=S.TEXT, stroke_width=7))  # v on top
+        return mobs
+
+    def pic_transformation(self, sol):
+        f = sol.facts
+        A = f.get("A")
+        if not f.get("linear") or A is None or A.shape != (2, 2):
+            return []
+        c1, c2 = [float(v) for v in A[:, 0]], [float(v) for v in A[:, 1]]
+        R = max(3.0, 1.3 * max(abs(v) for v in c1 + c2 + [c1[0] + c2[0], c1[1] + c2[1]]))
+        plane = self._plane(round(R))
+        sq = Polygon(plane.c2p(0, 0), plane.c2p(1, 0), plane.c2p(1, 1), plane.c2p(0, 1), color=S.MUTED,
+                     fill_opacity=0.3)
+        par = Polygon(plane.c2p(0, 0), plane.c2p(*c1), plane.c2p(c1[0] + c2[0], c1[1] + c2[1]), plane.c2p(*c2),
+                      color=S.CHANGE, fill_opacity=0.3)
+        arrows = [Arrow(plane.c2p(0, 0), plane.c2p(*c), buff=0, color=S.SERIES[k]) for k, c in enumerate((c1, c2))]
+        return [plane, sq, par, *arrows]
 
     def pic_vectors(self, sol):
         p = sol.problem
