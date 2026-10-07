@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "area-cubic-line",
+  "course": "MATH1004",
+  "type": "area_between_curves",
+  "statement": "Area between y = x³ and y = x.",
+  "given": {
+    "top_or_first": "x^3",
+    "second": "x",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "1/2",
+    "kind": "expr"
+  }
+}

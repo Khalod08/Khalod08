@@ -212,3 +212,21 @@ def test_wrong_matrix_product_entry_is_caught():
     wrong = sp.ImmutableMatrix([[2, 3], [10, 6]])
     bad = replace(restep(sol, len(sol.steps) - 1, after=wrong), answer=wrong)
     assert overall(verify(bad)) == FAIL
+
+
+def test_principal_cube_root_inverse_is_caught():
+    """SymPy's (x + 1)**(1/3) is complex for x < −1; the inverse must use the real cube root."""
+    sol = solve("inverse_function", course="MATH1004", function="x^3 - 1", variable="x")
+    x = sol.facts["x"]
+    bad = (x + 1) ** sp.Rational(1, 3)
+    sol = replace(sol, answer=bad, facts={**sol.facts, "finv": bad})
+    assert overall(failing_checks(sol)) == FAIL
+
+
+def test_real_root_function():
+    from tutor.mathfn import RealRoot
+
+    assert RealRoot(sp.Integer(-8), 3) == -2
+    x = sp.Symbol("x", real=True)
+    assert check_equal(RealRoot(x, 3) ** 3, x, [x])[0] == PASS
+    assert check_equal(RealRoot(x, 3), x ** sp.Rational(1, 3), [x])[0] == FAIL

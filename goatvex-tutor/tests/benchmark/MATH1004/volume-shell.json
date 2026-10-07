@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "slug": "volume-shell",
+  "course": "MATH1004",
+  "type": "volume_of_revolution",
+  "statement": "Rotate y = x², 0 ≤ x ≤ 2, about the y-axis.",
+  "given": {
+    "outer": "x^2",
+    "variable": "x",
+    "a": "0",
+    "b": "2",
+    "axis": "y"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "8pi",
+    "kind": "expr"
+  }
+}

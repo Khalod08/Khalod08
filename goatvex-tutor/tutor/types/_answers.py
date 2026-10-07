@@ -107,3 +107,38 @@ def grade_list(verified: list, text: str, *, ordered=True, imaginary=False) -> t
                 break
             remaining.remove(match)
     return ok, "Correct!" if ok else "Not quite. At least one value is off."
+
+
+def parse_answer_vectors(text: str) -> list[sp.Matrix]:
+    """'(1, 2, 3), (0, -1, 1)' → two column vectors."""
+    groups = re.findall(r"[(\[]([^()\[\]]*)[)\]]", normalize(text))
+    if not groups:
+        raise ProblemFormatError("write each vector in brackets, e.g. (1, 2, 3), (0, -1, 1)")
+    return [sp.Matrix([parse_math(c) for c in re.split(r"[,\s]+", g.strip()) if c]) for g in groups]
+
+
+def vectors_text(vs) -> str:
+    return ", ".join("(" + ", ".join(str(e) for e in v) + ")" for v in vs)
+
+
+def grade_orthogonal_basis(original: list[sp.Matrix], text: str) -> tuple[bool, str]:
+    """Any orthogonal basis of span(original) is right (Gram–Schmidt answers differ by scaling and order)."""
+    try:
+        vs = parse_answer_vectors(text)
+    except Exception as exc:  # noqa: BLE001
+        return False, f"I couldn't read that ({exc})."
+    W = sp.Matrix.hstack(*original)
+    dim = W.rank()
+    if any(v.rows != W.rows for v in vs):
+        return False, f"Each vector should have {W.rows} entries."
+    if len(vs) != dim:
+        return False, f"A basis of W has {dim} vectors; you gave {len(vs)}."
+    if any(v.is_zero_matrix for v in vs):
+        return False, "A basis can't contain the zero vector."
+    for i in range(len(vs)):
+        for j in range(i + 1, len(vs)):
+            if sp.simplify(vs[i].dot(vs[j])) != 0:
+                return False, f"Vectors {i + 1} and {j + 1} are not orthogonal (their dot product isn't 0)."
+    if sp.Matrix.hstack(W, *vs).rank() != dim:
+        return False, "At least one of your vectors is not in W."
+    return True, "Correct! (Any nonzero multiples of these vectors are also right.)"

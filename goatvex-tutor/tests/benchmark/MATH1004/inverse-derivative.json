@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "inverse-derivative",
+  "course": "MATH1004",
+  "type": "inverse_derivative",
+  "statement": "(f⁻¹)′(3) for f(x) = x³ + x + 1.",
+  "given": {
+    "function": "x^3 + x + 1",
+    "variable": "x",
+    "at": "3"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "1/4",
+    "kind": "expr"
+  }
+}

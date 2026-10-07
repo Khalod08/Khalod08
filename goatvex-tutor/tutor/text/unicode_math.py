@@ -235,7 +235,11 @@ def to_text(obj) -> str:
     if isinstance(obj, sp.MatrixBase):
         return matrix_text(obj)
     if isinstance(obj, (list, tuple)):
-        return ", ".join(to_text(o) for o in obj)
+        return ", ".join(vec_text(o) if isinstance(o, sp.MatrixBase) and o.cols == 1 else to_text(o) for o in obj)
+    if isinstance(obj, dict):
+        return "; ".join(f"{to_text(k)}: {to_text(v)}" for k, v in obj.items())
+    if isinstance(obj, str):
+        return obj
     # order="none" keeps the term order the solver built (matters for
     # unevaluated intermediate steps such as 5·(3x²)).
     return _tidy(_UnicodePrinter()._print(sp.sympify(obj)))

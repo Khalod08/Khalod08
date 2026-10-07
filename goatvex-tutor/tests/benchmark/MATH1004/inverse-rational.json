@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "inverse-rational",
+  "course": "MATH1004",
+  "type": "inverse_function",
+  "statement": "Inverse of (x − 1)/(x + 2).",
+  "given": {
+    "function": "(x - 1)/(x + 2)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "(-2x - 1)/(x - 1)",
+    "kind": "expr"
+  }
+}

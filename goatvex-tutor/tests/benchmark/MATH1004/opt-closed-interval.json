@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "slug": "opt-closed-interval",
+  "course": "MATH1004",
+  "type": "optimization",
+  "statement": "Absolute extrema of x³ − 3x² + 1 on [−1, 4].",
+  "given": {
+    "function": "x^3 - 3x^2 + 1",
+    "variable": "x",
+    "a": "-1",
+    "b": "4"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "17",
+      "-3"
+    ],
+    "kind": "list"
+  }
+}

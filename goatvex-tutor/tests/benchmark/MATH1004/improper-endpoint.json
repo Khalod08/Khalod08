@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "improper-endpoint",
+  "course": "MATH1004",
+  "type": "improper_integral",
+  "statement": "∫ from 0 to 1 of 1/√x.",
+  "given": {
+    "integrand": "1/sqrt(x)",
+    "variable": "x",
+    "a": "0",
+    "b": "1"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "2",
+    "kind": "expr"
+  }
+}

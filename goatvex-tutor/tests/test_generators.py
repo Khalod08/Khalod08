@@ -54,5 +54,7 @@ def test_grader_accepts_the_verified_answer(ptype):
         text = f"{sol.facts['r']}, {sol.facts['theta']}"
     if ptype == "rref" and sol.facts["system"]["status"] != "unique":
         text = "; ".join(" ".join(str(ans[i, j]) for j in range(ans.cols)) for i in range(ans.rows))
+    if pt.answer_text:
+        text = pt.answer_text(sol)
     ok, msg = pt.grade(sol, text.replace("I", "i").replace("**", "^"))
     assert ok, f"{ptype}: {text!r} → {msg} (answer {to_text(ans)})"

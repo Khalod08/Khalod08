@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "slug": "projection-plane",
+  "course": "MATH1104",
+  "type": "orthogonality",
+  "statement": "Project (1,2,3) onto span{(1,1,0),(1,0,1)}.",
+  "given": {
+    "task": "projection",
+    "vectors": [
+      [
+        "1",
+        "1",
+        "0"
+      ],
+      [
+        "1",
+        "0",
+        "1"
+      ]
+    ],
+    "y": [
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "7/3",
+      "2/3",
+      "5/3"
+    ],
+    "kind": "list"
+  }
+}

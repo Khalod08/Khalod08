@@ -91,6 +91,19 @@ def compare_generic(problem, sol, exp):
         assert _same(got, exp_), f"{got} != {exp_}"
     elif kind == "line":
         assert _same(ans.rhs, _expr(want, problem), problem), f"{ans} != y = {want}"
+    elif kind == "bool":
+        assert bool(ans) is want
+    elif kind == "eigenvalues":
+        got = list(sol.facts["eigenvalues"])
+        exp_vals = [_expr(w, problem) for w in want]
+        assert len(got) == len(exp_vals) and all(any(_same(g, e) for e in exp_vals) for g in got), got
+    elif kind == "vectors":
+        assert [list(v) for v in ans] == [[parse_math(c) for c in w] for w in want], ans
+    elif kind == "set":
+        assert ans == sp.sympify(want, locals={"Interval": sp.Interval, "Union": sp.Union, "oo": sp.oo}), ans
+    elif kind == "extrema":
+        got = [(k, c, v) for k, c, v in ans]
+        assert got == [(k, parse_math(c), parse_math(v)) for k, c, v in want], got
     elif kind == "symbol":
         assert str(ans) == want
     elif kind == "string":

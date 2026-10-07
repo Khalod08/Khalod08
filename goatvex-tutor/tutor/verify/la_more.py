@@ -310,3 +310,147 @@ def verify_geometry(solution: Solution) -> list[CheckResult]:
             alt = sp.Abs((Q - P)[0] * d[1] - (Q - P)[1] * d[0]) / d.norm()
             out.append(equal("final", "second method: |det(PQ, d)|/‖d‖", ans, alt))
     return out
+
+
+# ---------------------------------------------------------------- span / independence / bases
+def verify_subspaces(solution: Solution) -> list[CheckResult]:
+    f = solution.facts
+    task = f["task"]
+    out = verify_steps(solution)
+    if task == "span":
+        vs, w = f["vectors"], f["w"]
+        V_ = sp.Matrix.hstack(*vs)
+        r1, r2 = V_.rank(), sp.Matrix.hstack(V_, w).rank()
+        if solution.answer:
+            c = f["coefficients"]
+            out.append(ok("final", "the combination really gives w", V_ * c == w, "Σ cᵢvᵢ = w exactly"))
+        out.append(ok("final", "second method: rank test", (r1 == r2) == bool(solution.answer),
+                      f"rank[v₁…vₖ] = {r1}, rank[v₁…vₖ | w] = {r2}"))
+    elif task == "independence":
+        m = f["matrix"]
+        k = m.cols
+        if solution.answer:
+            out.append(ok("final", "second method: rank = number of vectors", m.rank() == k == np.linalg.matrix_rank(np_float(m)),
+                          f"rank = {k} (SymPy and NumPy)"))
+        else:
+            rel = f["relation"]
+            out.append(ok("final", "dependence relation is nonzero", rel != sp.zeros(k, 1), "not all cᵢ are 0"))
+            out.append(ok("final", "dependence relation gives 0", m * rel == sp.zeros(m.rows, 1), "Σ cᵢvᵢ = 0 exactly"))
+            out.append(ok("final", "second method: rank < number of vectors", m.rank() < k, f"rank = {m.rank()} < {k}"))
+    else:
+        a = f["matrix"]
+        rank, nul = f["rank"], f["null_basis"]
+        out.append(ok("final", "rank by two methods", rank == a.rank() == np.linalg.matrix_rank(np_float(a)),
+                      f"rank = {rank} (pivots = SymPy = NumPy SVD)"))
+        for k, v in enumerate(nul, 1):
+            out.append(ok("final", f"null vector {k}: A·v = 0", a * v == sp.zeros(a.rows, 1), "A·v = 0 exactly"))
+        if nul:
+            out.append(ok("final", "null basis is independent", sp.Matrix.hstack(*nul).rank() == len(nul), "full rank"))
+        out.append(ok("final", "rank–nullity", rank + len(nul) == a.cols, f"{rank} + {len(nul)} = {a.cols}"))
+        out.append(ok("final", "nullity matches SymPy nullspace", len(nul) == len(a.nullspace()),
+                      f"dim Nul(A) = {len(nul)}"))
+        cb = sp.Matrix.hstack(*f["col_basis"]) if f["col_basis"] else sp.zeros(a.rows, 0)
+        out.append(ok("final", "column basis: independent and spans Col(A)",
+                      cb.rank() == len(f["col_basis"]) == rank and sp.Matrix.hstack(cb, a).rank() == rank,
+                      "rank of the basis = rank of [basis | A] = rank(A)"))
+        rb = sp.Matrix.hstack(*f["row_basis"]).T if f["row_basis"] else sp.zeros(0, a.cols)
+        out.append(ok("final", "row basis: independent and spans Row(A)",
+                      rb.rank() == rank and sp.Matrix.vstack(rb, a).rank() == rank, "same rank when stacked with A"))
+    return out
+
+
+# ---------------------------------------------------------------- eigenvalues / diagonalization
+def verify_eigen(solution: Solution) -> list[CheckResult]:
+    from tutor.solvers.linear_algebra.eigen import LAM
+
+    f = solution.facts
+    a = f["matrix"]
+    n = a.rows
+    out = verify_steps(solution, [LAM])
+    for s in solution.steps:
+        if s.data.get("rule") == "shift":
+            out.append(ok(s.id, "A − λI formed correctly", s.after == a - LAM * sp.eye(n), "diagonal shifted by λ"))
+    # SymPy's charpoly is det(λI − A) = (−1)ⁿ det(A − λI)
+    out.append(equal("final", "second method: SymPy charpoly", f["charpoly"], (-1) ** n * a.charpoly(LAM).as_expr(),
+                     [LAM]))
+    total = sum(f["multiplicities"].values())
+    out.append(ok("final", "multiplicities add to n", total == n, f"{total} = {n}"))
+    for lv in f["eigenvalues"]:
+        out.append(equal("final", f"λ = {to_text(lv)} is a root", f["charpoly"].subs(LAM, lv), 0))
+        basis = f["spaces"][lv]
+        for k, v in enumerate(basis, 1):
+            out.append(ok("final", f"λ = {to_text(lv)}: eigenvector {k} is nonzero", v != sp.zeros(n, 1), "v ≠ 0"))
+            resid = (a * v - lv * v).applyfunc(sp.simplify)
+            out.append(ok("final", f"λ = {to_text(lv)}: A·v = λ·v", resid == sp.zeros(n, 1), "A·v − λ·v = 0 exactly"))
+        geo = n - (a - lv * sp.eye(n)).rank(simplify=True)
+        out.append(ok("final", f"λ = {to_text(lv)}: eigenspace dimension", geo == len(basis),
+                      f"dim = n − rank(A − λI) = {geo}"))
+    fl = np.sort_complex(np.linalg.eigvals(np_float(a)))
+    mine = np.sort_complex(np.array([complex(sp.N(lv)) for lv in f["eigenvalues"] for _ in range(f["multiplicities"][lv])]))
+    out.append(ok("final", "floating-point cross-check (NumPy eigvals)", np.allclose(fl, mine, atol=1e-6),
+                  "NumPy finds the same eigenvalues"))
+    if f["task"] == "diagonalize":
+        if f.get("diagonalizable"):
+            P, Dm, Pinv = f["P"], f["D"], f["Pinv"]
+            out.append(ok("final", "P·P⁻¹ = I", (P * Pinv).applyfunc(sp.simplify) == sp.eye(n), "exactly"))
+            out.append(ok("final", "P·D·P⁻¹ = A", (P * Dm * Pinv).applyfunc(sp.simplify) == a, "exactly"))
+            out.append(ok("final", "det(P) ≠ 0", sp.simplify(P.det()) != 0, "P is invertible"))
+        else:
+            out.append(ok("final", "second method: SymPy is_diagonalizable", not a.is_diagonalizable(),
+                          "SymPy agrees it is not diagonalizable"))
+    return out
+
+
+# ---------------------------------------------------------------- linear transformations / orthogonality
+def verify_transformation(solution: Solution) -> list[CheckResult]:
+    f = solution.facts
+    xs, comps = f["xs"], f["comps"]
+    out = verify_steps(solution, xs)
+    if not f["linear"]:
+        T2, T1 = f["T2"], f["T1"]
+        out.append(ok("final", "counterexample is real", list(T2) != [2 * v for v in T1], "T(2e₁) ≠ 2T(e₁)"))
+        return out
+    A_ = f["A"]
+    X = sp.Matrix(xs)
+    out.append(ok("final", "A·x reproduces the formula", (A_ * X - sp.Matrix(comps)).applyfunc(sp.expand) ==
+                  sp.zeros(len(comps), 1), "A·x = T(x) for every x"))
+    if "v" in f:
+        out.append(ok("final", "T(v) by substitution", sp.Matrix(f["Tv"]) == sp.Matrix([c.subs(dict(zip(xs, f["v"])))
+                                                                                       for c in comps]),
+                      "plugging v into the formula gives the same vector"))
+    if "kernel" in f:
+        for k, v in enumerate(f["kernel"], 1):
+            out.append(ok("final", f"kernel vector {k} maps to 0", A_ * v == sp.zeros(A_.rows, 1), "A·v = 0"))
+        out.append(ok("final", "dim ker + dim range = n", len(f["kernel"]) + len(f["range"]) == A_.cols,
+                      "rank–nullity"))
+        out.append(ok("final", "second method: rank", len(f["range"]) == A_.rank(), f"rank = {A_.rank()}"))
+    return out
+
+
+def verify_orthogonal(solution: Solution) -> list[CheckResult]:
+    f = solution.facts
+    out = verify_steps(solution)
+    vs = [sp.Matrix(v) for v in (solution.answer if f["task"] == "gram_schmidt" else f["vs"])]
+    for i in range(len(vs)):
+        for j in range(i + 1, len(vs)):
+            out.append(ok("final", f"v{i + 1} ⟂ v{j + 1}", (vs[i].T * vs[j])[0] == 0, "dot product 0"))
+    base = f["xs"] if f["task"] == "gram_schmidt" else f["us"]
+    X = sp.Matrix.hstack(*[sp.Matrix(x) for x in base])
+    Vm = sp.Matrix.hstack(*vs)
+    out.append(ok("final", "same span as the original vectors", Vm.rank() == X.rank() == sp.Matrix.hstack(Vm, X).rank(),
+                  "rank[V] = rank[X] = rank[V | X]"))
+    if f["task"] == "gram_schmidt":
+        for k in range(1, len(vs) + 1):  # Gram–Schmidt keeps span{v₁…vₖ} = span{x₁…xₖ} for every k
+            out.append(ok("final", f"span of the first {k} is preserved",
+                          sp.Matrix.hstack(*vs[:k], *[sp.Matrix(x) for x in base[:k]]).rank() == k, "nested spans"))
+        if f["normalize"]:
+            for i, v in enumerate(vs, 1):
+                out.append(equal("final", f"‖q{i}‖ = 1", sp.sqrt((v.T * v)[0]), 1))
+    else:
+        y, proj, perp = sp.Matrix(f["y"]), sp.Matrix(f["proj"]), sp.Matrix(f["perp"])
+        for k, u in enumerate(f["us"], 1):
+            out.append(ok("final", f"y − proj ⟂ u{k}", sp.simplify((perp.T * sp.Matrix(u))[0]) == 0, "orthogonal"))
+        out.append(ok("final", "proj lies in W", sp.Matrix.hstack(X, proj).rank() == X.rank(), "in the span"))
+        normal = X * (X.T * X).inv() * X.T * y  # normal equations: an independent formula for the projection
+        out.append(equal("final", "second method: X(XᵀX)⁻¹Xᵀy", proj, sp.ImmutableMatrix(normal)))
+    return out

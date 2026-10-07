@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "slug": "eigen-complex-rotation",
+  "course": "MATH1104",
+  "type": "eigen",
+  "statement": "Eigenvalues of the rotation [[0,−1],[1,0]].",
+  "given": {
+    "matrix": [
+      [
+        "0",
+        "-1"
+      ],
+      [
+        "1",
+        "0"
+      ]
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "i",
+      "-i"
+    ],
+    "kind": "eigenvalues"
+  }
+}

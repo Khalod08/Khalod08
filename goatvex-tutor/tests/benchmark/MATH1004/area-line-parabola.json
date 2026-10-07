@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "area-line-parabola",
+  "course": "MATH1004",
+  "type": "area_between_curves",
+  "statement": "Area between y = x + 2 and y = x².",
+  "given": {
+    "top_or_first": "x + 2",
+    "second": "x^2",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "9/2",
+    "kind": "expr"
+  }
+}

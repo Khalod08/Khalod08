@@ -15,6 +15,7 @@ import mpmath
 import sympy as sp
 
 from tutor.verify.result import FAIL, INCONCLUSIVE, PASS
+from tutor.mathfn import real_roots_rewrite
 
 MIN_POINTS = 5
 DPS = 40                 # mpmath working precision (decimal digits)
@@ -36,7 +37,7 @@ def freeze_functions(expr):
             reps[d] = sp.Symbol(f"{d.expr.func.__name__}_{len(d.variables)}", real=True)
     expr = expr.xreplace(reps)
     funcs = {f: sp.Symbol(f"{f.func.__name__}_0", real=True) for f in expr.atoms(AppliedUndef)}
-    return expr.xreplace(funcs)
+    return real_roots_rewrite(expr.xreplace(funcs))
 
 
 def evaluate_unevaluated(expr):

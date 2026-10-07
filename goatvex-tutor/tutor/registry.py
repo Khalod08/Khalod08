@@ -36,6 +36,8 @@ class ProblemType:
     generate: Callable[[random.Random, int], tuple[dict[str, Any], str]] | None = None
     # grade: verified solution + the student's answer text -> (correct?, explanation)
     grade: Callable[["Solution", str], tuple[bool, str]] | None = None
+    # answer_text: the verified answer written the way a student would type it (for /practice and tests)
+    answer_text: Callable[["Solution"], str] | None = None
     answer_format: str = ""          # how the student should type an answer, for /practice
     template: str | None = None      # video template key (tutor/video/templates)
     sections: dict[str, list[str]] = field(default_factory=dict)  # textbook sections, e.g. {"Nicholson": ["3.1"]}

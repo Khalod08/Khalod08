@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "slug": "volume-disk",
+  "course": "MATH1004",
+  "type": "volume_of_revolution",
+  "statement": "Rotate y = √x, 0 ≤ x ≤ 4, about the x-axis.",
+  "given": {
+    "outer": "sqrt(x)",
+    "variable": "x",
+    "a": "0",
+    "b": "4",
+    "axis": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "8pi",
+    "kind": "expr"
+  }
+}

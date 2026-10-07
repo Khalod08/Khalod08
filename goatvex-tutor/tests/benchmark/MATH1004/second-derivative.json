@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "second-derivative",
+  "course": "MATH1004",
+  "type": "higher_derivative",
+  "statement": "f″ for x eˣ.",
+  "given": {
+    "function": "x e^x",
+    "variable": "x",
+    "order": 2
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "(x + 2)e^x",
+    "kind": "expr"
+  }
+}

@@ -45,7 +45,7 @@ class RowOp:
     c: sp.Expr | None = None
 
     def apply(self, m: sp.Matrix) -> sp.Matrix:
-        out = m.copy()
+        out = sp.Matrix(m)
         if self.kind == SWAP:
             out.row_swap(self.i, self.j)
         elif self.kind == SCALE:
@@ -134,7 +134,7 @@ def gauss_jordan(m: sp.Matrix, pivot_cols: Iterable[int] | None = None) -> Reduc
     only the columns of A are reduced).
     """
     check_exact(m)
-    cur = m.copy()
+    cur = sp.Matrix(m)
     ops: list[RowOp] = []
     mats = [cur]
     phases: list[str] = []

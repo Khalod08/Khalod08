@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "slug": "lin-trans-not-linear",
+  "course": "MATH1104",
+  "type": "linear_transformation",
+  "statement": "Is T(x,y) = (x + 1, y) linear?",
+  "given": {
+    "variables": [
+      "x",
+      "y"
+    ],
+    "formula": [
+      "x + 1",
+      "y"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "not linear",
+    "kind": "string"
+  }
+}
