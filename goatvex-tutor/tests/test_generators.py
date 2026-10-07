@@ -47,6 +47,9 @@ def test_grader_accepts_the_verified_answer(ptype):
         text = str(ans)
     if isinstance(ans, list) and ans and hasattr(ans[0], "lhs"):
         pytest.skip("equation answers are compared in the write-up")
+    if hasattr(ans, "lhs") and hasattr(ans, "rhs"):  # a line y = mx + b: the student types the right side
+        text = str(ans.rhs)
+    text = text.replace("y(x)", "y")
     if ptype == "complex" and sol.facts["task"] == "polar":
         text = f"{sol.facts['r']}, {sol.facts['theta']}"
     if ptype == "rref" and sol.facts["system"]["status"] != "unique":

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "def-arctan",
+  "course": "MATH1004",
+  "type": "definite_integral",
+  "statement": "Evaluate ∫ from 0 to 1 of 1/(1 + x^2) dx.",
+  "given": {
+    "integrand": "1/(1 + x^2)",
+    "variable": "x",
+    "a": "0",
+    "b": "1"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "pi/4",
+    "kind": "expr"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "lim-one-sided-infinite",
+  "course": "MATH1004",
+  "type": "limit",
+  "statement": "lim x→1 of 1/(x - 1).",
+  "given": {
+    "function": "1/(x - 1)",
+    "variable": "x",
+    "point": "1",
+    "direction": "+"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "oo",
+    "kind": "exact"
+  }
+}

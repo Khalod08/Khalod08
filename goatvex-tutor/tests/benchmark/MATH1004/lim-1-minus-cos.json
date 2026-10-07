@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "lim-1-minus-cos",
+  "course": "MATH1004",
+  "type": "limit",
+  "statement": "lim x→0 of (1 - cos(x))/x^2.",
+  "given": {
+    "function": "(1 - cos(x))/x^2",
+    "variable": "x",
+    "point": "0"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "1/2",
+    "kind": "expr"
+  }
+}

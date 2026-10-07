@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "logdiff-x-to-sin",
+  "course": "MATH1004",
+  "type": "log_differentiation",
+  "statement": "y = x^(sin x).",
+  "given": {
+    "function": "x^(sin(x))",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "x^(sin(x)) (cos(x) ln(x) + sin(x)/x)",
+    "kind": "expr_pos"
+  }
+}

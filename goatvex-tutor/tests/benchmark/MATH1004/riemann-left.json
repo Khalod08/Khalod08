@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "slug": "riemann-left",
+  "course": "MATH1004",
+  "type": "riemann_sum",
+  "statement": "left sum for x^2 on [0,2], n = 4.",
+  "given": {
+    "function": "x^2",
+    "variable": "x",
+    "a": "0",
+    "b": "2",
+    "n": 4,
+    "method": "left"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "7/4",
+    "kind": "expr"
+  }
+}

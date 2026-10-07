@@ -32,7 +32,7 @@ def ok(step_id: str, check: str, cond: bool, good: str, bad: str | None = None) 
     return CheckResult(step_id, check, PASS if cond else FAIL, good if cond else (bad or f"NOT: {good}"))
 
 
-def equal(step_id: str, check: str, a, b, symbols=None) -> CheckResult:
+def equal(step_id: str, check: str, a, b, symbols=None, domain=None) -> CheckResult:
     """a = b for expressions, numbers or matrices (entrywise)."""
     a, b = _explicit(a), _explicit(b)
     if isinstance(a, sp.MatrixBase) or isinstance(b, sp.MatrixBase):
@@ -56,7 +56,7 @@ def equal(step_id: str, check: str, a, b, symbols=None) -> CheckResult:
             if st != PASS:
                 return CheckResult(step_id, check, st, f"item {k}: {det}")
         return CheckResult(step_id, check, PASS, "all values equal")
-    st, det = check_equal(a, b, symbols)
+    st, det = check_equal(a, b, symbols, domain=domain)
     return CheckResult(step_id, check, st, det)
 
 
@@ -67,11 +67,19 @@ def _explicit(x):
     return x
 
 
-def same_solutions(step_id: str, check: str, eqs_a, eqs_b, unknowns) -> CheckResult:
-    """Two equations/systems have the same solution set for ``unknowns``."""
-    eqs_a = eqs_a if isinstance(eqs_a, (list, tuple)) else [eqs_a]
-    eqs_b = eqs_b if isinstance(eqs_b, (list, tuple)) else [eqs_b]
-    unknowns = list(unknowns)
+def same_solutions(step_id: str, check: str, eqs_a, eqs_b, unknowns, positive: bool = False) -> CheckResult:
+    """Two equations/systems have the same solution set for ``unknowns``
+    (among positive values only, when ``positive``)."""
+    from tutor.verify.equivalence import freeze_functions
+
+    eqs_a = [freeze_functions(e) for e in (eqs_a if isinstance(eqs_a, (list, tuple)) else [eqs_a])]
+    eqs_b = [freeze_functions(e) for e in (eqs_b if isinstance(eqs_b, (list, tuple)) else [eqs_b])]
+    unknowns = [freeze_functions(u) for u in unknowns]
+    if positive:
+        pos = {u: sp.Symbol(f"{u}_pos", positive=True) for u in unknowns}
+        eqs_a = [e.xreplace(pos) for e in eqs_a]
+        eqs_b = [e.xreplace(pos) for e in eqs_b]
+        unknowns = list(pos.values())
     try:
         sa = sp.solve(list(eqs_a), unknowns, dict=True)
         sb = sp.solve(list(eqs_b), unknowns, dict=True)
@@ -123,11 +131,16 @@ def verify_steps(solution: Solution, symbols: Iterable[sp.Symbol] | None = None)
     out = chain_checks(solution)
     for s in solution.steps:
         if s.kind == ALGEBRA:
-            out.append(equal(s.id, "algebra step is an equality", s.before, s.after,
-                             s.data.get("symbols", symbols)))
+            syms = s.data.get("symbols", symbols)
+            dom = s.data.get("domain")
+            if dom is not None and not syms:
+                syms = sorted(sp.sympify(s.before).free_symbols, key=str)[:1] if not isinstance(s.before, sp.Equality) \
+                    else sorted(s.before.free_symbols, key=str)[:1]
+            out.append(equal(s.id, "algebra step is an equality", s.before, s.after, syms, domain=dom))
         elif s.kind == EQUATION:
-            out.append(same_solutions(s.id, "equation step keeps the same solutions", s.before, s.after,
-                                      s.data["unknowns"]))
+            out.append(same_solutions(s.id, "equation step keeps the same solutions"
+                                      + (" (positive values)" if s.data.get("positive") else ""),
+                                      s.before, s.after, s.data["unknowns"], positive=bool(s.data.get("positive"))))
         elif s.kind == ROW_OP:
             from tutor.verify.linear_algebra import check_row_op_step
 

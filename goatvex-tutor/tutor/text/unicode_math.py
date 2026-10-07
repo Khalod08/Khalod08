@@ -71,6 +71,19 @@ class _UnicodePrinter(StrPrinter):
             prefix, args = "-", args[1:]
         elif len(args) > 1 and args[0].is_Number and args[0] < 0:
             prefix, args = "-", [-args[0]] + args[1:]
+        dens = [a.base for a in args if a.is_Pow and a.exp == -1]
+        args = [a for a in args if not (a.is_Pow and a.exp == -1)] or [sp.Integer(1)]
+        if dens and len(args) == 1:
+            num = self._print(args[0])
+            if isinstance(args[0], sp.Add):
+                num = f"({num})"
+            den = "·".join(self._print(d) if (d.is_Atom or isinstance(d, sp.Function)) and not (d.is_Number and d < 0)
+                           else f"({self._print(d)})" for d in dens)
+            return f"{prefix}{num}/{den}"
+        if dens:
+            den = "·".join(self._print(d) if d.is_Atom and not (d.is_Number and d < 0) else f"({self._print(d)})"
+                           for d in dens)
+            return f"{prefix}(" + "·".join(self._print(a) for a in args) + f")/{den}"
         parts = []
         for k, a in enumerate(args):
             t = self._print(a)
@@ -199,8 +212,8 @@ def _is_unevaluated_mul(expr: sp.Basic) -> bool:
 
 
 def _built_by_hand(expr: sp.Basic) -> bool:
-    """True for Add/Mul nodes built with evaluate=False (or holding d/dx[...])."""
-    if expr.has(sp.Derivative):
+    """True for Add/Mul nodes built with evaluate=False (or holding d/dx[...], ∫, lim)."""
+    if expr.has(sp.Derivative, sp.Integral, sp.Limit):
         return True
     try:
         return expr.func(*expr.args).args != expr.args

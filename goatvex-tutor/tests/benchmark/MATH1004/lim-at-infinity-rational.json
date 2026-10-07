@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "lim-at-infinity-rational",
+  "course": "MATH1004",
+  "type": "limit",
+  "statement": "lim x→oo of (3x^2 + 1)/(5x^2 - x).",
+  "given": {
+    "function": "(3x^2 + 1)/(5x^2 - x)",
+    "variable": "x",
+    "point": "oo"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "3/5",
+    "kind": "expr"
+  }
+}

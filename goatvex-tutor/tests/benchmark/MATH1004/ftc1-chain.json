@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "ftc1-chain",
+  "course": "MATH1004",
+  "type": "ftc_derivative",
+  "statement": "d/dx ∫ from 1 to x³ of cos(t²) dt.",
+  "given": {
+    "integrand": "cos(t^2)",
+    "lower": "1",
+    "upper": "x^3",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "3x^2 cos(x^6)",
+    "kind": "expr"
+  }
+}

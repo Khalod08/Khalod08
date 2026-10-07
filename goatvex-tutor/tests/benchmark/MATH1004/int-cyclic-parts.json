@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-cyclic-parts",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ e^x sin(x) dx.",
+  "given": {
+    "integrand": "e^x sin(x)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "e^x (sin(x) - cos(x))/2",
+    "kind": "antiderivative"
+  }
+}

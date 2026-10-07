@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-trig-sub",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ sqrt(9 - x^2) dx.",
+  "given": {
+    "integrand": "sqrt(9 - x^2)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "x sqrt(9 - x^2)/2 + 9 asin(x/3)/2",
+    "kind": "antiderivative"
+  }
+}

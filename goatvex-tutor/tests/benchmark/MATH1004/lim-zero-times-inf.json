@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "lim-zero-times-inf",
+  "course": "MATH1004",
+  "type": "limit",
+  "statement": "lim x→0 of x ln(x).",
+  "given": {
+    "function": "x ln(x)",
+    "variable": "x",
+    "point": "0",
+    "direction": "+"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "0",
+    "kind": "expr"
+  }
+}

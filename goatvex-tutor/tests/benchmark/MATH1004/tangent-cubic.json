@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "tangent-cubic",
+  "course": "MATH1004",
+  "type": "tangent_line",
+  "statement": "Tangent line to y = x^3 - 2x at x = 2.",
+  "given": {
+    "function": "x^3 - 2x",
+    "variable": "x",
+    "point": "2"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "10x - 16",
+    "kind": "line"
+  }
+}

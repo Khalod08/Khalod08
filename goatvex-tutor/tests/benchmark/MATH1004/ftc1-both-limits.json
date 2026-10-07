@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "ftc1-both-limits",
+  "course": "MATH1004",
+  "type": "ftc_derivative",
+  "statement": "d/dx ∫ from x to x² of √(1 + t³) dt.",
+  "given": {
+    "integrand": "sqrt(1 + t^3)",
+    "lower": "x",
+    "upper": "x^2",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "2x sqrt(1 + x^6) - sqrt(1 + x^3)",
+    "kind": "expr"
+  }
+}

@@ -18,6 +18,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import sympy as sp
+from sympy.core.function import AppliedUndef
 from sympy.core.parameters import distribute
 
 from tutor.errors import UnsupportedProblem
@@ -58,6 +59,7 @@ BASIC_FUNCTION = "basic_function"
 FUNCTION_CHAIN = "chain_function"
 PRODUCT = "product"
 QUOTIENT = "quotient"
+IMPLICIT = "implicit"
 
 RULE_TITLE = {
     CONSTANT: "Constant rule",
@@ -180,6 +182,12 @@ def apply_rule(node: sp.Derivative) -> RuleApplication:
             f"{t(g)} has the variable in both the base and the exponent; that needs logarithmic "
             "differentiation, which the verified solver does not support yet.")
 
+    if isinstance(g, AppliedUndef):
+        inner = g.args[0] if len(g.args) == 1 else None
+        if inner == x:  # pragma: no cover (dy/dx nodes are terminal, never rewritten)
+            return RuleApplication(IMPLICIT, node, "", {})
+        if inner is not None and inner.has(x):
+            raise UnsupportedProblem(f"{t(g)} with an inner function is not supported")
     if isinstance(g, sp.Function) and g.func in OUTER_DERIVATIVE and len(g.args) == 1:
         u = g.args[0]
         outer = OUTER_DERIVATIVE[g.func](u)
@@ -197,11 +205,43 @@ def apply_rule(node: sp.Derivative) -> RuleApplication:
     raise UnsupportedProblem(f"the verified solver does not know how to differentiate {t(g)} yet")
 
 
+def is_terminal(node: sp.Derivative) -> bool:
+    """dy/dx for an unknown function y(x) can't be rewritten further: it stays as dy/dx."""
+    return isinstance(node.expr, AppliedUndef) and node.expr.args == tuple(node.variables)
+
+
 def first_derivative_node(expr: sp.Basic) -> sp.Derivative | None:
     for node in sp.preorder_traversal(expr):
-        if isinstance(node, sp.Derivative):
+        if isinstance(node, sp.Derivative) and not is_terminal(node):
             return node
     return None
+
+
+def rule_steps(start: sp.Basic, x: sp.Symbol, k: int = 1, prefix: str = "s",
+               max_steps: int = 300) -> tuple[list[Step], sp.Basic]:
+    """Apply one differentiation rule per step to every d/dx[…] inside ``start``
+    (an expression, or an equation such as d/dx[x² + y²] = d/dx[25])."""
+    steps: list[Step] = []
+    cur = start
+    while (node := first_derivative_node(cur)) is not None:
+        if len(steps) > max_steps:
+            raise UnsupportedProblem("differentiation needed too many steps; refusing to guess")
+        app = apply_rule(node)
+        with sp.evaluate(False):
+            after = cur.xreplace({node: app.replacement})
+        steps.append(Step(
+            id=f"{prefix}{k}", kind=DERIVATIVE_RULE, before=cur, operation=RULE_TITLE[app.rule], after=after,
+            justification=app.justification,
+            data={"rule": app.rule, "target": node, "replacement": app.replacement, "variable": x, **app.details}))
+        cur = after
+        k += 1
+    return steps, cur
+
+
+def combine(e: sp.Basic) -> sp.Basic:
+    """Evaluate arithmetic left visible on purpose, without distributing 2(x + 2) → 2x + 4."""
+    with distribute(False):
+        return _rebuild(e)
 
 
 def derivative_steps(f: sp.Expr, x: sp.Symbol, max_steps: int = 200) -> tuple[list[Step], sp.Expr]:
@@ -209,25 +249,10 @@ def derivative_steps(f: sp.Expr, x: sp.Symbol, max_steps: int = 200) -> tuple[li
     steps = [Step(
         id="s0", kind=SETUP, before=f, operation="Set up", after=start,
         justification=f"We want the derivative of f({x}) = {to_text(f)}.", data={"variable": x})]
-    cur: sp.Expr = start
-    k = 1
-    while (node := first_derivative_node(cur)) is not None:
-        if k > max_steps:
-            raise UnsupportedProblem("differentiation needed too many steps; refusing to guess")
-        app = apply_rule(node)
-        with sp.evaluate(False):
-            after = cur.xreplace({node: app.replacement})
-        steps.append(Step(
-            id=f"s{k}", kind=DERIVATIVE_RULE, before=cur, operation=RULE_TITLE[app.rule], after=after,
-            justification=app.justification,
-            data={"rule": app.rule, "target": node, "replacement": app.replacement, **app.details}))
-        cur = after
-        k += 1
-
-    # Combine arithmetic that was deliberately left visible. distribute(False)
-    # keeps 2(x + 2) as written instead of SymPy's automatic 2x + 4.
-    with distribute(False):
-        simplified = _rebuild(cur)
+    rsteps, cur = rule_steps(start, x)
+    steps += rsteps
+    k = len(steps)
+    simplified = combine(cur)
     if simplified != cur:
         steps.append(Step(
             id=f"s{k}", kind=ALGEBRA, before=cur, operation="Simplify", after=simplified,

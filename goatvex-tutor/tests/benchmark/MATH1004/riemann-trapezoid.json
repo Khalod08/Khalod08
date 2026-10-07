@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "slug": "riemann-trapezoid",
+  "course": "MATH1004",
+  "type": "riemann_sum",
+  "statement": "trapezoid sum for 1/x on [1,3], n = 4.",
+  "given": {
+    "function": "1/x",
+    "variable": "x",
+    "a": "1",
+    "b": "3",
+    "n": 4,
+    "method": "trapezoid"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "67/60",
+    "kind": "expr"
+  }
+}

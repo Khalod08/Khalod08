@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-partial-fractions-1",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ 1/(x^2 - 1) dx.",
+  "given": {
+    "integrand": "1/(x^2 - 1)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "ln(abs(x - 1))/2 - ln(abs(x + 1))/2",
+    "kind": "antiderivative"
+  }
+}

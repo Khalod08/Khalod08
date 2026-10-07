@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-sin-cubed",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ sin(x)^3 dx.",
+  "given": {
+    "integrand": "sin(x)^3",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "cos(x)^3/3 - cos(x)",
+    "kind": "antiderivative"
+  }
+}

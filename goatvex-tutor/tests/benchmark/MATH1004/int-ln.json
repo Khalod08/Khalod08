@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-ln",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ ln(x) dx.",
+  "given": {
+    "integrand": "ln(x)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "x ln(x) - x",
+    "kind": "antiderivative"
+  }
+}

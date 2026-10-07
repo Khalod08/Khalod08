@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "slug": "int-initial-value",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find F with F′ = 6x² − 4x and F(1) = 5.",
+  "given": {
+    "integrand": "6x^2 - 4x",
+    "variable": "x",
+    "initial": {
+      "x": "1",
+      "y": "5"
+    }
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "2x^3 - 2x^2 + 5",
+    "kind": "expr"
+  }
+}

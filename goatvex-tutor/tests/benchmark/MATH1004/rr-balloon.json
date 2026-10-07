@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "slug": "rr-balloon",
+  "course": "MATH1004",
+  "type": "related_rates",
+  "statement": "Related rates.",
+  "given": {
+    "variables": [
+      "V",
+      "r"
+    ],
+    "relation": "V = 4/3 pi r^3",
+    "known": {
+      "r": "5",
+      "dV/dt": "100"
+    },
+    "find": "dr/dt"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "1/pi",
+    "kind": "expr"
+  }
+}

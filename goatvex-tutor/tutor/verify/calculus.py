@@ -153,3 +153,233 @@ def verify_derivative(solution: Solution) -> list[CheckResult]:
     out.append(CheckResult("final", "second method: sympy.diff", status, detail))
     out.append(finite_difference_check(f, ans, x))
     return out
+
+
+# ---------------------------------------------------------------- limits
+def _approach(f, x, a, side, L) -> CheckResult:
+    """Evaluate f closer and closer to a (from one side) at 60 digits; values must settle at L."""
+    import mpmath
+
+    fn = sp.lambdify(x, f, "mpmath")
+    label = {"+": "from the right", "-": "from the left"}[side]
+    with mpmath.workdps(60):
+        if a.is_infinite:
+            pts = [mpmath.mpf(10) ** k * (1 if a > 0 else -1) for k in (3, 4, 5, 6, 8, 10, 12)]
+        else:
+            a0 = mpmath.mpf(sp.N(a, 70))
+            pts = [a0 + (1 if side == "+" else -1) * mpmath.mpf(10) ** -k for k in (3, 4, 5, 6, 8, 10, 12)]
+        try:
+            vals = [fn(p_) for p_ in pts]
+        except (ZeroDivisionError, ValueError, TypeError) as exc:
+            return CheckResult("final", f"numeric approach {label}", INCONCLUSIVE, f"could not evaluate: {exc}")
+        vals = [mpmath.re(v) if abs(mpmath.im(v)) < 1e-40 else None for v in vals]
+        if any(v is None for v in vals):
+            return CheckResult("final", f"numeric approach {label}", INCONCLUSIVE, "f is not real there")
+        shown = ", ".join(mpmath.nstr(v, 8) for v in vals[-3:])
+        if L.is_infinite:
+            sign = 1 if L > 0 else -1
+            ok_ = all(sign * v > 0 for v in vals[-3:]) and abs(vals[-1]) > 1e4 and abs(vals[-1]) > abs(vals[0])
+            return CheckResult("final", f"numeric approach {label}", PASS if ok_ else FAIL,
+                               f"values {shown} grow toward {to_text(L)}" if ok_ else f"values {shown} don't go to {to_text(L)}")
+        Lf = mpmath.mpf(sp.N(L, 70))
+        errs = [abs(v - Lf) for v in vals]
+        ok_ = errs[-1] < mpmath.mpf("1e-4") * max(1, abs(Lf)) and errs[-1] <= errs[0]
+        return CheckResult("final", f"numeric approach {label}", PASS if ok_ else FAIL,
+                           f"f → {shown}… approaches {to_text(L)}" if ok_ else f"values {shown} don't approach {to_text(L)}")
+
+
+def check_limit_step(step) -> list[CheckResult]:
+    from tutor.solvers.calculus.limits import continuous_at
+    from tutor.verify.common import ok
+
+    out: list[CheckResult] = []
+    rule = step.data.get("rule")
+    x, a, d = step.data["x"], step.data["a"], step.data["dir"]
+    if rule == "rewrite":
+        g1, g2 = step.before.args[0], step.after.args[0]
+        st, det = check_equal(g1, g2, [x], domain=step.data.get("domain"))
+        out.append(CheckResult(step.id, "rewrite keeps the function the same near a", st, det))
+    elif rule == "lhospital":
+        num, den = step.data["num"], step.data["den"]
+        g1, g2 = step.before.args[0], step.after.args[0]
+        st, det = check_equal(g1, num / den, [x])
+        out.append(CheckResult(step.id, "f/g really is the expression", st, det))
+        side = "+" if d in ("+-", "+") else "-"
+        sides = ["+", "-"] if (d == "+-" and not a.is_infinite) else [side]
+        for sd in sides:
+            ln_, ld_ = sp.limit(num, x, a, sd), sp.limit(den, x, a, sd)
+            form_ok = (ln_ == 0 and ld_ == 0) or (ln_.is_infinite and ld_.is_infinite)
+            out.append(ok(step.id, f"form is 0/0 or ∞/∞ ({'right' if sd == '+' else 'left'})", form_ok,
+                          f"top → {to_text(ln_)}, bottom → {to_text(ld_)}", f"top → {to_text(ln_)}, bottom → {to_text(ld_)}: "
+                          "L'Hôpital does not apply"))
+        st, det = check_equal(g2, sp.diff(num, x) / sp.diff(den, x), [x])
+        out.append(CheckResult(step.id, "f′/g′ computed correctly", st, det))
+    elif rule == "substitute":
+        g = step.data["g"]
+        out.append(ok(step.id, f"continuous at {x} = {to_text(a)}", continuous_at(g, x, a, d),
+                      "direct substitution is allowed"))
+        st, det = check_equal(step.after, g.subs(x, a))
+        out.append(CheckResult(step.id, "substituted value", st, det))
+    elif rule in ("term_limits", "evaluate", "infinite"):
+        g = step.data["g"]
+        if rule != "infinite" and d == "+-" and not a.is_infinite:
+            d = "+"
+        sides = ["+", "-"] if (d == "+-" and not a.is_infinite) else [d if d != "+-" else "+"]
+        vals = {sd: sp.limit(g, x, a, sd) for sd in sides}
+        target = step.after
+        if rule == "infinite" and "sides" in step.data:
+            good = all(vals[sd] == step.data["sides"][sd] for sd in sides)
+            out.append(ok(step.id, "one-sided limits", good, ", ".join(f"{sd}: {to_text(v)}" for sd, v in vals.items())))
+        else:
+            st, det = check_equal(target, vals[sides[0]]) if not vals[sides[0]].is_infinite else \
+                (PASS if target == vals[sides[0]] else FAIL, f"SymPy: {to_text(vals[sides[0]])}")
+            out.append(CheckResult(step.id, "limit of this line", st, det))
+    return out
+
+
+def verify_limit(solution: Solution) -> list[CheckResult]:
+    from tutor.solvers.calculus.limits import DNE
+    from tutor.steps import LIMIT_STEP
+    from tutor.verify.common import chain_checks, equal, ok
+
+    f = solution.facts
+    x, a, d, fn = f["variable"], f["point"], f["direction"], f["function"]
+    out = chain_checks(solution)
+    for s in solution.steps:
+        if s.kind == LIMIT_STEP:
+            out += check_limit_step(s)
+        elif s.kind == "algebra":
+            out.append(equal(s.id, "arithmetic", s.before, s.after))
+    ans = solution.answer
+    sides = ["+", "-"] if (d == "+-" and not a.is_infinite) else [d]
+    vals = {sd: sp.limit(fn, x, a, sd) for sd in sides}
+    if ans == DNE:
+        out.append(ok("final", "one-sided limits differ (SymPy)", len(set(vals.values())) > 1,
+                      f"right: {to_text(vals.get('+'))}, left: {to_text(vals.get('-'))}"))
+        for sd in sides:
+            out.append(_approach(fn, x, a, sd, vals[sd]))
+        return out
+    for sd in sides:
+        same = (ans == vals[sd]) if (ans.is_infinite or vals[sd].is_infinite) else check_equal(ans, vals[sd])[0] == PASS
+        out.append(ok("final", f"second method: SymPy limit ({'right' if sd == '+' else 'left'})", same,
+                      f"SymPy also gives {to_text(vals[sd])}", f"SymPy gives {to_text(vals[sd])}"))
+        out.append(_approach(fn, x, a, sd, ans))
+    return out
+
+
+# ---------------------------------------------------------------- implicit, tangent lines, related rates
+def _check_d_both_sides(solution) -> list[CheckResult]:
+    from tutor.verify.common import ok
+
+    out = []
+    for s in solution.steps:
+        if s.data.get("rule") == "d_both_sides":
+            var = s.after.lhs.variables[0]
+            good = (s.after.lhs == sp.Derivative(s.before.lhs, var, evaluate=False)
+                    and s.after.rhs == sp.Derivative(s.before.rhs, var, evaluate=False))
+            out.append(ok(s.id, "the same d/d" + str(var) + " applied to both sides", good,
+                          "both sides differentiated, nothing else changed"))
+    return out
+
+
+def verify_implicit(solution: Solution) -> list[CheckResult]:
+    from tutor.verify.common import equal, ok, verify_steps
+
+    f = solution.facts
+    x, yf, ysym = f["x"], f["y"], f["ysym"]
+    out = verify_steps(solution, [x]) + _check_d_both_sides(solution)
+    D = sp.Derivative(yf, x)
+    dydx = [s for s in solution.steps if s.kind == "equation" and isinstance(s.after, sp.Equality)
+            and s.after.lhs == D][-1].after.rhs
+    Y = sp.Symbol(f"{yf.func.__name__}_0", real=True)
+    F = (f["lhs"] - f["rhs"]).xreplace({ysym: Y})
+    formula = -sp.diff(F, x) / sp.diff(F, Y)
+    out.append(equal("final", "second method: dy/dx = −Fₓ/F_y", dydx.xreplace({yf: Y}), formula, [x, Y]))
+    if "point" in f:
+        x0, y0 = f["point"]
+        on = sp.simplify(F.subs({x: x0, Y: y0})) == 0
+        out.append(ok("final", "the point is on the curve", on, f"({to_text(x0)}, {to_text(y0)}) satisfies the equation"))
+        out.append(equal("final", "slope at the point", f["slope"], formula.subs({x: x0, Y: y0})))
+        if "line" in f:
+            line = f["line"]
+            if line.lhs == ysym:
+                out.append(equal("final", "line passes through the point", line.rhs.subs(x, x0), y0))
+                out.append(equal("final", "line has that slope", sp.diff(line.rhs, x), f["slope"]))
+    return out
+
+
+def verify_tangent(solution: Solution) -> list[CheckResult]:
+    from tutor.verify.common import equal, ok, verify_steps
+
+    f = solution.facts
+    x, fn, a = f["x"], f["f"], f["a"]
+    out = verify_steps(solution, [x])
+    true_slope = sp.diff(fn, x).subs(x, a)
+    out.append(equal("final", "f(a) by direct evaluation", f["fa"], fn.subs(x, a)))
+    line = f["line"]
+    if line.lhs == x:
+        out.append(ok("final", "vertical line is correct", (true_slope == 0) if f["normal"] else true_slope.is_infinite,
+                      "slope check for a vertical line"))
+        return out
+    m = sp.diff(line.rhs, x)
+    expected = -1 / true_slope if f["normal"] else true_slope
+    out.append(equal("final", "slope: second method (SymPy diff)", m, expected))
+    out.append(equal("final", "line passes through (a, f(a))", line.rhs.subs(x, a), fn.subs(x, a)))
+    import mpmath
+
+    fl = sp.lambdify(x, fn, "mpmath")
+    with mpmath.workdps(40):
+        num_slope = mpmath.diff(fl, mpmath.mpf(sp.N(a, 45)))
+    target = -1 / num_slope if f["normal"] else num_slope
+    out.append(ok("final", "finite-difference slope", abs(complex(sp.N(m)) - complex(target)) < 1e-12 * max(1, abs(target)),
+                  f"numerical slope {mpmath.nstr(target, 12)}"))
+    return out
+
+
+def verify_logdiff(solution: Solution) -> list[CheckResult]:
+    from tutor.verify.common import equal, verify_steps
+
+    x, fn = solution.facts["x"], solution.facts["f"]
+    out = verify_steps(solution, [x]) + _check_d_both_sides(solution)
+    dom = solution.facts.get("domain", (sp.Integer(0), sp.oo))
+    out.append(equal("final", f"second method: SymPy diff ({x} > {to_text(dom[0])})", solution.answer,
+                     sp.diff(fn, x), [x], domain=dom))
+    out.append(finite_difference_check(fn, solution.answer, x))
+    return out
+
+
+def verify_related_rates(solution: Solution) -> list[CheckResult]:
+    from tutor.verify.common import equal, ok, verify_steps
+
+    f = solution.facts
+    t, names, syms = f["t"], f["names"], f["syms"]
+    out = verify_steps(solution, [t]) + _check_d_both_sides(solution)
+    for s in solution.steps:
+        if s.data.get("rule") == "plug_in":
+            deq = s.data["from_eq"]
+            prev_eq = [st for st in solution.steps if st.after == deq]
+            out.append(ok(s.id, "substitutes into the differentiated equation", bool(prev_eq),
+                          "uses the equation from the previous derivation"))
+            vals_f = {s.data["funcs"][n]: v for n, v in f["values"].items()}
+            for side_b, side_a in ((deq.lhs, s.after.lhs), (deq.rhs, s.after.rhs)):
+                st_, det_ = check_equal(side_b.xreplace(s.data["subs"]).xreplace(vals_f), side_a)
+                out.append(CheckResult(s.id, "values substituted correctly", st_, det_))
+    rel = f["lhs"] - f["rhs"]
+    vals = {syms[n]: v for n, v in f["values"].items()}
+    out.append(ok("final", "values satisfy the relation", sp.simplify(rel.subs(vals)) == 0,
+                  "the quantities at that moment fit the equation"))
+    funcs = {syms[n]: sp.Function("Q" + n)(t) for n in names}
+    drel = sp.diff(rel.xreplace(funcs), t)
+    reps = {}
+    for n in names:
+        dn = sp.Derivative(funcs[syms[n]], t)
+        if n in f["rates"]:
+            reps[dn] = f["rates"][n]
+        elif n == f["target"]:
+            reps[dn] = sp.Symbol("unknown_rate")
+    eq = drel.xreplace(reps).xreplace({funcs[syms[n]]: f["values"][n] for n in names if n in f["values"]})
+    sol = sp.solve(eq, sp.Symbol("unknown_rate"))
+    out.append(ok("final", "second method: SymPy differentiates the relation", len(sol) == 1, "one solution"))
+    if len(sol) == 1:
+        out.append(equal("final", "rate matches the second method", solution.answer, sol[0]))
+    return out

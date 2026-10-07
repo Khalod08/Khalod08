@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-polynomial",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ 3x^2 + 2x - 5 dx.",
+  "given": {
+    "integrand": "3x^2 + 2x - 5",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "x^3 + x^2 - 5x",
+    "kind": "antiderivative"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "tangent-exp",
+  "course": "MATH1004",
+  "type": "tangent_line",
+  "statement": "Tangent line to y = e^(2x) at x = 0.",
+  "given": {
+    "function": "e^(2x)",
+    "variable": "x",
+    "point": "0"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "2x + 1",
+    "kind": "line"
+  }
+}

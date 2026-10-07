@@ -59,7 +59,7 @@ def test_benchmark_problem(path):
 
 
 def _expr(text, problem):
-    return parse_math(text, problem.variables, imaginary=True)
+    return parse_math(text, problem.variables or ["x"], imaginary=True)
 
 
 def _same(a, b, problem=None):
@@ -73,6 +73,24 @@ def compare_generic(problem, sol, exp):
     ans = sol.answer
     if kind == "expr":
         assert _same(ans, _expr(want, problem), problem), f"{ans} != {want}"
+    elif kind == "antiderivative":
+        x = sp.Symbol(problem.variables[0], real=True)
+        F_exp = _expr(want, problem)
+        st, det = check_equal(sp.diff(ans - F_exp, x), 0, [x])
+        assert st == PASS, f"{ans} and {want} differ by more than a constant: {det}"
+    elif kind == "exact":
+        assert ans == sp.sympify(want, locals={"oo": sp.oo}), f"{ans} != {want}"
+    elif kind == "expr_pos":
+        x = sp.Symbol(problem.variables[0], real=True)
+        st, det = check_equal(ans, _expr(want, problem), [x], domain=(sp.Integer(1), sp.oo))
+        assert st == PASS, det
+    elif kind == "implicit":
+        y = sp.Symbol("y", real=True)
+        got = ans.xreplace({sol.facts["y"]: y})
+        exp_ = parse_math(want, ["x", "y"])
+        assert _same(got, exp_), f"{got} != {exp_}"
+    elif kind == "line":
+        assert _same(ans.rhs, _expr(want, problem), problem), f"{ans} != y = {want}"
     elif kind == "symbol":
         assert str(ans) == want
     elif kind == "string":

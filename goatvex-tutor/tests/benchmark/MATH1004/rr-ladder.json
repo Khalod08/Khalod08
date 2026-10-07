@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "slug": "rr-ladder",
+  "course": "MATH1004",
+  "type": "related_rates",
+  "statement": "Related rates.",
+  "given": {
+    "variables": [
+      "x",
+      "y"
+    ],
+    "relation": "x^2 + y^2 = 100",
+    "known": {
+      "x": "6",
+      "dx/dt": "2"
+    },
+    "find": "dy/dt"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "-3/2",
+    "kind": "expr"
+  }
+}
