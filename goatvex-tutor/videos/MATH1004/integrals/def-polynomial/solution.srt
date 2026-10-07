@@ -1,0 +1,132 @@
+1
+00:00:00,000 --> 00:00:02,083
+Let's work through this problem:
+
+2
+00:00:02,083 --> 00:00:03,333
+Definite integral (FTC).
+
+3
+00:00:03,333 --> 00:00:05,416
+First we'll see the idea,
+
+4
+00:00:05,416 --> 00:00:06,666
+then every step,
+
+5
+00:00:06,666 --> 00:00:09,240
+each one checked by a computer.
+
+6
+00:00:09,766 --> 00:00:12,502
+The definite integral adds up signed
+
+7
+00:00:12,502 --> 00:00:15,238
+area under the curve between the limits.
+
+8
+00:00:15,833 --> 00:00:16,666
+Sum rule.
+
+9
+00:00:16,666 --> 00:00:18,401
+Integrate term by term.
+
+10
+00:00:19,033 --> 00:00:20,283
+Constant multiple rule.
+
+11
+00:00:20,283 --> 00:00:23,665
+Pull the constant 3 out of the integral.
+
+12
+00:00:24,300 --> 00:00:25,133
+Power rule.
+
+13
+00:00:25,133 --> 00:00:31,412
+∫ xⁿ dx = xⁿ⁺¹/(n + 1) with n = 2:
+
+14
+00:00:31,412 --> 00:00:37,692
+raise the power by 1 and divide by the new power.
+
+15
+00:00:38,300 --> 00:00:39,966
+Integral of a constant.
+
+16
+00:00:39,966 --> 00:00:43,772
+∫ c dx = c·x.
+
+17
+00:00:44,372 --> 00:00:44,788
+Simplify.
+
+18
+00:00:44,788 --> 00:00:46,100
+Combine the constants.
+
+19
+00:00:46,700 --> 00:00:49,616
+Fundamental Theorem: F(b) − F(a).
+
+20
+00:00:49,616 --> 00:00:52,778
+Evaluate F at the top limit 2
+
+21
+00:00:52,778 --> 00:00:55,940
+and subtract F at the bottom limit 0.
+
+22
+00:00:56,566 --> 00:00:56,983
+Arithmetic.
+
+23
+00:00:56,983 --> 00:00:57,622
+Simplify.
+
+24
+00:00:58,666 --> 00:01:00,802
+So the answer is 10.
+
+25
+00:01:01,466 --> 00:01:06,466
+Every step you just saw was checked by a computer algebra system,
+
+26
+00:01:06,466 --> 00:01:09,800
+and the final answer was confirmed a second,
+
+27
+00:01:09,800 --> 00:01:10,706
+independent way.
+
+28
+00:01:11,166 --> 00:01:12,416
+Find an antiderivative,
+
+29
+00:01:12,416 --> 00:01:14,916
+evaluate it at the top limit,
+
+30
+00:01:14,916 --> 00:01:18,294
+and subtract its value at the bottom limit.
+
+31
+00:01:18,700 --> 00:01:20,366
+Now it's your turn.
+
+32
+00:01:20,366 --> 00:01:23,283
+Pause the video and try this one.
+
+33
+00:01:23,283 --> 00:01:26,260
+Your answer is checked in the write-up.
+

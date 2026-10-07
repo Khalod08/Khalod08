@@ -1,0 +1,96 @@
+1
+00:00:00,000 --> 00:00:02,083
+Let's work through this problem:
+
+2
+00:00:02,083 --> 00:00:02,916
+Matrix inverse.
+
+3
+00:00:02,916 --> 00:00:05,000
+First we'll see the idea,
+
+4
+00:00:05,000 --> 00:00:06,250
+then every step,
+
+5
+00:00:06,250 --> 00:00:08,808
+each one checked by a computer.
+
+6
+00:00:09,400 --> 00:00:13,216
+The inverse matrix undoes what the original matrix does.
+
+7
+00:00:14,600 --> 00:00:17,933
+R₁ → (1/2)R₁.
+
+8
+00:00:17,933 --> 00:00:23,408
+Scale row 1 so the pivot in column 1 becomes a leading 1.
+
+9
+00:00:24,066 --> 00:00:27,400
+R₂ → R₂ − 5R₁.
+
+10
+00:00:27,400 --> 00:00:31,626
+Create a zero below the leading 1 in column 1.
+
+11
+00:00:32,266 --> 00:00:34,350
+R₂ → 2R₂.
+
+12
+00:00:34,350 --> 00:00:39,826
+Scale row 2 so the pivot in column 2 becomes a leading 1.
+
+13
+00:00:40,466 --> 00:00:45,050
+R₁ → R₁ − (1/2)R₂.
+
+14
+00:00:45,050 --> 00:00:49,274
+Create a zero above the leading 1 in column 2.
+
+15
+00:00:50,266 --> 00:00:52,834
+That's the answer, shown on screen.
+
+16
+00:00:53,266 --> 00:00:58,266
+Every step you just saw was checked by a computer algebra system,
+
+17
+00:00:58,266 --> 00:01:01,600
+and the final answer was confirmed a second,
+
+18
+00:01:01,600 --> 00:01:02,506
+independent way.
+
+19
+00:01:02,933 --> 00:01:05,850
+Row reduce the matrix beside the identity;
+
+20
+00:01:05,850 --> 00:01:08,766
+when the left side becomes the identity,
+
+21
+00:01:08,766 --> 00:01:11,333
+the right side is the inverse.
+
+22
+00:01:11,733 --> 00:01:13,400
+Now it's your turn.
+
+23
+00:01:13,400 --> 00:01:16,316
+Pause the video and try this one.
+
+24
+00:01:16,316 --> 00:01:19,293
+Your answer is checked in the write-up.
+

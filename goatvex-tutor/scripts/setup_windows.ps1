@@ -27,13 +27,13 @@ if (-not (Have "winget")) {
 }
 
 # ---------------------------------------------------------------- Python
-Say "Python 3.11+ (runs the math engine and Manim)"
+Say "Python 3.12 or 3.11 (runs the math engine and Manim)"
 $py = $null
-foreach ($v in @("3.13", "3.12", "3.11")) {
+foreach ($v in @("3.12", "3.11")) {  # not 3.13+: manim-voiceover needs audioop, removed in 3.13
     if ((Have "py") -and (& py "-$v" -c "print('ok')" 2>$null) -eq "ok") { $py = @("py", "-$v"); break }
 }
 if ($py) { Ok "found Python $($py[1].TrimStart('-'))" }
-elseif (Ask "Python 3.11+ not found. Install Python 3.12 with winget?") {
+elseif (Ask "Python 3.12 not found. Install it with winget? (Other versions can stay installed.)") {
     winget install -e --id Python.Python.3.12 --accept-source-agreements --accept-package-agreements
     Refresh-Path
     $py = @("py", "-3.12")

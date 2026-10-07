@@ -1,0 +1,140 @@
+1
+00:00:00,000 --> 00:00:02,083
+Let's work through this problem:
+
+2
+00:00:02,083 --> 00:00:03,750
+Derivative (rules, chain rule).
+
+3
+00:00:03,750 --> 00:00:05,833
+First we'll see the idea,
+
+4
+00:00:05,833 --> 00:00:07,083
+then every step,
+
+5
+00:00:07,083 --> 00:00:09,648
+each one checked by a computer.
+
+6
+00:00:10,166 --> 00:00:13,322
+The derivative is the slope of the
+
+7
+00:00:13,322 --> 00:00:16,478
+tangent line at each point of the graph.
+
+8
+00:00:17,033 --> 00:00:18,700
+Chain rule (power outside).
+
+9
+00:00:18,700 --> 00:00:25,810
+Chain rule: the outside is (inside)^5, the inside is u = 3x² +
+
+10
+00:00:25,810 --> 00:00:32,921
+1. Differentiate the outside (power rule), keep the inside, then multiply by du/dx.
+
+11
+00:00:33,566 --> 00:00:35,233
+Sum/difference rule.
+
+12
+00:00:35,233 --> 00:00:38,180
+The derivative of a sum is the
+
+13
+00:00:38,180 --> 00:00:41,126
+sum of the derivatives, term by term.
+
+14
+00:00:41,726 --> 00:00:42,976
+Constant multiple rule.
+
+15
+00:00:42,976 --> 00:00:48,038
+The constant 3 can be pulled out in front of the derivative.
+
+16
+00:00:48,638 --> 00:00:49,472
+Power rule.
+
+17
+00:00:49,472 --> 00:00:54,950
+Power rule: bring down the exponent 2 and lower the power by 1.
+
+18
+00:00:55,550 --> 00:00:56,384
+Constant rule.
+
+19
+00:00:56,384 --> 00:01:01,022
+1 does not depend on x, so its derivative is 0.
+
+20
+00:01:01,622 --> 00:01:02,039
+Simplify.
+
+21
+00:01:02,039 --> 00:01:05,438
+Multiply out the constants and combine like terms.
+
+22
+00:01:06,338 --> 00:01:12,218
+So the answer is 30x·(3x² + 1)⁴.
+
+23
+00:01:12,672 --> 00:01:17,672
+Every step you just saw was checked by a computer algebra system,
+
+24
+00:01:17,672 --> 00:01:21,005
+and the final answer was confirmed a second,
+
+25
+00:01:21,005 --> 00:01:21,912
+independent way.
+
+26
+00:01:22,372 --> 00:01:25,288
+Apply a single rule at a time:
+
+27
+00:01:25,288 --> 00:01:25,705
+sums,
+
+28
+00:01:25,705 --> 00:01:26,538
+constant multiples,
+
+29
+00:01:26,538 --> 00:01:26,955
+powers,
+
+30
+00:01:26,955 --> 00:01:27,372
+products,
+
+31
+00:01:27,372 --> 00:01:27,788
+quotients,
+
+32
+00:01:27,788 --> 00:01:31,180
+and the chain rule from the outside in.
+
+33
+00:01:31,638 --> 00:01:33,305
+Now it's your turn.
+
+34
+00:01:33,305 --> 00:01:36,222
+Pause the video and try this one.
+
+35
+00:01:36,222 --> 00:01:39,198
+Your answer is checked in the write-up.
+

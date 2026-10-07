@@ -1,0 +1,11 @@
+{
+  "given": {
+    "task": "roots",
+    "w": "1",
+    "n": 2
+  },
+  "statement": "Find the 2th roots of 1.",
+  "latex": "\\text{Find the 2th roots of 1.}",
+  "answer_text": "1, −1",
+  "type": "complex"
+}

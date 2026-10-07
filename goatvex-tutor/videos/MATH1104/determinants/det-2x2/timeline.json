@@ -1,0 +1,50 @@
+[
+  {
+    "segment": "problem",
+    "start": 0.0,
+    "end": 8.4,
+    "caption": "Let's work through this problem: Determinant. First we'll see the idea, then every step, each one checked by a computer."
+  },
+  {
+    "segment": "intuition",
+    "start": 8.933,
+    "end": 16.533,
+    "caption": "The determinant measures how the matrix scales area or volume, and its sign tells whether it flips orientation."
+  },
+  {
+    "segment": "s1",
+    "start": 17.067,
+    "end": 23.4,
+    "caption": "2×2 determinant. For a 2×2 matrix, det = ad − bc."
+  },
+  {
+    "segment": "s2",
+    "start": 24.0,
+    "end": 25.733,
+    "caption": "Arithmetic. Multiply and add."
+  },
+  {
+    "segment": "result",
+    "start": 26.667,
+    "end": 29.067,
+    "caption": "So the answer is 22."
+  },
+  {
+    "segment": "check",
+    "start": 29.467,
+    "end": 38.733,
+    "caption": "Every step you just saw was checked by a computer algebra system, and the final answer was confirmed a second, independent way."
+  },
+  {
+    "segment": "recap",
+    "start": 39.133,
+    "end": 45.867,
+    "caption": "Expand along the row or column with the most zeros, or row reduce while tracking swaps."
+  },
+  {
+    "segment": "practice",
+    "start": 46.267,
+    "end": 53.867,
+    "caption": "Now it's your turn. Pause the video and try this one. Your answer is checked in the write-up."
+  }
+]

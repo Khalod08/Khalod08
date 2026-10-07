@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "slug": "det-2x2",
+  "course": "MATH1104",
+  "type": "determinant",
+  "statement": "Find det(A).",
+  "given": {
+    "matrix": [
+      [
+        "3",
+        "5"
+      ],
+      [
+        "-2",
+        "4"
+      ]
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "22",
+    "kind": "expr"
+  },
+  "topic": "determinants"
+}

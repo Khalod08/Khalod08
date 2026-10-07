@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "slug": "def-polynomial",
+  "course": "MATH1004",
+  "type": "definite_integral",
+  "statement": "Evaluate ∫ from 0 to 2 of 3x^2 + 1 dx.",
+  "given": {
+    "integrand": "3x^2 + 1",
+    "variable": "x",
+    "a": "0",
+    "b": "2"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "10",
+    "kind": "expr"
+  },
+  "topic": "integrals"
+}

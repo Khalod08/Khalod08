@@ -1,0 +1,10 @@
+{
+  "given": {
+    "integrand": "sin(x) cos(x)^4",
+    "variable": "x"
+  },
+  "statement": "Find ∫ sin(x) cos(x)^4 dx.",
+  "latex": "\\text{Find ∫ sin(x) cos(x)^4 dx.}",
+  "answer_text": "−cos(x)⁵/5",
+  "type": "indefinite_integral"
+}

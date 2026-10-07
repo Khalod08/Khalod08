@@ -1,0 +1,62 @@
+[
+  {
+    "segment": "problem",
+    "start": 0.0,
+    "end": 9.267,
+    "caption": "Let's work through this problem: Antiderivative (indefinite integral). First we'll see the idea, then every step, each one checked by a computer."
+  },
+  {
+    "segment": "intuition",
+    "start": 9.8,
+    "end": 15.733,
+    "caption": "An antiderivative undoes the derivative: differentiate the answer and you get back the integrand."
+  },
+  {
+    "segment": "s1",
+    "start": 16.267,
+    "end": 23.867,
+    "caption": "u-substitution. Let u = x², so du = 2x dx. Rewrite everything in terms of u."
+  },
+  {
+    "segment": "s2",
+    "start": 24.467,
+    "end": 30.0,
+    "caption": "Constant multiple rule. Pull the constant 1/2 out of the integral."
+  },
+  {
+    "segment": "s3",
+    "start": 30.6,
+    "end": 34.867,
+    "caption": "Basic antiderivative. Standard antiderivative: ∫ cos = sin."
+  },
+  {
+    "segment": "s4",
+    "start": 35.467,
+    "end": 41.8,
+    "caption": "Substitute back u = x². Write the answer in terms of the original variable."
+  },
+  {
+    "segment": "result",
+    "start": 42.733,
+    "end": 46.133,
+    "caption": "So the answer is sin(x²)/2."
+  },
+  {
+    "segment": "check",
+    "start": 46.533,
+    "end": 55.8,
+    "caption": "Every step you just saw was checked by a computer algebra system, and the final answer was confirmed a second, independent way."
+  },
+  {
+    "segment": "recap",
+    "start": 56.2,
+    "end": 62.133,
+    "caption": "Pick the right method, integrate piece by piece, substitute back, and add a constant."
+  },
+  {
+    "segment": "practice",
+    "start": 62.533,
+    "end": 70.133,
+    "caption": "Now it's your turn. Pause the video and try this one. Your answer is checked in the write-up."
+  }
+]

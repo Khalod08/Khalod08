@@ -43,8 +43,9 @@ def main() -> int:
     problems = 0
 
     v = sys.version_info
-    good = v >= (3, 11)
-    print(f"{OK if good else BAD} Python {v.major}.{v.minor}.{v.micro} (need 3.11+)")
+    good = (3, 11) <= v < (3, 13)
+    print(f"{OK if good else BAD} Python {v.major}.{v.minor}.{v.micro} (need 3.11 or 3.12; 3.13+ removed audioop, "
+          "which the voiceover library needs)")
     problems += not good
     in_venv = sys.prefix != getattr(sys, "base_prefix", sys.prefix)
     print(f"{OK if in_venv else WARN} virtual environment {'active' if in_venv else 'NOT active (activate .venv first)'}")

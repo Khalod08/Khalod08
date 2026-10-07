@@ -1,0 +1,14 @@
+{
+  "given": {
+    "function": "1/x",
+    "variable": "x",
+    "a": "1",
+    "b": "3",
+    "n": 4,
+    "method": "left"
+  },
+  "statement": "Approximate ∫ from 1 to 3 of 1/x dx with a left sum, n = 4.",
+  "latex": "\\text{Approximate ∫ from 1 to 3 of 1/x dx with a left sum, n = 4.}",
+  "answer_text": "77/60",
+  "type": "riemann_sum"
+}

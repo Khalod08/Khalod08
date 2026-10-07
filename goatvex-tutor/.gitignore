@@ -20,3 +20,8 @@ materials/**/*.pptx
 # Text extracted from course materials is also the instructor's IP — local only
 materials/**/extracted/
 materials/**/*.txt
+
+# Render working files and QA frames (re-created by every render)
+videos/**/media/
+videos/**/frames/
+videos/**/render_job.json

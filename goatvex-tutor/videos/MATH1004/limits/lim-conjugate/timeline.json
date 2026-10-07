@@ -1,0 +1,62 @@
+[
+  {
+    "segment": "problem",
+    "start": 0.0,
+    "end": 8.4,
+    "caption": "Let's work through this problem: Limit. First we'll see the idea, then every step, each one checked by a computer."
+  },
+  {
+    "segment": "intuition",
+    "start": 8.933,
+    "end": 17.4,
+    "caption": "A limit asks what value the function approaches as the input gets close to the point, not its value there."
+  },
+  {
+    "segment": "s1",
+    "start": 17.933,
+    "end": 33.867,
+    "caption": "Multiply by the conjugate. Multiply top and bottom by the conjugate √(x + 4) + 2 to clear the square root ((A + B)(A − B) = A² − B²)."
+  },
+  {
+    "segment": "s2",
+    "start": 34.467,
+    "end": 40.4,
+    "caption": "Simplify. Multiply out the product A² − B² and cancel common factors."
+  },
+  {
+    "segment": "s3",
+    "start": 41.0,
+    "end": 47.333,
+    "caption": "Direct substitution. The function is continuous at x = 0, so substitute x = 0."
+  },
+  {
+    "segment": "s4",
+    "start": 47.933,
+    "end": 49.133,
+    "caption": "Arithmetic. Simplify."
+  },
+  {
+    "segment": "result",
+    "start": 50.067,
+    "end": 53.067,
+    "caption": "So the answer is 1/4."
+  },
+  {
+    "segment": "check",
+    "start": 53.467,
+    "end": 62.733,
+    "caption": "Every step you just saw was checked by a computer algebra system, and the final answer was confirmed a second, independent way."
+  },
+  {
+    "segment": "recap",
+    "start": 63.133,
+    "end": 69.467,
+    "caption": "Try substitution first; if you get an indeterminate form, simplify, rationalize, or use L'Hôpital's rule."
+  },
+  {
+    "segment": "practice",
+    "start": 69.867,
+    "end": 77.467,
+    "caption": "Now it's your turn. Pause the video and try this one. Your answer is checked in the write-up."
+  }
+]

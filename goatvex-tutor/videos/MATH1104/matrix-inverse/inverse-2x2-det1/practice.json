@@ -1,0 +1,18 @@
+{
+  "given": {
+    "matrix": [
+      [
+        "-1",
+        "-2"
+      ],
+      [
+        "-2",
+        "-3"
+      ]
+    ]
+  },
+  "statement": "Find A⁻¹ if it exists.",
+  "latex": "A = \\left[\\begin{matrix}-1 & -2\\\\-2 & -3\\end{matrix}\\right]",
+  "answer_text": "⎡  3  −2 ⎤\n⎣ −2   1 ⎦",
+  "type": "matrix_inverse"
+}

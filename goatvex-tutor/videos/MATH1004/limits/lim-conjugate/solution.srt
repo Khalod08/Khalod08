@@ -1,0 +1,112 @@
+1
+00:00:00,000 --> 00:00:02,083
+Let's work through this problem:
+
+2
+00:00:02,083 --> 00:00:02,500
+Limit.
+
+3
+00:00:02,500 --> 00:00:04,583
+First we'll see the idea,
+
+4
+00:00:04,583 --> 00:00:05,833
+then every step,
+
+5
+00:00:05,833 --> 00:00:08,400
+each one checked by a computer.
+
+6
+00:00:08,933 --> 00:00:15,600
+A limit asks what value the function approaches as the input gets close to the point,
+
+7
+00:00:15,600 --> 00:00:17,333
+not its value there.
+
+8
+00:00:17,933 --> 00:00:19,600
+Multiply by the conjugate.
+
+9
+00:00:19,600 --> 00:00:26,710
+Multiply top and bottom by the conjugate √(x + 4) + 2 to
+
+10
+00:00:26,710 --> 00:00:33,821
+clear the square root ((A + B)(A − B) = A² − B²).
+
+11
+00:00:34,466 --> 00:00:34,883
+Simplify.
+
+12
+00:00:34,883 --> 00:00:40,346
+Multiply out the product A² − B² and cancel common factors.
+
+13
+00:00:41,000 --> 00:00:41,833
+Direct substitution.
+
+14
+00:00:41,833 --> 00:00:47,312
+The function is continuous at x = 0, so substitute x = 0.
+
+15
+00:00:47,933 --> 00:00:48,350
+Arithmetic.
+
+16
+00:00:48,350 --> 00:00:48,989
+Simplify.
+
+17
+00:00:50,066 --> 00:00:53,042
+So the answer is 1/4.
+
+18
+00:00:53,466 --> 00:00:58,466
+Every step you just saw was checked by a computer algebra system,
+
+19
+00:00:58,466 --> 00:01:01,800
+and the final answer was confirmed a second,
+
+20
+00:01:01,800 --> 00:01:02,706
+independent way.
+
+21
+00:01:03,133 --> 00:01:04,383
+Try substitution first;
+
+22
+00:01:04,383 --> 00:01:06,883
+if you get an indeterminate form,
+
+23
+00:01:06,883 --> 00:01:07,300
+simplify,
+
+24
+00:01:07,300 --> 00:01:07,716
+rationalize,
+
+25
+00:01:07,716 --> 00:01:09,445
+or use L'Hôpital's rule.
+
+26
+00:01:09,866 --> 00:01:11,533
+Now it's your turn.
+
+27
+00:01:11,533 --> 00:01:14,450
+Pause the video and try this one.
+
+28
+00:01:14,450 --> 00:01:17,426
+Your answer is checked in the write-up.
+

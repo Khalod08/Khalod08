@@ -1,0 +1,148 @@
+1
+00:00:00,000 --> 00:00:02,083
+Let's work through this problem:
+
+2
+00:00:02,083 --> 00:00:04,166
+Complex numbers and De Moivre.
+
+3
+00:00:04,166 --> 00:00:06,250
+First we'll see the idea,
+
+4
+00:00:06,250 --> 00:00:07,500
+then every step,
+
+5
+00:00:07,500 --> 00:00:10,056
+each one checked by a computer.
+
+6
+00:00:10,600 --> 00:00:13,516
+Complex numbers are points in the plane:
+
+7
+00:00:13,516 --> 00:00:17,266
+a + i·b sits at (a, b),
+
+8
+00:00:17,266 --> 00:00:21,088
+at distance r from the origin and angle θ.
+
+9
+00:00:21,666 --> 00:00:26,666
+Modulus r = √(a² + b²).
+
+10
+00:00:26,666 --> 00:00:30,474
+Here a = −8 and b = 0.
+
+11
+00:00:31,133 --> 00:00:31,966
+Argument θ.
+
+12
+00:00:31,966 --> 00:00:37,853
+The point (−8, 0) lies on an axis, so θ = π.
+
+13
+00:00:38,466 --> 00:00:40,133
+Root k = 0.
+
+14
+00:00:40,133 --> 00:00:47,244
+z_k = r^(1/3)·(cos((θ + 2πk)/3) + i sin((θ
+
+15
+00:00:47,244 --> 00:00:54,354
++ 2πk)/3)) with k = 0: angle π/3.
+
+16
+00:00:55,000 --> 00:00:57,916
+z₀ in a + bi form.
+
+17
+00:00:57,916 --> 00:01:00,064
+Evaluate cos and sin exactly.
+
+18
+00:01:00,666 --> 00:01:02,333
+Root k = 1.
+
+19
+00:01:02,333 --> 00:01:09,240
+z_k = r^(1/3)·(cos((θ + 2πk)/3) + i sin((θ
+
+20
+00:01:09,240 --> 00:01:16,146
++ 2πk)/3)) with k = 1: angle π.
+
+21
+00:01:16,800 --> 00:01:19,716
+z₁ in a + bi form.
+
+22
+00:01:19,716 --> 00:01:21,864
+Evaluate cos and sin exactly.
+
+23
+00:01:22,466 --> 00:01:24,133
+Root k = 2.
+
+24
+00:01:24,133 --> 00:01:31,460
+z_k = r^(1/3)·(cos((θ + 2πk)/3) + i sin((θ
+
+25
+00:01:31,460 --> 00:01:38,786
++ 2πk)/3)) with k = 2: angle 5π/3.
+
+26
+00:01:39,400 --> 00:01:42,316
+z₂ in a + bi form.
+
+27
+00:01:42,316 --> 00:01:44,464
+Evaluate cos and sin exactly.
+
+28
+00:01:45,400 --> 00:01:53,800
+So the answer is 1 + √3i, −2, 1 − √3i.
+
+29
+00:01:54,266 --> 00:01:59,266
+Every step you just saw was checked by a computer algebra system,
+
+30
+00:01:59,266 --> 00:02:02,600
+and the final answer was confirmed a second,
+
+31
+00:02:02,600 --> 00:02:03,506
+independent way.
+
+32
+00:02:03,933 --> 00:02:07,266
+Use i² = −1 to multiply,
+
+33
+00:02:07,266 --> 00:02:09,766
+multiply by the conjugate to divide,
+
+34
+00:02:09,766 --> 00:02:13,173
+and use polar form for powers and roots.
+
+35
+00:02:13,600 --> 00:02:15,266
+Now it's your turn.
+
+36
+00:02:15,266 --> 00:02:18,183
+Pause the video and try this one.
+
+37
+00:02:18,183 --> 00:02:21,160
+Your answer is checked in the write-up.
+

@@ -1,0 +1,62 @@
+[
+  {
+    "segment": "problem",
+    "start": 0.0,
+    "end": 8.867,
+    "caption": "Let's work through this problem: Matrix inverse. First we'll see the idea, then every step, each one checked by a computer."
+  },
+  {
+    "segment": "intuition",
+    "start": 9.4,
+    "end": 14.067,
+    "caption": "The inverse matrix undoes what the original matrix does."
+  },
+  {
+    "segment": "s1",
+    "start": 14.6,
+    "end": 23.467,
+    "caption": "R₁ → (1/2)R₁. Scale row 1 so the pivot in column 1 becomes a leading 1."
+  },
+  {
+    "segment": "s2",
+    "start": 24.067,
+    "end": 31.667,
+    "caption": "R₂ → R₂ − 5R₁. Create a zero below the leading 1 in column 1."
+  },
+  {
+    "segment": "s3",
+    "start": 32.267,
+    "end": 39.867,
+    "caption": "R₂ → 2R₂. Scale row 2 so the pivot in column 2 becomes a leading 1."
+  },
+  {
+    "segment": "s4",
+    "start": 40.467,
+    "end": 49.333,
+    "caption": "R₁ → R₁ − (1/2)R₂. Create a zero above the leading 1 in column 2."
+  },
+  {
+    "segment": "result",
+    "start": 50.267,
+    "end": 52.867,
+    "caption": "That's the answer, shown on screen."
+  },
+  {
+    "segment": "check",
+    "start": 53.267,
+    "end": 62.533,
+    "caption": "Every step you just saw was checked by a computer algebra system, and the final answer was confirmed a second, independent way."
+  },
+  {
+    "segment": "recap",
+    "start": 62.933,
+    "end": 71.333,
+    "caption": "Row reduce the matrix beside the identity; when the left side becomes the identity, the right side is the inverse."
+  },
+  {
+    "segment": "practice",
+    "start": 71.733,
+    "end": 79.333,
+    "caption": "Now it's your turn. Pause the video and try this one. Your answer is checked in the write-up."
+  }
+]

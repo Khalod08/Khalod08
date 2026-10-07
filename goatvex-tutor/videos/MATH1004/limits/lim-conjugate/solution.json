@@ -1,0 +1,155 @@
+{
+  "slug": "lim-conjugate",
+  "status": "PASS",
+  "digest": "5cefe5d518f7f8e0",
+  "answer_label": "limit",
+  "answer": {
+    "srepr": "Rational(1, 4)",
+    "latex": "\\frac{1}{4}",
+    "text": "1/4"
+  },
+  "notes": [],
+  "steps": [
+    {
+      "id": "s0",
+      "kind": "setup",
+      "operation": "Set up",
+      "justification": "Find the limit as x → 0.",
+      "before": {
+        "srepr": "Mul(Pow(Symbol('x', real=True), Integer(-1)), Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(-2)))",
+        "latex": "\\frac{-2 + \\sqrt{4 + x}}{x}",
+        "text": "(√(x + 4) − 2)/x"
+      },
+      "after": {
+        "srepr": "Limit(Mul(Pow(Symbol('x', real=True), Integer(-1)), Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(-2))), Symbol('x', real=True), Integer(0), Symbol('+-'))",
+        "latex": "\\lim_{x \\to 0}\\left(\\frac{-2 + \\sqrt{4 + x}}{x}\\right)",
+        "text": "lim(x→0) (√(x + 4) − 2)/x"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s1",
+      "kind": "limit_step",
+      "operation": "Multiply by the conjugate",
+      "justification": "Multiply top and bottom by the conjugate √(x + 4) + 2 to clear the square root ((A + B)(A − B) = A² − B²).",
+      "before": {
+        "srepr": "Limit(Mul(Pow(Symbol('x', real=True), Integer(-1)), Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(-2))), Symbol('x', real=True), Integer(0), Symbol('+-'))",
+        "latex": "\\lim_{x \\to 0}\\left(\\frac{-2 + \\sqrt{4 + x}}{x}\\right)",
+        "text": "lim(x→0) (√(x + 4) − 2)/x"
+      },
+      "after": {
+        "srepr": "Limit(Mul(Pow(Mul(Symbol('x', real=True), Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(2))), Integer(-1)), Mul(Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(-2)), Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(2)))), Symbol('x', real=True), Integer(0), Symbol('+-'))",
+        "latex": "\\lim_{x \\to 0}\\left(\\frac{\\left(-2 + \\sqrt{4 + x}\\right) \\left(2 + \\sqrt{4 + x}\\right)}{x \\left(2 + \\sqrt{4 + x}\\right)}\\right)",
+        "text": "lim(x→0) (√(x + 4) − 2)·(√(x + 4) + 2)/(x·(√(x + 4) + 2))"
+      },
+      "data": {
+        "chain": true,
+        "rule": "rewrite",
+        "x": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
+        },
+        "a": {
+          "srepr": "Integer(0)",
+          "latex": "0",
+          "text": "0"
+        },
+        "dir": "+-",
+        "conjugate": {
+          "srepr": "Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(2))",
+          "latex": "2 + \\sqrt{4 + x}",
+          "text": "√(x + 4) + 2"
+        }
+      }
+    },
+    {
+      "id": "s2",
+      "kind": "limit_step",
+      "operation": "Simplify",
+      "justification": "Multiply out the product A² − B² and cancel common factors.",
+      "before": {
+        "srepr": "Limit(Mul(Pow(Mul(Symbol('x', real=True), Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(2))), Integer(-1)), Mul(Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(-2)), Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(2)))), Symbol('x', real=True), Integer(0), Symbol('+-'))",
+        "latex": "\\lim_{x \\to 0}\\left(\\frac{\\left(-2 + \\sqrt{4 + x}\\right) \\left(2 + \\sqrt{4 + x}\\right)}{x \\left(2 + \\sqrt{4 + x}\\right)}\\right)",
+        "text": "lim(x→0) (√(x + 4) − 2)·(√(x + 4) + 2)/(x·(√(x + 4) + 2))"
+      },
+      "after": {
+        "srepr": "Limit(Pow(Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(2)), Integer(-1)), Symbol('x', real=True), Integer(0), Symbol('+-'))",
+        "latex": "\\lim_{x \\to 0} \\frac{1}{2 + \\sqrt{4 + x}}",
+        "text": "lim(x→0) 1/(√(x + 4) + 2)"
+      },
+      "data": {
+        "chain": true,
+        "rule": "rewrite",
+        "x": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
+        },
+        "a": {
+          "srepr": "Integer(0)",
+          "latex": "0",
+          "text": "0"
+        },
+        "dir": "+-"
+      }
+    },
+    {
+      "id": "s3",
+      "kind": "limit_step",
+      "operation": "Direct substitution",
+      "justification": "The function is continuous at x = 0, so substitute x = 0.",
+      "before": {
+        "srepr": "Limit(Pow(Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(2)), Integer(-1)), Symbol('x', real=True), Integer(0), Symbol('+-'))",
+        "latex": "\\lim_{x \\to 0} \\frac{1}{2 + \\sqrt{4 + x}}",
+        "text": "lim(x→0) 1/(√(x + 4) + 2)"
+      },
+      "after": {
+        "srepr": "Pow(Add(Integer(2), Pow(Add(Integer(0), Integer(4)), Rational(1, 2))), Integer(-1))",
+        "latex": "\\frac{1}{2 + \\sqrt{4 + 0}}",
+        "text": "1/(2 + √(4 + 0))"
+      },
+      "data": {
+        "chain": true,
+        "rule": "substitute",
+        "x": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
+        },
+        "a": {
+          "srepr": "Integer(0)",
+          "latex": "0",
+          "text": "0"
+        },
+        "dir": "+-",
+        "g": {
+          "srepr": "Pow(Add(Pow(Add(Symbol('x', real=True), Integer(4)), Rational(1, 2)), Integer(2)), Integer(-1))",
+          "latex": "\\frac{1}{2 + \\sqrt{4 + x}}",
+          "text": "1/(√(x + 4) + 2)"
+        }
+      }
+    },
+    {
+      "id": "s4",
+      "kind": "algebra",
+      "operation": "Arithmetic",
+      "justification": "Simplify.",
+      "before": {
+        "srepr": "Pow(Add(Integer(2), Pow(Add(Integer(0), Integer(4)), Rational(1, 2))), Integer(-1))",
+        "latex": "\\frac{1}{2 + \\sqrt{4 + 0}}",
+        "text": "1/(2 + √(4 + 0))"
+      },
+      "after": {
+        "srepr": "Rational(1, 4)",
+        "latex": "\\frac{1}{4}",
+        "text": "1/4"
+      },
+      "data": {
+        "chain": true
+      }
+    }
+  ]
+}

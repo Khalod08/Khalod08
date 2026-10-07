@@ -2,7 +2,7 @@
 
 - **Course / topic:** MATH1004 / derivatives
 - **Type:** derivative
-- **Generated:** 2026-09-30T21:10:06
+- **Generated:** 2026-10-07T21:43:38
 - **Solution digest:** `b2a55daefbebf1e2`
 - **Result:** ✅ PASS — **ALL CHECKS PASSED** — this solution may be rendered.
 - **Checks:** 37 passed, 0 failed, 0 inconclusive
@@ -33,11 +33,11 @@ f(x) = (3x² + 1)⁵
 
 **s4 — Power rule.** Power rule: bring down the exponent 2 and lower the power by 1.
 
-> 5(3x² + 1)⁴·(3(2x) + d/dx[1])
+> 5(3x² + 1)⁴·(3·2x + d/dx[1])
 
 **s5 — Constant rule.** 1 does not depend on x, so its derivative is 0.
 
-> 5(3x² + 1)⁴·(3(2x) + 0)
+> 5(3x² + 1)⁴·(3·2x + 0)
 
 **s6 — Simplify.** Multiply out the constants and combine like terms.
 
@@ -84,7 +84,7 @@ f(x) = (3x² + 1)⁵
 | 30 | s5 | only this term changed | ✅ PASS | after = before with just this d/dx[…] replaced |
 | 31 | s5 | whole line still equal | ✅ PASS | simplify(before − after) = 0; 7 random points agree (max rel. error 0.0) |
 | 32 | s6 | continues from previous step | ✅ PASS | starts from the result of s5 |
-| 33 | s6 | algebra step is an equality | ✅ PASS | simplify(before − after) = 0; 7 random points agree (max rel. error 2.1e-41) |
+| 33 | s6 | algebra step is an equality | ✅ PASS | simplify(before − after) = 0; 7 random points agree (max rel. error 0.0) |
 | 34 | final | no d/dx left in the answer | ✅ PASS | answer is fully differentiated |
 | 35 | final | last step is the answer | ✅ PASS | the final line is the reported answer |
 | 36 | final | second method: sympy.diff | ✅ PASS | simplify(before − after) = 0; 7 random points agree (max rel. error 0.0) |

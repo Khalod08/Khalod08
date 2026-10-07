@@ -8,7 +8,7 @@ another PC. It takes about 15–30 minutes, mostly waiting for downloads
 
 | Piece | Why GoatVex needs it |
 |---|---|
-| **Python 3.11+** (3.12 recommended) | Runs the math engine (SymPy) and Manim. |
+| **Python 3.12** (or 3.11; not 3.13+, which removed a module the voiceover library needs) | Runs the math engine (SymPy) and Manim. |
 | **FFmpeg** | Encodes the videos and mixes in the voice. |
 | **MiKTeX** (LaTeX) | Typesets the equations in the videos (Manim's `MathTex`). |
 | **A virtual environment** (`.venv`) | Keeps GoatVex's Python packages separate so nothing else on your PC breaks. |

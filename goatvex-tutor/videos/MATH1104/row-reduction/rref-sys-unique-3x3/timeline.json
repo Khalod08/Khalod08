@@ -1,0 +1,80 @@
+[
+  {
+    "segment": "problem",
+    "start": 0.0,
+    "end": 9.667,
+    "caption": "Here is the augmented matrix of our system. Our goal is reduced row echelon form, where the solution can simply be read off."
+  },
+  {
+    "segment": "intuition",
+    "start": 10.2,
+    "end": 25.267,
+    "caption": "Picture it first. Each equation is a plane in space. The solution is the single place where they all meet: the point (5, 3, −2). Row operations change the equations, but never that meeting point."
+  },
+  {
+    "segment": "s1",
+    "start": 27.867,
+    "end": 37.133,
+    "caption": "Next, R₃ → R₃ − 2R₁, which puts a zero below the pivot in column 1."
+  },
+  {
+    "segment": "s2",
+    "start": 38.067,
+    "end": 45.2,
+    "caption": "Next, R₂ → (1/2)R₂. Now the pivot in column 2 is a leading one."
+  },
+  {
+    "segment": "s3",
+    "start": 46.133,
+    "end": 55.4,
+    "caption": "Next, R₃ → R₃ − 3R₂, which puts a zero below the pivot in column 2."
+  },
+  {
+    "segment": "s4",
+    "start": 56.333,
+    "end": 69.333,
+    "caption": "Next, R₃ → (−2/21)R₃. Now the pivot in column 3 is a leading one. That completes the forward phase: the matrix is in row echelon form."
+  },
+  {
+    "segment": "s5",
+    "start": 70.267,
+    "end": 79.133,
+    "caption": "Next, R₁ → R₁ − R₃, which puts a zero above the leading one in column 3."
+  },
+  {
+    "segment": "s6",
+    "start": 80.067,
+    "end": 90.133,
+    "caption": "Next, R₂ → R₂ − (5/2)R₃, which puts a zero above the leading one in column 3."
+  },
+  {
+    "segment": "s7",
+    "start": 91.067,
+    "end": 99.933,
+    "caption": "Next, R₁ → R₁ − R₂, which puts a zero above the leading one in column 2."
+  },
+  {
+    "segment": "result",
+    "start": 100.867,
+    "end": 110.533,
+    "caption": "This is reduced row echelon form, and the solution reads straight off: x = 5, y = 3, z = −2."
+  },
+  {
+    "segment": "check",
+    "start": 111.133,
+    "end": 119.6,
+    "caption": "Let's check by putting these values back into each original equation. Each of them holds, so the answer is right."
+  },
+  {
+    "segment": "recap",
+    "start": 120.133,
+    "end": 130.667,
+    "caption": "To recap: get a leading one, clear the entries below it, move to the next column, and finally clear the entries above each leading one."
+  },
+  {
+    "segment": "practice",
+    "start": 131.2,
+    "end": 140.067,
+    "caption": "Now it's your turn. Pause the video and solve this system. Your answer is checked in the write-up, so no peeking."
+  }
+]

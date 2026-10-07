@@ -1,0 +1,229 @@
+{
+  "slug": "def-polynomial",
+  "status": "PASS",
+  "digest": "b89106744c1eedd9",
+  "answer_label": "∫[0→2]",
+  "answer": {
+    "srepr": "Integer(10)",
+    "latex": "10",
+    "text": "10"
+  },
+  "notes": [
+    "Antiderivative used: F(x) = x³ + x. Decimal: ≈ 10."
+  ],
+  "steps": [
+    {
+      "id": "s0",
+      "kind": "setup",
+      "operation": "Set up",
+      "justification": "By the Fundamental Theorem of Calculus, ∫ₐᵇ f = F(b) − F(a) for any antiderivative F. First find F.",
+      "before": {
+        "srepr": "Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1))",
+        "latex": "1 + 3 x^{2}",
+        "text": "3x² + 1"
+      },
+      "after": {
+        "srepr": "Integral(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Tuple(Symbol('x', real=True), Integer(0), Integer(2)))",
+        "latex": "\\int\\limits_{0}^{2} \\left(1 + 3 x^{2}\\right)\\, dx",
+        "text": "∫₀² (3x² + 1) dx"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s1",
+      "kind": "integral_rule",
+      "operation": "Sum rule",
+      "justification": "Integrate term by term.",
+      "before": {
+        "srepr": "Integral(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Tuple(Symbol('x', real=True)))",
+        "latex": "\\int \\left(1 + 3 x^{2}\\right)\\, dx",
+        "text": "∫ (3x² + 1) dx"
+      },
+      "after": {
+        "srepr": "Add(Integral(Integer(1), Tuple(Symbol('x', real=True))), Integral(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Tuple(Symbol('x', real=True))))",
+        "latex": "\\int 3 x^{2}\\, dx + \\int 1\\, dx",
+        "text": "∫ (3x²) dx + ∫ 1 dx"
+      },
+      "data": {
+        "rule": "sum",
+        "target": {
+          "srepr": "Integral(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Tuple(Symbol('x', real=True)))",
+          "latex": "\\int \\left(1 + 3 x^{2}\\right)\\, dx",
+          "text": "∫ (3x² + 1) dx"
+        },
+        "replacement": {
+          "srepr": "Add(Integral(Integer(1), Tuple(Symbol('x', real=True))), Integral(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Tuple(Symbol('x', real=True))))",
+          "latex": "\\int 3 x^{2}\\, dx + \\int 1\\, dx",
+          "text": "∫ (3x²) dx + ∫ 1 dx"
+        },
+        "terms": [
+          {
+            "srepr": "Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2)))",
+            "latex": "3 x^{2}",
+            "text": "3x²"
+          },
+          {
+            "srepr": "Integer(1)",
+            "latex": "1",
+            "text": "1"
+          }
+        ],
+        "chain": false
+      }
+    },
+    {
+      "id": "s2",
+      "kind": "integral_rule",
+      "operation": "Constant multiple rule",
+      "justification": "Pull the constant 3 out of the integral.",
+      "before": {
+        "srepr": "Add(Integral(Integer(1), Tuple(Symbol('x', real=True))), Integral(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Tuple(Symbol('x', real=True))))",
+        "latex": "\\int 3 x^{2}\\, dx + \\int 1\\, dx",
+        "text": "∫ (3x²) dx + ∫ 1 dx"
+      },
+      "after": {
+        "srepr": "Add(Integral(Integer(1), Tuple(Symbol('x', real=True))), Mul(Integer(3), Integral(Pow(Symbol('x', real=True), Integer(2)), Tuple(Symbol('x', real=True)))))",
+        "latex": "3 \\int x^{2}\\, dx + \\int 1\\, dx",
+        "text": "3·∫ x² dx + ∫ 1 dx"
+      },
+      "data": {
+        "rule": "constant_multiple",
+        "target": {
+          "srepr": "Integral(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Tuple(Symbol('x', real=True)))",
+          "latex": "\\int 3 x^{2}\\, dx",
+          "text": "∫ (3x²) dx"
+        },
+        "replacement": {
+          "srepr": "Mul(Integer(3), Integral(Pow(Symbol('x', real=True), Integer(2)), Tuple(Symbol('x', real=True))))",
+          "latex": "3 \\int x^{2}\\, dx",
+          "text": "3·∫ x² dx"
+        },
+        "constant": {
+          "srepr": "Integer(3)",
+          "latex": "3",
+          "text": "3"
+        }
+      }
+    },
+    {
+      "id": "s3",
+      "kind": "integral_rule",
+      "operation": "Power rule",
+      "justification": "∫ xⁿ dx = xⁿ⁺¹/(n + 1) with n = 2: raise the power by 1 and divide by the new power.",
+      "before": {
+        "srepr": "Add(Integral(Integer(1), Tuple(Symbol('x', real=True))), Mul(Integer(3), Integral(Pow(Symbol('x', real=True), Integer(2)), Tuple(Symbol('x', real=True)))))",
+        "latex": "3 \\int x^{2}\\, dx + \\int 1\\, dx",
+        "text": "3·∫ x² dx + ∫ 1 dx"
+      },
+      "after": {
+        "srepr": "Add(Mul(Integer(3), Mul(Pow(Integer(3), Integer(-1)), Pow(Symbol('x', real=True), Integer(3)))), Integral(Integer(1), Tuple(Symbol('x', real=True))))",
+        "latex": "3 \\frac{x^{3}}{3} + \\int 1\\, dx",
+        "text": "3·(x³/3) + ∫ 1 dx"
+      },
+      "data": {
+        "rule": "power",
+        "target": {
+          "srepr": "Integral(Pow(Symbol('x', real=True), Integer(2)), Tuple(Symbol('x', real=True)))",
+          "latex": "\\int x^{2}\\, dx",
+          "text": "∫ x² dx"
+        },
+        "replacement": {
+          "srepr": "Mul(Pow(Integer(3), Integer(-1)), Pow(Symbol('x', real=True), Integer(3)))",
+          "latex": "\\frac{x^{3}}{3}",
+          "text": "x³/3"
+        },
+        "exponent": {
+          "srepr": "Integer(2)",
+          "latex": "2",
+          "text": "2"
+        }
+      }
+    },
+    {
+      "id": "s4",
+      "kind": "integral_rule",
+      "operation": "Integral of a constant",
+      "justification": "∫ c dx = c·x.",
+      "before": {
+        "srepr": "Add(Mul(Integer(3), Mul(Pow(Integer(3), Integer(-1)), Pow(Symbol('x', real=True), Integer(3)))), Integral(Integer(1), Tuple(Symbol('x', real=True))))",
+        "latex": "3 \\frac{x^{3}}{3} + \\int 1\\, dx",
+        "text": "3·(x³/3) + ∫ 1 dx"
+      },
+      "after": {
+        "srepr": "Add(Mul(Integer(3), Mul(Pow(Integer(3), Integer(-1)), Pow(Symbol('x', real=True), Integer(3)))), Mul(Integer(1), Symbol('x', real=True)))",
+        "latex": "3 \\frac{x^{3}}{3} + 1 x",
+        "text": "3·(x³/3) + 1·x"
+      },
+      "data": {
+        "rule": "constant",
+        "target": {
+          "srepr": "Integral(Integer(1), Tuple(Symbol('x', real=True)))",
+          "latex": "\\int 1\\, dx",
+          "text": "∫ 1 dx"
+        },
+        "replacement": {
+          "srepr": "Mul(Integer(1), Symbol('x', real=True))",
+          "latex": "1 x",
+          "text": "1·x"
+        }
+      }
+    },
+    {
+      "id": "s5",
+      "kind": "algebra",
+      "operation": "Simplify",
+      "justification": "Combine the constants.",
+      "before": {
+        "srepr": "Add(Mul(Integer(3), Mul(Pow(Integer(3), Integer(-1)), Pow(Symbol('x', real=True), Integer(3)))), Mul(Integer(1), Symbol('x', real=True)))",
+        "latex": "3 \\frac{x^{3}}{3} + 1 x",
+        "text": "3·(x³/3) + 1·x"
+      },
+      "after": {
+        "srepr": "Add(Pow(Symbol('x', real=True), Integer(3)), Symbol('x', real=True))",
+        "latex": "x + x^{3}",
+        "text": "x³ + x"
+      },
+      "data": {}
+    },
+    {
+      "id": "s6",
+      "kind": "algebra",
+      "operation": "Fundamental Theorem: F(b) − F(a)",
+      "justification": "Evaluate F at the top limit 2 and subtract F at the bottom limit 0.",
+      "before": {
+        "srepr": "Integral(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Tuple(Symbol('x', real=True), Integer(0), Integer(2)))",
+        "latex": "\\int\\limits_{0}^{2} \\left(1 + 3 x^{2}\\right)\\, dx",
+        "text": "∫₀² (3x² + 1) dx"
+      },
+      "after": {
+        "srepr": "Add(Mul(Integer(-1), Add(Integer(0), Pow(Integer(0), Integer(3)))), Add(Integer(2), Pow(Integer(2), Integer(3))))",
+        "latex": "\\left(2 + 2^{3}\\right) - \\left(0 + 0^{3}\\right)",
+        "text": "(2 + 2³) − (0 + 0³)"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s7",
+      "kind": "algebra",
+      "operation": "Arithmetic",
+      "justification": "Simplify.",
+      "before": {
+        "srepr": "Add(Mul(Integer(-1), Add(Integer(0), Pow(Integer(0), Integer(3)))), Add(Integer(2), Pow(Integer(2), Integer(3))))",
+        "latex": "\\left(2 + 2^{3}\\right) - \\left(0 + 0^{3}\\right)",
+        "text": "(2 + 2³) − (0 + 0³)"
+      },
+      "after": {
+        "srepr": "Integer(10)",
+        "latex": "10",
+        "text": "10"
+      },
+      "data": {
+        "chain": false
+      }
+    }
+  ]
+}

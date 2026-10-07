@@ -31,7 +31,11 @@ def describe(p: Problem) -> str:
 
 def generate(rng: random.Random, difficulty: int = 2):
     n = 2 if difficulty == 1 else 3
-    A = _gen.unimodular(rng, n)
+    for _ in range(200):  # avoid trivial equations: every variable appears (mostly)
+        A = _gen.unimodular(rng, n)
+        zeros = sum(1 for e in A if e == 0)
+        if zeros == 0 or (n == 3 and zeros <= 1):
+            break
     x = _gen.int_vector(rng, n)
     if difficulty >= 3 and rng.random() < 0.5:
         # make row 3 a combination of rows 1 and 2 → a free variable

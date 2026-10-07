@@ -1,0 +1,12 @@
+{
+  "given": {
+    "integrand": "sin(x) cos(x)^4",
+    "variable": "x",
+    "a": "0",
+    "b": "1"
+  },
+  "statement": "Evaluate ∫ from 0 to 1 of sin(x) cos(x)^4 dx.",
+  "latex": "\\int_{0}^{1} \\sin{\\left(x \\right)} \\cos^{4}{\\left(x \\right)}\\,dx",
+  "answer_text": "1/5 − cos(1)⁵/5",
+  "type": "definite_integral"
+}

@@ -1,0 +1,176 @@
+1
+00:00:00,000 --> 00:00:03,333
+Here is the augmented matrix of our system.
+
+2
+00:00:03,333 --> 00:00:06,250
+Our goal is reduced row echelon form,
+
+3
+00:00:06,250 --> 00:00:09,648
+where the solution can simply be read off.
+
+4
+00:00:10,200 --> 00:00:11,450
+Picture it first.
+
+5
+00:00:11,450 --> 00:00:14,366
+Each equation is a plane in space.
+
+6
+00:00:14,366 --> 00:00:18,533
+The solution is the single place where they all meet:
+
+7
+00:00:18,533 --> 00:00:21,033
+the point (5, 3, −2).
+
+8
+00:00:21,033 --> 00:00:23,116
+Row operations change the equations,
+
+9
+00:00:23,116 --> 00:00:25,248
+but never that meeting point.
+
+10
+00:00:27,866 --> 00:00:28,283
+Next,
+
+11
+00:00:28,283 --> 00:00:32,866
+R₃ → R₃ − 2R₁,
+
+12
+00:00:32,866 --> 00:00:37,106
+which puts a zero below the pivot in column 1.
+
+13
+00:00:38,066 --> 00:00:40,983
+Next, R₂ → (1/2)R₂.
+
+14
+00:00:40,983 --> 00:00:45,194
+Now the pivot in column 2 is a leading one.
+
+15
+00:00:46,133 --> 00:00:46,550
+Next,
+
+16
+00:00:46,550 --> 00:00:51,133
+R₃ → R₃ − 3R₂,
+
+17
+00:00:51,133 --> 00:00:55,373
+which puts a zero below the pivot in column 2.
+
+18
+00:00:56,333 --> 00:01:00,083
+Next, R₃ → (−2/21)R₃.
+
+19
+00:01:00,083 --> 00:01:04,250
+Now the pivot in column 3 is a leading one.
+
+20
+00:01:04,250 --> 00:01:06,333
+That completes the forward phase:
+
+21
+00:01:06,333 --> 00:01:09,317
+the matrix is in row echelon form.
+
+22
+00:01:10,266 --> 00:01:10,683
+Next,
+
+23
+00:01:10,683 --> 00:01:14,433
+R₁ → R₁ − R₃,
+
+24
+00:01:14,433 --> 00:01:19,074
+which puts a zero above the leading one in column 3.
+
+25
+00:01:20,066 --> 00:01:20,483
+Next,
+
+26
+00:01:20,483 --> 00:01:25,483
+R₂ → R₂ − (5/2)R₃,
+
+27
+00:01:25,483 --> 00:01:30,122
+which puts a zero above the leading one in column 3.
+
+28
+00:01:31,066 --> 00:01:31,483
+Next,
+
+29
+00:01:31,483 --> 00:01:35,233
+R₁ → R₁ − R₂,
+
+30
+00:01:35,233 --> 00:01:39,874
+which puts a zero above the leading one in column 2.
+
+31
+00:01:40,866 --> 00:01:43,366
+This is reduced row echelon form,
+
+32
+00:01:43,366 --> 00:01:45,866
+and the solution reads straight off:
+
+33
+00:01:45,866 --> 00:01:50,514
+x = 5, y = 3, z = −2.
+
+34
+00:01:51,133 --> 00:01:53,425
+Let's check by putting these
+
+35
+00:01:53,425 --> 00:01:55,716
+values back into each original equation.
+
+36
+00:01:55,716 --> 00:01:59,533
+Each of them holds, so the answer is right.
+
+37
+00:02:00,133 --> 00:02:00,966
+To recap:
+
+38
+00:02:00,966 --> 00:02:02,633
+get a leading one,
+
+39
+00:02:02,633 --> 00:02:04,716
+clear the entries below it,
+
+40
+00:02:04,716 --> 00:02:06,800
+move to the next column,
+
+41
+00:02:06,800 --> 00:02:10,621
+and finally clear the entries above each leading one.
+
+42
+00:02:11,200 --> 00:02:12,866
+Now it's your turn.
+
+43
+00:02:12,866 --> 00:02:15,783
+Pause the video and solve this system.
+
+44
+00:02:15,783 --> 00:02:20,008
+Your answer is checked in the write-up, so no peeking.
+

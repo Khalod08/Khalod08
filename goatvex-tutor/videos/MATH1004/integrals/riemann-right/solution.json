@@ -1,0 +1,162 @@
+{
+  "slug": "riemann-right",
+  "status": "PASS",
+  "digest": "80926e948c0eb5c9",
+  "answer_label": "right sum",
+  "answer": {
+    "srepr": "Rational(15, 4)",
+    "latex": "\\frac{15}{4}",
+    "text": "15/4"
+  },
+  "notes": [
+    "≈ 3.75. For comparison, the exact area ∫ = 8/3 ≈ 2.66667."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "kind": "algebra",
+      "operation": "Δx = (b − a)/n",
+      "justification": "Width of each of the 4 rectangles.",
+      "before": {
+        "srepr": "Mul(Pow(Integer(4), Integer(-1)), Add(Integer(0), Integer(2)))",
+        "latex": "\\frac{2 + 0}{4}",
+        "text": "(2 + 0)/4"
+      },
+      "after": {
+        "srepr": "Rational(1, 2)",
+        "latex": "\\frac{1}{2}",
+        "text": "1/2"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s2",
+      "kind": "fact",
+      "operation": "Sample points",
+      "justification": "Right endpoints: 1/2, 1, 3/2, 2.",
+      "before": null,
+      "after": [
+        {
+          "srepr": "Rational(1, 2)",
+          "latex": "\\frac{1}{2}",
+          "text": "1/2"
+        },
+        {
+          "srepr": "Integer(1)",
+          "latex": "1",
+          "text": "1"
+        },
+        {
+          "srepr": "Rational(3, 2)",
+          "latex": "\\frac{3}{2}",
+          "text": "3/2"
+        },
+        {
+          "srepr": "Integer(2)",
+          "latex": "2",
+          "text": "2"
+        }
+      ],
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s3",
+      "kind": "algebra",
+      "operation": "f(x₀)",
+      "justification": "f at x = 1/2.",
+      "before": {
+        "srepr": "Pow(Rational(1, 2), Integer(2))",
+        "latex": "\\left(\\frac{1}{2}\\right)^{2}",
+        "text": "(1/2)^2"
+      },
+      "after": {
+        "srepr": "Rational(1, 4)",
+        "latex": "\\frac{1}{4}",
+        "text": "1/4"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s4",
+      "kind": "algebra",
+      "operation": "f(x₁)",
+      "justification": "f at x = 1.",
+      "before": {
+        "srepr": "Pow(Integer(1), Integer(2))",
+        "latex": "1^{2}",
+        "text": "1²"
+      },
+      "after": {
+        "srepr": "Integer(1)",
+        "latex": "1",
+        "text": "1"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s5",
+      "kind": "algebra",
+      "operation": "f(x₂)",
+      "justification": "f at x = 3/2.",
+      "before": {
+        "srepr": "Pow(Rational(3, 2), Integer(2))",
+        "latex": "\\left(\\frac{3}{2}\\right)^{2}",
+        "text": "3/2²"
+      },
+      "after": {
+        "srepr": "Rational(9, 4)",
+        "latex": "\\frac{9}{4}",
+        "text": "9/4"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s6",
+      "kind": "algebra",
+      "operation": "f(x₃)",
+      "justification": "f at x = 2.",
+      "before": {
+        "srepr": "Pow(Integer(2), Integer(2))",
+        "latex": "2^{2}",
+        "text": "2²"
+      },
+      "after": {
+        "srepr": "Integer(4)",
+        "latex": "4",
+        "text": "4"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s7",
+      "kind": "algebra",
+      "operation": "Sum = Δx·(f(x₁) + … )",
+      "justification": "Add the heights and multiply by the width.",
+      "before": {
+        "srepr": "Mul(Rational(1, 2), Add(Rational(1, 4), Integer(1), Rational(9, 4), Integer(4)))",
+        "latex": "\\frac{\\frac{1}{4} + 1 + \\frac{9}{4} + 4}{2}",
+        "text": "(1/2)·(1/4 + 1 + 9/4 + 4)"
+      },
+      "after": {
+        "srepr": "Rational(15, 4)",
+        "latex": "\\frac{15}{4}",
+        "text": "15/4"
+      },
+      "data": {
+        "chain": false
+      }
+    }
+  ]
+}

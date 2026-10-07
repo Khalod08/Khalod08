@@ -1,0 +1,93 @@
+{
+  "slug": "det-2x2",
+  "status": "PASS",
+  "digest": "3234261aa8e67cb4",
+  "answer_label": "det(A)",
+  "answer": {
+    "srepr": "Integer(22)",
+    "latex": "22",
+    "text": "22"
+  },
+  "notes": [
+    "det(A) ≠ 0, so A is invertible."
+  ],
+  "steps": [
+    {
+      "id": "s0",
+      "kind": "setup",
+      "operation": "Write det(A)",
+      "justification": "We want the determinant of A.",
+      "before": {
+        "matrix": [
+          [
+            "3",
+            "5"
+          ],
+          [
+            "-2",
+            "4"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}3 & 5\\\\-2 & 4\\end{matrix}\\right]",
+        "text": "⎡  3  5 ⎤\n⎣ −2  4 ⎦"
+      },
+      "after": {
+        "srepr": "Determinant(ImmutableDenseMatrix([[Integer(3), Integer(5)], [Integer(-2), Integer(4)]]))",
+        "latex": "\\left|{\\begin{matrix}3 & 5\\\\-2 & 4\\end{matrix}}\\right|",
+        "text": "det[3 5; −2 4]"
+      },
+      "data": {
+        "method": "cofactor"
+      }
+    },
+    {
+      "id": "s1",
+      "kind": "algebra",
+      "operation": "2×2 determinant",
+      "justification": "For a 2×2 matrix, det = ad − bc.",
+      "before": {
+        "srepr": "Determinant(ImmutableDenseMatrix([[Integer(3), Integer(5)], [Integer(-2), Integer(4)]]))",
+        "latex": "\\left|{\\begin{matrix}3 & 5\\\\-2 & 4\\end{matrix}}\\right|",
+        "text": "det[3 5; −2 4]"
+      },
+      "after": {
+        "srepr": "Add(Mul(Integer(-1), Mul(Integer(-2), Integer(5))), Mul(Integer(3), Integer(4)))",
+        "latex": "3 \\cdot 4 - 5 \\left(-2\\right)",
+        "text": "3·4 − 5·(−2)"
+      },
+      "data": {
+        "det_of": {
+          "matrix": [
+            [
+              "3",
+              "5"
+            ],
+            [
+              "-2",
+              "4"
+            ]
+          ],
+          "latex": "\\left[\\begin{matrix}3 & 5\\\\-2 & 4\\end{matrix}\\right]",
+          "text": "⎡  3  5 ⎤\n⎣ −2  4 ⎦"
+        }
+      }
+    },
+    {
+      "id": "s2",
+      "kind": "algebra",
+      "operation": "Arithmetic",
+      "justification": "Multiply and add.",
+      "before": {
+        "srepr": "Add(Mul(Integer(-1), Mul(Integer(-2), Integer(5))), Mul(Integer(3), Integer(4)))",
+        "latex": "3 \\cdot 4 - 5 \\left(-2\\right)",
+        "text": "3·4 − 5·(−2)"
+      },
+      "after": {
+        "srepr": "Integer(22)",
+        "latex": "22",
+        "text": "22"
+      },
+      "data": {}
+    }
+  ]
+}

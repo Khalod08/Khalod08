@@ -1,0 +1,10 @@
+{
+  "given": {
+    "function": "e^(3x) cos(x)",
+    "variable": "x"
+  },
+  "statement": "Differentiate f(x) = e^(3x) cos(x).",
+  "latex": "\\frac{d}{dx}\\left(e^{3 x} \\cos{\\left(x \\right)}\\right)",
+  "answer_text": "−e^(3x)·sin(x) + 3e^(3x)·cos(x)",
+  "type": "derivative"
+}

@@ -60,6 +60,11 @@
           "latex": "5 \\left(1 + 3 x^{2}\\right)^{4} \\frac{d}{d x} \\left(1 + 3 x^{2}\\right)",
           "text": "5(3x² + 1)⁴·d/dx[3x² + 1]"
         },
+        "variable": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
+        },
         "outer": "power",
         "exponent": {
           "srepr": "Integer(5)",
@@ -105,6 +110,11 @@
           "latex": "\\frac{d}{d x} 3 x^{2} + \\frac{d}{d x} 1",
           "text": "d/dx[3x²] + d/dx[1]"
         },
+        "variable": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
+        },
         "terms": [
           {
             "srepr": "Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2)))",
@@ -146,6 +156,11 @@
           "latex": "3 \\frac{d}{d x} x^{2}",
           "text": "3d/dx[x²]"
         },
+        "variable": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
+        },
         "constant": {
           "srepr": "Integer(3)",
           "latex": "3",
@@ -171,7 +186,7 @@
       "after": {
         "srepr": "Mul(Integer(5), Pow(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Integer(4)), Add(Mul(Integer(3), Mul(Integer(2), Symbol('x', real=True))), Derivative(Integer(1), Tuple(Symbol('x', real=True), Integer(1)))))",
         "latex": "5 \\left(1 + 3 x^{2}\\right)^{4} \\left(3 \\cdot 2 x + \\frac{d}{d x} 1\\right)",
-        "text": "5(3x² + 1)⁴·(3(2x) + d/dx[1])"
+        "text": "5(3x² + 1)⁴·(3·2x + d/dx[1])"
       },
       "data": {
         "rule": "power",
@@ -184,6 +199,11 @@
           "srepr": "Mul(Integer(2), Symbol('x', real=True))",
           "latex": "2 x",
           "text": "2x"
+        },
+        "variable": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
         },
         "exponent": {
           "srepr": "Integer(2)",
@@ -205,12 +225,12 @@
       "before": {
         "srepr": "Mul(Integer(5), Pow(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Integer(4)), Add(Mul(Integer(3), Mul(Integer(2), Symbol('x', real=True))), Derivative(Integer(1), Tuple(Symbol('x', real=True), Integer(1)))))",
         "latex": "5 \\left(1 + 3 x^{2}\\right)^{4} \\left(3 \\cdot 2 x + \\frac{d}{d x} 1\\right)",
-        "text": "5(3x² + 1)⁴·(3(2x) + d/dx[1])"
+        "text": "5(3x² + 1)⁴·(3·2x + d/dx[1])"
       },
       "after": {
         "srepr": "Mul(Integer(5), Pow(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Integer(4)), Add(Mul(Integer(3), Mul(Integer(2), Symbol('x', real=True))), Integer(0)))",
         "latex": "5 \\left(1 + 3 x^{2}\\right)^{4} \\left(3 \\cdot 2 x + 0\\right)",
-        "text": "5(3x² + 1)⁴·(3(2x) + 0)"
+        "text": "5(3x² + 1)⁴·(3·2x + 0)"
       },
       "data": {
         "rule": "constant",
@@ -223,6 +243,11 @@
           "srepr": "Integer(0)",
           "latex": "0",
           "text": "0"
+        },
+        "variable": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
         }
       }
     },
@@ -234,7 +259,7 @@
       "before": {
         "srepr": "Mul(Integer(5), Pow(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Integer(4)), Add(Mul(Integer(3), Mul(Integer(2), Symbol('x', real=True))), Integer(0)))",
         "latex": "5 \\left(1 + 3 x^{2}\\right)^{4} \\left(3 \\cdot 2 x + 0\\right)",
-        "text": "5(3x² + 1)⁴·(3(2x) + 0)"
+        "text": "5(3x² + 1)⁴·(3·2x + 0)"
       },
       "after": {
         "srepr": "Mul(Integer(30), Symbol('x', real=True), Pow(Add(Mul(Integer(3), Pow(Symbol('x', real=True), Integer(2))), Integer(1)), Integer(4)))",
