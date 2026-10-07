@@ -14,30 +14,14 @@ import sys
 from pathlib import Path
 
 from tutor.errors import GoatVexError, NotConfirmed, UnsupportedProblem
-from tutor.parse.schema import PROBLEM_TYPES, Problem, load_problem, save_problem
-from tutor.text.unicode_math import matrix_text, to_text
+from tutor import registry
+from tutor.parse.schema import Problem, load_problem, save_problem
+from tutor.text.unicode_math import to_text
 
 
 def describe(problem: Problem) -> str:
     """The readable form shown to the student before solving."""
-    lines = [f"Course: {problem.course}    Topic: {problem.topic}    Type: {problem.type}"]
-    if problem.statement:
-        lines.append(f"Statement: {problem.statement}")
-    if problem.type == "rref":
-        m = problem.matrix
-        aug = problem.given.get("augmented")
-        lines.append("Row reduce this " + ("augmented matrix [A | b]" if aug else "matrix") + " to RREF:")
-        lines.append(matrix_text(m, augmented_at=m.cols - 1 if aug else None))
-    elif problem.type == "matrix_inverse":
-        lines.append("Find A⁻¹ (or show A is not invertible), where A =")
-        lines.append(matrix_text(problem.matrix))
-    elif problem.type == "derivative":
-        x = problem.given["variable"]
-        lines.append(f"Find f′({x}) for  f({x}) = {to_text(problem.function)}")
-    if problem.is_graded:
-        lines.append("⚠ Marked as a graded assignment → hint mode / parallel problem only.")
-    lines.append("Confirmed by student: " + ("yes" if problem.confirmed_by_student else "NOT YET"))
-    return "\n".join(lines)
+    return registry.get(problem.type).describe(problem)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -58,8 +42,9 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         if args.cmd == "types":
-            for t, (topic, keys) in PROBLEM_TYPES.items():
-                print(f"{t:16} topic={topic:16} needs given: {', '.join(keys)}")
+            for name in registry.names():
+                t = registry.get(name)
+                print(f"{t.course}  {name:24} {t.title}  (needs: {', '.join(t.required)})")
             return 0
         problem = load_problem(args.problem)
         if args.cmd == "show":

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "slug": "geom-projection",
+  "course": "MATH1104",
+  "type": "geometry",
+  "statement": "proj_v u for u = (3,1,2), v = (1,1,0).",
+  "given": {
+    "task": "projection",
+    "u": [
+      "3",
+      "1",
+      "2"
+    ],
+    "v": [
+      "1",
+      "1",
+      "0"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "2",
+      "2",
+      "0"
+    ],
+    "kind": "list"
+  }
+}

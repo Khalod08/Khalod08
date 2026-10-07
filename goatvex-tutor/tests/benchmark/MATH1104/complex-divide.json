@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "complex-divide",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Write (3 + 2i)/(1 − i) as a + bi.",
+  "given": {
+    "task": "simplify",
+    "expression": "(3 + 2i)/(1 - i)"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "1/2 + 5i/2",
+    "kind": "expr"
+  }
+}

@@ -20,6 +20,10 @@ ROW_OP = "row_op"                # one elementary row operation on a matrix
 DERIVATIVE_RULE = "derivative_rule"  # one differentiation rule applied to one d/dx[...] node
 ALGEBRA = "algebra"              # an equivalence-preserving rewrite (simplify, expand, ...)
 SETUP = "setup"                  # write down the starting object (e.g. [A | I])
+EQUATION = "equation"            # equation(s) rewritten; same solutions for data["unknowns"]
+INTEGRAL_RULE = "integral_rule"  # one integration rule applied to one ∫[...] node
+LIMIT_STEP = "limit_step"        # rewrite inside a limit (valid near the limit point) or apply a limit law
+FACT = "fact"                    # a stated result checked by the type's own verifier
 
 
 @dataclass

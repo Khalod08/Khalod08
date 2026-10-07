@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "complex-powers-of-i",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Simplify i²³ + (1 + i)².",
+  "given": {
+    "task": "simplify",
+    "expression": "i^23 + (1 + i)^2"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "i",
+    "kind": "expr"
+  }
+}

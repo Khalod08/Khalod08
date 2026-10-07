@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "slug": "geom-skew-lines",
+  "course": "MATH1104",
+  "type": "geometry",
+  "statement": "Do the lines intersect?",
+  "given": {
+    "task": "line_line_intersection",
+    "line1": {
+      "point": [
+        "1",
+        "0",
+        "0"
+      ],
+      "direction": [
+        "1",
+        "1",
+        "0"
+      ]
+    },
+    "line2": {
+      "point": [
+        "0",
+        "1",
+        "1"
+      ],
+      "direction": [
+        "1",
+        "0",
+        "-1"
+      ]
+    }
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "skew",
+    "kind": "string"
+  }
+}

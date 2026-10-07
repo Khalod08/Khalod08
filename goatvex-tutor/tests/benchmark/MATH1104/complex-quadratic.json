@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "slug": "complex-quadratic",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Solve z² + 2z + 5 = 0.",
+  "given": {
+    "task": "quadratic",
+    "a": "1",
+    "b": "2",
+    "c": "5"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "-1 + 2i",
+      "-1 - 2i"
+    ],
+    "kind": "list_unordered"
+  }
+}

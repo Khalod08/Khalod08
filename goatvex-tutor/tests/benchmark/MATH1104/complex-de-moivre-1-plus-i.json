@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "complex-de-moivre-1-plus-i",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Compute (1 + i)⁸.",
+  "given": {
+    "task": "power",
+    "z": "1 + i",
+    "n": 8
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "16",
+    "kind": "expr"
+  }
+}

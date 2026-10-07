@@ -9,7 +9,7 @@ import pytest
 import sympy as sp
 
 from tutor.parse.schema import problem_from_dict
-from tutor.pipeline import _solver_for
+from tutor import registry
 from tutor.solvers.calculus import derivative as D
 from tutor.solvers.linear_algebra.row_ops import REPLACE, SCALE, RowOp
 from tutor.verify import FAIL, PASS, overall, verify
@@ -18,7 +18,7 @@ from tutor.verify.equivalence import check_equal
 
 def solve(ptype, course="MATH1104", **given):
     p = problem_from_dict(dict(slug="t", course=course, type=ptype, given=given, confirmed_by_student=True))
-    return _solver_for(ptype)(p)
+    return registry.get(ptype).solve(p)
 
 
 def failing_checks(sol):
@@ -163,3 +163,52 @@ def test_equivalence_checker(a, b, expected):
     x = sp.Symbol("x", real=True)
     status, detail = check_equal(parse_math(a, ["x"]), parse_math(b, ["x"]), [x])
     assert status == expected, detail
+
+
+# ---- newer types --------------------------------------------------------------------------
+def test_wrong_determinant_arithmetic_is_caught():
+    sol = solve("determinant", matrix=[["1", "2", "3"], ["0", "4", "5"], ["1", "0", "6"]])
+    k = len(sol.steps) - 1  # the final arithmetic step
+    bad = restep(sol, k, after=sol.steps[k].after + 1)
+    bad = replace(bad, answer=sol.answer + 1)
+    names = {c.check for c in failing_checks(bad)}
+    assert "algebra step is an equality" in names and "second method: Bareiss + Berkowitz" in names
+
+
+def test_wrong_cofactor_sign_is_caught():
+    sol = solve("determinant", matrix=[["1", "2", "3"], ["0", "4", "5"], ["1", "0", "6"]])
+    s = sol.steps[1]  # the cofactor expansion; flip the sign of the second term
+    a, b = s.after.args
+    with sp.evaluate(False):
+        flipped = sp.Add(a, -b)
+    bad = restep(sol, 1, after=flipped)
+    assert "algebra step is an equality" in {c.check for c in failing_checks(bad)}
+
+
+def test_wrong_complex_product_is_caught():
+    sol = solve("complex", task="simplify", expression="(2 + 3i)(1 - i)")
+    bad = replace(sol, answer=sp.Integer(-1) + sp.I)  # forgot that i² = −1 (3·(−1)·i² = +3)
+    names = {c.check for c in failing_checks(bad)}
+    assert "second method: SymPy evaluates the whole expression" in names
+
+
+def test_wrong_cross_product_is_caught():
+    sol = solve("geometry", task="cross", u=["1", "2", "3"], v=["4", "5", "6"])
+    bad = replace(sol, answer=sp.ImmutableMatrix([3, 6, -3]))  # sign slip in the first component
+    names = {c.check for c in failing_checks(bad)}
+    assert {"u × v is orthogonal to u", "second method: SymPy cross"} <= names
+
+
+def test_wrong_plane_is_caught():
+    sol = solve("geometry", task="plane_through_points", P=["1", "0", "2"], Q=["2", "1", "0"], R=["0", "3", "1"])
+    x, y, z = sp.symbols("x y z", real=True)
+    bad = replace(sol, answer=sp.Eq(5 * x + 3 * y + 4 * z, 12))
+    assert overall(verify(bad)) == FAIL
+
+
+def test_wrong_matrix_product_entry_is_caught():
+    sol = solve("matrix_arithmetic", matrices={"A": [["1", "2", "0"], ["3", "-1", "4"]],
+                                               "B": [["2", "1"], ["0", "1"], ["1", "-2"]]}, expression="AB")
+    wrong = sp.ImmutableMatrix([[2, 3], [10, 6]])
+    bad = replace(restep(sol, len(sol.steps) - 1, after=wrong), answer=wrong)
+    assert overall(verify(bad)) == FAIL

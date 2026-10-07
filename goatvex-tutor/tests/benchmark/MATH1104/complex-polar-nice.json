@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "slug": "complex-polar-nice",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Write −1 + √3 i in polar form.",
+  "given": {
+    "task": "polar",
+    "z": "-1 + sqrt(3) i"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "2",
+      "2pi/3"
+    ],
+    "kind": "polar"
+  }
+}

@@ -25,10 +25,9 @@ VIDEOS_DIR = PROJECT_ROOT / "videos"
 
 
 def _solver_for(ptype: str):
-    from tutor.solvers.calculus import derivative
-    from tutor.solvers.linear_algebra import inverse, rref
+    from tutor import registry
 
-    return {"rref": rref.solve, "matrix_inverse": inverse.solve, "derivative": derivative.solve}[ptype]
+    return registry.get(ptype).solve
 
 
 @dataclass

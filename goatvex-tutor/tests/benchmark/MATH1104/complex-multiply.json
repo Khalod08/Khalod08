@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "complex-multiply",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Write (2 + 3i)(1 − i) as a + bi.",
+  "given": {
+    "task": "simplify",
+    "expression": "(2 + 3i)(1 - i)"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "5 + i",
+    "kind": "expr"
+  }
+}

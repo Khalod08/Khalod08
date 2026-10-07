@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "slug": "complex-cube-roots-of-minus-8",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Find the cube roots of −8.",
+  "given": {
+    "task": "roots",
+    "w": "-8",
+    "n": 3
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "1 + sqrt(3) i",
+      "-2",
+      "1 - sqrt(3) i"
+    ],
+    "kind": "list_unordered"
+  }
+}

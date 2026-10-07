@@ -21,11 +21,28 @@ DPS = 40                 # mpmath working precision (decimal digits)
 REL_TOL = mpmath.mpf("1e-25")
 
 
+UNEVALUATED = (sp.Derivative, sp.Determinant, sp.Sum, sp.Product)
+
+
+def evaluate_unevaluated(expr):
+    """Carry out unevaluated d/dx[…], det[…], Σ and definite ∫ so values can be compared.
+
+    Indefinite integrals are never evaluated here: they are only defined up to
+    a constant and are checked by differentiation instead (verify/integrals.py).
+    """
+    expr = sp.sympify(expr)
+    if expr.has(*UNEVALUATED):
+        expr = expr.doit(integrals=False) if expr.has(sp.Integral) else expr.doit()
+    definite = [i for i in expr.atoms(sp.Integral) if all(len(lim) == 3 for lim in i.limits)]
+    if definite:
+        expr = expr.xreplace({i: i.doit() for i in definite})
+    return expr
+
+
 def symbolic_zero(expr: sp.Expr) -> bool | None:
     """True if ``expr`` is provably 0, False if provably nonzero, None if unknown."""
     expr = sp.sympify(expr)
-    if isinstance(expr, sp.Derivative) or expr.has(sp.Derivative):
-        expr = expr.doit()
+    expr = evaluate_unevaluated(expr)
     if expr == 0:
         return True
     # Only *sound* rewrites: nothing with force=True (those assume x > 0 and
@@ -48,10 +65,29 @@ def symbolic_zero(expr: sp.Expr) -> bool | None:
     return verdict
 
 
+def _ints_to_float(expr):
+    """Integers → high-precision Floats, except exponents (keep x**2 an integer power)."""
+    if expr.is_Integer:
+        return sp.Float(expr, DPS + 10)
+    if not expr.args or isinstance(expr, (sp.Symbol, sp.MatrixBase)):
+        return expr
+    if expr.is_Pow:
+        b, e = expr.args
+        return sp.Pow(_ints_to_float(b), e if e.is_Integer else _ints_to_float(e), evaluate=False)
+    try:
+        return expr.func(*[_ints_to_float(a) for a in expr.args], evaluate=False)
+    except TypeError:
+        return expr.func(*[_ints_to_float(a) for a in expr.args])
+
+
 def _evaluator(expr: sp.Expr, symbols: Sequence[sp.Symbol]):
     expr = sp.sympify(expr)
-    if expr.has(sp.Derivative):
-        expr = expr.doit()
+    expr = evaluate_unevaluated(expr)
+    # Turn every exact number into a 50-digit Float first: otherwise lambdify
+    # computes things like (−5)**(−1) in ordinary double precision.
+    expr = expr.xreplace({q: sp.Float(q, DPS + 10) for q in expr.atoms(sp.Rational) if not q.is_Integer
+                          or abs(q) > 2**52})
+    expr = _ints_to_float(expr)
     f = sp.lambdify(list(symbols), expr, modules="mpmath")
 
     def ev(point):

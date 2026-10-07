@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "slug": "geom-line-plane-parallel",
+  "course": "MATH1104",
+  "type": "geometry",
+  "statement": "Where does t(1,−1,0) meet x + y + z = 5?",
+  "given": {
+    "task": "line_plane_intersection",
+    "line": {
+      "point": [
+        "0",
+        "0",
+        "0"
+      ],
+      "direction": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    "plane": "x + y + z = 5"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "no_intersection",
+    "kind": "string"
+  }
+}

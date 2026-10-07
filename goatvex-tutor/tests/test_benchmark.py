@@ -33,7 +33,9 @@ def test_benchmark_problem(path):
 
     exp = problem.expected
     sol = result.solution
-    if problem.type == "rref":
+    if "kind" in exp:
+        compare_generic(problem, sol, exp)
+    elif problem.type == "rref":
         assert sol.answer == parse_matrix(exp["rref"])
         if "system" in exp:
             system = sol.facts["system"]
@@ -54,6 +56,53 @@ def test_benchmark_problem(path):
         assert status == PASS, detail
     else:  # pragma: no cover
         pytest.fail(f"no expected-answer comparison for {problem.type}")
+
+
+def _expr(text, problem):
+    return parse_math(text, problem.variables, imaginary=True)
+
+
+def _same(a, b, problem=None):
+    syms = [sp.Symbol(v, real=True) for v in (problem.variables if problem else [])] or None
+    status, detail = check_equal(a, b, syms)
+    return status == PASS
+
+
+def compare_generic(problem, sol, exp):
+    kind, want = exp["kind"], exp["answer"]
+    ans = sol.answer
+    if kind == "expr":
+        assert _same(ans, _expr(want, problem), problem), f"{ans} != {want}"
+    elif kind == "symbol":
+        assert str(ans) == want
+    elif kind == "string":
+        assert ans == want
+    elif kind == "matrix":
+        assert sp.Matrix(ans) == parse_matrix(want)
+    elif kind in ("list", "list_unordered"):
+        got = list(ans)
+        exp_vals = [_expr(w, problem) for w in want]
+        assert len(got) == len(exp_vals)
+        if kind == "list":
+            assert all(_same(a, b) for a, b in zip(got, exp_vals)), f"{got} != {exp_vals}"
+        else:
+            for a in got:
+                assert any(_same(a, b) for b in exp_vals), f"{a} not in {exp_vals}"
+    elif kind == "polar":
+        assert _same(sol.facts["r"], _expr(want[0], problem)) and _same(sol.facts["theta"], _expr(want[1], problem))
+    elif kind == "plane":
+        x, y, z = sp.symbols("x y z", real=True)
+        lhs, rhs = want.split("=")
+        e_want = parse_math(lhs, ["x", "y", "z"]) - parse_math(rhs, ["x", "y", "z"])
+        e_got = ans.lhs - ans.rhs
+        ratio = [sp.Poly(e_got, x, y, z).coeff_monomial(m) / sp.Poly(e_want, x, y, z).coeff_monomial(m)
+                 for m in (x, y, z, 1) if sp.Poly(e_want, x, y, z).coeff_monomial(m) != 0]
+        assert len(set(ratio)) == 1, f"{ans} is not a multiple of {want}"
+    elif kind == "line_direction":
+        d = sp.Matrix(sol.facts["d"])
+        assert sp.Matrix.hstack(d, sp.Matrix([_expr(w, problem) for w in want])).rank() == 1
+    else:  # pragma: no cover
+        pytest.fail(f"unknown expected kind {kind}")
 
 
 @pytest.mark.parametrize("path", FILES, ids=[f.stem for f in FILES])

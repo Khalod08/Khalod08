@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "slug": "det-4x4-cofactor",
+  "course": "MATH1104",
+  "type": "determinant",
+  "statement": "Find det(A).",
+  "given": {
+    "matrix": [
+      [
+        "2",
+        "0",
+        "1",
+        "3"
+      ],
+      [
+        "1",
+        "1",
+        "0",
+        "2"
+      ],
+      [
+        "0",
+        "3",
+        "1",
+        "1"
+      ],
+      [
+        "1",
+        "0",
+        "2",
+        "0"
+      ]
+    ],
+    "method": "cofactor"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "-6",
+    "kind": "expr"
+  }
+}

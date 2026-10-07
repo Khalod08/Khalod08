@@ -7,15 +7,10 @@ from tutor.verify.result import FAIL, INCONCLUSIVE, PASS, CheckResult, overall
 
 
 def verify(solution: Solution) -> list[CheckResult]:
-    from tutor.verify.calculus import verify_derivative
-    from tutor.verify.linear_algebra import verify_inverse, verify_rref
+    from tutor import registry
 
-    by_type = {
-        "rref": verify_rref,
-        "matrix_inverse": verify_inverse,
-        "derivative": verify_derivative,
-    }
-    fn = by_type.get(solution.problem.type)
+    types = registry.load_all()
+    fn = types[solution.problem.type].verify if solution.problem.type in types else None
     if fn is None:
         return [CheckResult("final", "verifier exists", FAIL, f"no verifier for type {solution.problem.type!r}")]
     try:

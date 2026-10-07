@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "slug": "geom-plane-three-points",
+  "course": "MATH1104",
+  "type": "geometry",
+  "statement": "Plane through (1,0,2), (2,1,0), (0,3,1).",
+  "given": {
+    "task": "plane_through_points",
+    "P": [
+      "1",
+      "0",
+      "2"
+    ],
+    "Q": [
+      "2",
+      "1",
+      "0"
+    ],
+    "R": [
+      "0",
+      "3",
+      "1"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "5x + 3y + 4z = 13",
+    "kind": "plane"
+  }
+}

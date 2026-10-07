@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "slug": "cramer-2x2",
+  "course": "MATH1104",
+  "type": "cramers_rule",
+  "statement": "Solve 2x + 3y = 8, x − y = −1 by Cramer's rule.",
+  "given": {
+    "matrix": [
+      [
+        "2",
+        "3"
+      ],
+      [
+        "1",
+        "-1"
+      ]
+    ],
+    "vector": [
+      "8",
+      "-1"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "1",
+      "2"
+    ],
+    "kind": "list"
+  }
+}

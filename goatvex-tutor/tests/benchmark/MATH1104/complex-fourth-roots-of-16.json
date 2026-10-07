@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "slug": "complex-fourth-roots-of-16",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Find the fourth roots of 16.",
+  "given": {
+    "task": "roots",
+    "w": "16",
+    "n": 4
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "2",
+      "2i",
+      "-2",
+      "-2i"
+    ],
+    "kind": "list_unordered"
+  }
+}

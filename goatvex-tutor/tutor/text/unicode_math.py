@@ -9,6 +9,7 @@ from __future__ import annotations
 import re
 
 import sympy as sp
+from sympy.core.function import AppliedUndef
 from sympy.printing.str import StrPrinter
 
 SUPERSCRIPT = str.maketrans("0123456789-()", "⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁽⁾")
@@ -56,7 +57,29 @@ class _UnicodePrinter(StrPrinter):
         return self._with_order(expr, super()._print_Add)
 
     def _print_Mul(self, expr):
+        if _is_unevaluated_mul(expr):
+            return self._print_hand_mul(expr)
         return self._with_order(expr, super()._print_Mul)
+
+    def _print_hand_mul(self, expr):
+        """A product built with evaluate=False: show every factor, e.g. 3·1 or 2·(−3)."""
+        args = list(expr.args)
+        prefix = ""
+        if all(a.is_Number for a in args):  # 3·1 + (−1)·1: keep every number visible
+            return "·".join(f"({self._print(a)})" if a < 0 or not a.is_Integer else self._print(a) for a in args)
+        if len(args) > 1 and args[0] == -1:
+            prefix, args = "-", args[1:]
+        elif len(args) > 1 and args[0].is_Number and args[0] < 0:
+            prefix, args = "-", [-args[0]] + args[1:]
+        parts = []
+        for k, a in enumerate(args):
+            t = self._print(a)
+            needs = isinstance(a, (sp.Add, sp.Mul)) and not _is_unevaluated_mul(a) and a.is_Add \
+                or (a.is_Number and a < 0) or (a.is_Rational and not a.is_Integer) \
+                or (isinstance(a, sp.Mul) and _is_unevaluated_mul(a) and k > 0) \
+                or isinstance(a, sp.Add)
+            parts.append(f"({t})" if needs else t)
+        return prefix + "·".join(parts)
 
     def _with_order(self, expr, print_fn):
         saved = self._settings["order"]
@@ -80,21 +103,99 @@ class _UnicodePrinter(StrPrinter):
     def _print_Pi(self, expr):
         return "π"
 
+
+    def _print_Derivative(self, expr):
+        var = self._print(expr.variables[0])
+        order = len(expr.variables)
+        if isinstance(expr.expr, AppliedUndef):  # dy/dx, dV/dt, d²y/dx²
+            name = expr.expr.func.__name__
+            if order == 1:
+                return f"d{name}/d{var}"
+            return f"d{sup(order)}{name}/d{var}{sup(order)}"
+        inner = self._print(expr.expr)
+        if order > 1:
+            return f"d{sup(order)}/d{var}{sup(order)}[{inner}]"
+        return f"d/d{var}[{inner}]"
+
     def _print_Function(self, expr):
+        if isinstance(expr, AppliedUndef):
+            return expr.func.__name__
         name = _FUNC_NAMES.get(expr.func.__name__, expr.func.__name__)
         args = ", ".join(self._print(a) for a in expr.args)
         return f"{name}({args})"
 
-    def _print_Derivative(self, expr):
-        var = self._print(expr.variables[0])
-        inner = self._print(expr.expr)
-        return f"d/d{var}[{inner}]"
+    def _print_Abs(self, expr):
+        return f"|{self._print(expr.args[0])}|"
+
+    def _print_Infinity(self, expr):
+        return "∞"
+
+    def _print_NegativeInfinity(self, expr):
+        return "-∞"
+
+    def _print_ComplexInfinity(self, expr):
+        return "∞ (undefined)"
+
+    def _print_Relational(self, expr):
+        op = {"==": "=", "!=": "≠", "<=": "≤", ">=": "≥", "<": "<", ">": ">"}[expr.rel_op]
+        return f"{self._print(expr.lhs)} {op} {self._print(expr.rhs)}"
+
+    _print_Equality = _print_Relational
+    _print_Unequality = _print_Relational
+
+    def _print_Integral(self, expr):
+        f = self._print(expr.function)
+        if not (expr.function.is_Atom or isinstance(expr.function, sp.Function)) and not expr.function.is_Pow:
+            f = f"({f})"
+        parts = []
+        for lim in expr.limits:
+            var = self._print(lim[0])
+            if len(lim) == 3:
+                a, b = lim[1], lim[2]
+                if a.is_Integer and b.is_Integer and a >= 0 and b >= 0:
+                    parts.append((f"∫{sub(a)}{sup(b)}", var))
+                else:
+                    parts.append((f"∫[{self._print(a)}→{self._print(b)}]", var))
+            else:
+                parts.append(("∫", var))
+        signs = " ".join(p for p, _ in parts)
+        ds = " ".join(f"d{v}" for _, v in parts)
+        return f"{signs} {f} {ds}"
+
+    def _print_Limit(self, expr):
+        e, z, z0, d = expr.args
+        # GoatVex always builds two-sided limits with dir="+-"; "+"/"-" mean one-sided.
+        side = ""
+        if not z0.is_infinite and str(d) in ("+", "-"):
+            side = "⁺" if str(d) == "+" else "⁻"
+        return f"lim({self._print(z)}→{self._print(z0)}{side}) {self._print(e)}"
+
+    def _print_Determinant(self, expr):
+        m = expr.arg
+        rows = "; ".join(" ".join(self._print(m[i, j]) for j in range(m.cols)) for i in range(m.rows))
+        return f"det[{rows}]"
+
+    def _print_MatrixBase(self, expr):
+        return vec_text(expr) if expr.cols == 1 else matrix_text(expr)
+
+    _print_MutableDenseMatrix = _print_MatrixBase
+    _print_ImmutableDenseMatrix = _print_MatrixBase
 
     def _print_Rational(self, expr):
         return f"{expr.p}/{expr.q}"
 
     def _print_ImaginaryUnit(self, expr):
         return "i"
+
+
+def _is_unevaluated_mul(expr: sp.Basic) -> bool:
+    """A Mul that SymPy would have simplified (e.g. 3·1, 2·(−3), 5·(3x²))."""
+    if not isinstance(expr, sp.Mul):
+        return False
+    try:
+        return sp.Mul(*expr.args) != expr or sum(1 for a in expr.args if a.is_Number) > 1
+    except Exception:
+        return False
 
 
 def _built_by_hand(expr: sp.Basic) -> bool:
@@ -125,6 +226,12 @@ def to_text(obj) -> str:
     # order="none" keeps the term order the solver built (matters for
     # unevaluated intermediate steps such as 5·(3x²)).
     return _tidy(_UnicodePrinter()._print(sp.sympify(obj)))
+
+
+def vec_text(v) -> str:
+    """Inline vector: (1, −2, 3)."""
+    entries = list(v) if isinstance(v, sp.MatrixBase) else list(v)
+    return "(" + ", ".join(to_text(e) for e in entries) + ")"
 
 
 def matrix_text(m: sp.MatrixBase, augmented_at: int | None = None) -> str:
