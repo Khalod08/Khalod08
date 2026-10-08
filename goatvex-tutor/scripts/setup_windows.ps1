@@ -61,7 +61,7 @@ if (Have "initexmf") {
 }
 
 # ---------------------------------------------------------------- venv + packages
-Say "Virtual environment (.venv) — keeps GoatVex's Python packages separate from everything else"
+Say "Virtual environment (.venv) - keeps GoatVex's Python packages separate from everything else"
 if (-not (Test-Path ".venv\Scripts\python.exe")) {
     & $py[0] $py[1] -m venv .venv
     Ok "created .venv"
