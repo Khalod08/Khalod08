@@ -106,10 +106,11 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="python -m tutor.video.render")
     ap.add_argument("problem", type=Path)
     ap.add_argument("--final", action="store_true", help="1080p60 (after a clean preview)")
-    ap.add_argument("--voice", choices=["edge", "silent"], default=None,
-                    help="silent = offline preview audio (timing only)")
+    ap.add_argument("--voice", choices=["edge", "auto", "offline", "silent"], default=None,
+                    help="edge = Edge TTS; auto = Edge if reachable, else the offline voice; "
+                         "offline = Pico/eSpeak on this machine; silent = timing-only preview")
     args = ap.parse_args(argv)
-    render(args.problem, final=args.final, voice="silent" if args.voice == "silent" else None)
+    render(args.problem, final=args.final, voice=args.voice)
     return 0
 
 

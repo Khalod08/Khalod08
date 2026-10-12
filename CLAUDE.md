@@ -10,8 +10,9 @@ practice, a mock test, their progress, explaining a concept) or just says "GoatV
   `goatvex-tutor/student/profile.md`.
 - Run every `python -m tutor ...` command from inside `goatvex-tutor/`. In Claude Code on the web the
   session-start hook has already installed everything and activated `goatvex-tutor/.venv`.
-- On the web the Edge TTS voice isn't reachable, so videos render silent (`--voice silent`, set
-  automatically). Send write-ups (`solution.html`), videos and test pages to the student as files.
+- Videos on the web use `GOATVEX_VOICE=auto` (set automatically): the real Edge TTS voice if the
+  environment's network settings allow `speech.platform.bing.com`, otherwise an offline voice
+  (Pico). Send write-ups (`solution.html`), videos and test pages to the student as files.
 - Save student progress by committing `goatvex-tutor/student/progress.json` and `profile.md` and pushing
   at the end of a study session, so the next session remembers it (sessions in the cloud start fresh).
 

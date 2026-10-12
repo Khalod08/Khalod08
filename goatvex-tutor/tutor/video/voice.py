@@ -8,9 +8,17 @@ speech-recognition model needed.
 Voice: ``en-CA-LiamNeural`` (calm Canadian). If that voice is unavailable the
 next calm voice in ``FALLBACK_VOICES`` is tried.
 
-For offline previews (no internet) set ``GOATVEX_VOICE=silent``: the
-:class:`SilentPreviewService` produces silent audio of a realistic length so
-timing and captions can still be checked. It is never used for final renders.
+``GOATVEX_VOICE`` picks the voice:
+
+* ``edge`` (default on your PC): Edge TTS, the real GoatVex voice.
+* ``auto`` (default in Claude Code on the web): Edge TTS if it can be reached,
+  otherwise the offline voice below. The choice is made once per video, so a
+  video never switches voices halfway.
+* ``offline``: SVOX Pico (``pico2wave``) or eSpeak NG, installed on the machine.
+  Less natural, but needs no internet.
+* ``silent``: silent audio of a realistic length, for timing-only previews.
+
+Behind a proxy (cloud sessions), Edge TTS goes through ``HTTPS_PROXY``.
 """
 
 from __future__ import annotations
@@ -57,7 +65,8 @@ def _word_boundaries(text: str, events: list[dict]) -> list[dict]:
 async def _synthesize(text: str, voice: str, rate: str, out_path: Path) -> list[dict]:
     import edge_tts
 
-    comm = edge_tts.Communicate(text, voice, rate=rate, boundary="WordBoundary")
+    proxy = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy") or None
+    comm = edge_tts.Communicate(text, voice, rate=rate, boundary="WordBoundary", proxy=proxy)
     events: list[dict] = []
     with open(out_path, "wb") as f:
         async for chunk in comm.stream():
@@ -133,7 +142,7 @@ class SilentPreviewService(SpeechService):
             check=True,
         )
         # evenly spaced word timings so bookmarks still work in previews
-        events, cursor = [], 0
+        events = []
         for k, w in enumerate(words):
             events.append({"text": w, "offset": int(k / self.WORDS_PER_SECOND * 1e7), "duration": 0})
         return {
@@ -144,9 +153,93 @@ class SilentPreviewService(SpeechService):
         }
 
 
+OFFLINE_TEMPO = 0.94  # pico speaks quickly: slow it a little (calm, never rushed)
+
+
+def offline_engine() -> str | None:
+    for exe in ("pico2wave", "espeak-ng"):
+        if shutil.which(exe):
+            return exe
+    return None
+
+
+def _duration(path: Path) -> float:
+    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                          str(path)], capture_output=True, text=True, check=True).stdout.strip()
+    return float(out)
+
+
+class OfflineVoiceService(SpeechService):
+    """Offline text-to-speech (SVOX Pico, else eSpeak NG). Word timings are spread over the clip in
+    proportion to word length (these engines don't report word boundaries)."""
+
+    def __init__(self, **kwargs):
+        initialize_speech_service(self, kwargs)
+        self.engine = offline_engine()
+        if self.engine is None:
+            raise RuntimeError("No offline voice installed (install libttspico-utils or espeak-ng).")
+
+    def generate_from_text(self, text: str, cache_dir=None, path=None, **kwargs):
+        cache_dir = Path(cache_dir or self.cache_dir)
+        input_text = remove_bookmarks(text)
+        input_data = {"input_text": input_text, "service": "offline", "config": {"engine": self.engine}}
+        cached = self.get_cached_result(input_data, cache_dir)
+        if cached is not None:
+            return cached
+        audio_path = str(path) if path else self.get_audio_basename(input_data) + ".mp3"
+        wav = cache_dir / (Path(audio_path).stem + ".raw.wav")
+        if self.engine == "pico2wave":
+            subprocess.run(["pico2wave", "-l", "en-US", "-w", str(wav), input_text], check=True)
+            tempo = OFFLINE_TEMPO
+        else:
+            subprocess.run(["espeak-ng", "-v", "en-us", "-s", "150", "-w", str(wav), input_text], check=True)
+            tempo = 1.0
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-filter:a", f"atempo={tempo}",
+                        "-q:a", "4", str(cache_dir / audio_path)], check=True)
+        wav.unlink(missing_ok=True)
+        total = _duration(cache_dir / audio_path)
+        words = input_text.split()
+        weights = [len(w) + 2 for w in words] or [1]
+        events, t = [], 0.0
+        for w, wt in zip(words, weights):
+            events.append({"text": w, "offset": int(t / sum(weights) * total * 1e7), "duration": 0})
+            t += wt
+        return {
+            "input_text": text,
+            "input_data": input_data,
+            "original_audio": audio_path,
+            "word_boundaries": _word_boundaries(input_text, events),
+        }
+
+
+def edge_reachable(timeout: float = 20.0) -> bool:
+    """One short synthesis to see whether Edge TTS answers from here."""
+    import tempfile
+
+    async def probe(path):
+        await asyncio.wait_for(_synthesize("Hi.", DEFAULT_VOICE, DEFAULT_RATE, path), timeout)
+
+    with tempfile.TemporaryDirectory() as d:
+        try:
+            asyncio.run(probe(Path(d) / "probe.mp3"))
+            return True
+        except Exception as exc:  # noqa: BLE001
+            logger.warning(f"Edge TTS is not reachable ({type(exc).__name__}: {exc})")
+            return False
+
+
 def get_speech_service(**kwargs) -> SpeechService:
-    """Edge TTS by default; ``GOATVEX_VOICE=silent`` for offline previews."""
-    if os.environ.get("GOATVEX_VOICE", "").lower() == "silent":
+    """See the module docstring for GOATVEX_VOICE (edge | auto | offline | silent)."""
+    mode = os.environ.get("GOATVEX_VOICE", "edge").lower()
+    if mode == "silent":
         logger.warning("GOATVEX_VOICE=silent → using silent preview audio (not for final renders)")
+        return SilentPreviewService(**kwargs)
+    if mode == "offline":
+        return OfflineVoiceService(**kwargs)
+    if mode == "auto" and not edge_reachable():
+        if offline_engine():
+            logger.warning("Using the offline voice for this video (Edge TTS unreachable)")
+            return OfflineVoiceService(**kwargs)
+        logger.warning("No offline voice installed either → silent preview audio")
         return SilentPreviewService(**kwargs)
     return EdgeTTSService(**kwargs)
