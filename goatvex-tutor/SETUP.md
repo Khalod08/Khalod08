@@ -60,12 +60,21 @@ The test video lands in `media\videos\hello_goatvex\480p15\HelloGoatVex.mp4`.
 You should hear "Hi, I'm GoatVex. The derivative of x squared is two x." while
 d/dx x² = 2x is written on screen.
 
-## Every time you open a new terminal
+## Opening GoatVex
+
+GoatVex runs inside **Claude Code**. Install Claude Code once (PowerShell, no admin needed):
 
 ```powershell
-cd C:\Users\<you>\goatvex-tutor
-.venv\Scripts\Activate.ps1
+irm https://claude.ai/install.ps1 | iex
 ```
+
+Close PowerShell afterwards. The first time you start Claude Code it asks you to log in to your
+Claude account in the browser.
+
+Then, every time: **double-click `Start GoatVex.cmd`** in the `goatvex-tutor` folder. It opens a
+window with Claude Code running in the right folder with the right Python environment.
+
+(By hand, the same thing is: `cd C:\Users\<you>\goatvex-tutor`, `.venv\Scripts\Activate.ps1`, `claude`.)
 
 Then start Claude Code **from inside the `goatvex-tutor` folder** so it
 loads GoatVex's `CLAUDE.md` and the slash commands (`/solve`, `/hint`, `/check`,

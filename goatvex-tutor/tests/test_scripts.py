@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def test_powershell_scripts_are_ascii():
-    scripts = [p for p in ROOT.rglob("*.ps1") if ".venv" not in p.parts]
+    scripts = [p for pat in ("*.ps1", "*.cmd") for p in ROOT.rglob(pat) if ".venv" not in p.parts]
     assert scripts
     for p in scripts:
         for n, line in enumerate(p.read_bytes().splitlines(), 1):
