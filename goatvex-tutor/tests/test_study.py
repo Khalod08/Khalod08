@@ -144,7 +144,8 @@ def test_test_coverage_from_the_course_plan():
     assert "limit" in specs and "derivative" in specs
     assert "optimization" not in specs  # week 5 starts on the test day
     t2 = plan.find_test("MATH1104", "Test 2")
-    assert {"matrix_inverse", "determinant", "cramers_rule", "rref"} <= set(plan.covered_specs("MATH1104", t2.date))
+    assert {"matrix_inverse", "determinant", "cramers_rule", "rref:unique", "rref:infinite", "rref:inconsistent"} <= set(
+        plan.covered_specs("MATH1104", t2.date))
     for c in plan.COURSES:
         for w in plan.weeks(c):
             for spec in w.get("goatvex_types", []):

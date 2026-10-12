@@ -104,7 +104,9 @@
         "1.6"
       ],
       "goatvex_types": [
-        "rref"
+        "rref:unique",
+        "rref:infinite",
+        "rref:inconsistent"
       ],
       "start": "2026-09-28"
     },

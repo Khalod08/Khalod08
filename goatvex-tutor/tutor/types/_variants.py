@@ -56,6 +56,10 @@ def _task(gen, task: str, key: str = "task"):
 
 
 def attach(types: dict) -> None:
+    from tutor.types import la_rref
+
+    for kind in ("unique", "infinite", "inconsistent"):
+        types["rref"].variants[kind] = (lambda k: lambda rng, difficulty=2: la_rref.generate(rng, difficulty, k))(kind)
     ii = types["indefinite_integral"]
     for tech in INTEGRAL_TECHNIQUES:
         ii.variants[tech] = _integral(tech)

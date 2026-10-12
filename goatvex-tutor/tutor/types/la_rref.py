@@ -29,19 +29,27 @@ def describe(p: Problem) -> str:
     return describe_lines(p, ask, [matrix_text(m, augmented_at=m.cols - 1 if aug else None)])
 
 
-def generate(rng: random.Random, difficulty: int = 2):
-    n = 2 if difficulty == 1 else 3
+def generate(rng: random.Random, difficulty: int = 2, kind: str | None = None):
+    """A system [A | b] with small integers. ``kind``: "unique", "infinite" (one free variable) or
+    "inconsistent" (no solution); by default unique, with a free variable half the time at difficulty 3."""
+    n = 2 if difficulty == 1 and kind in (None, "unique") else 3
     for _ in range(200):  # avoid trivial equations: every variable appears (mostly)
         A = _gen.unimodular(rng, n)
         zeros = sum(1 for e in A if e == 0)
         if zeros == 0 or (n == 3 and zeros <= 1):
             break
     x = _gen.int_vector(rng, n)
-    if difficulty >= 3 and rng.random() < 0.5:
-        # make row 3 a combination of rows 1 and 2 → a free variable
+    if kind is None and difficulty >= 3 and rng.random() < 0.5:
+        kind = "infinite"
+    shift = 0
+    if kind in ("infinite", "inconsistent"):
+        # make row 3 a combination of rows 1 and 2 → a free variable (or, with b shifted, 0 = nonzero)
         a, b = _gen.nonzero(rng, -2, 2), _gen.nonzero(rng, -2, 2)
         A[2, :] = a * A[0, :] + b * A[1, :]
+        if kind == "inconsistent":
+            shift = _gen.nonzero(rng, -3, 3)
     bvec = A * x
+    bvec[n - 1] += shift
     M = A.row_join(bvec)
     names = ["x", "y", "z"][:n]
     eqs = []
