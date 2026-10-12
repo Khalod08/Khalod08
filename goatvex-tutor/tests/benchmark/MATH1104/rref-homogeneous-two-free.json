@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "slug": "rref-homogeneous-two-free",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Solve the homogeneous system x\u2081 + 2x\u2082 \u2212 x\u2083 = 0, 2x\u2081 + 4x\u2082 \u2212 2x\u2083 = 0.",
+  "given": {
+    "matrix": [
+      [
+        "1",
+        "2",
+        "-1",
+        "0"
+      ],
+      [
+        "2",
+        "4",
+        "-2",
+        "0"
+      ]
+    ],
+    "augmented": true
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "2",
+        "-1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ],
+    "system": {
+      "status": "infinite",
+      "free_vars": [
+        2,
+        3
+      ]
+    }
+  }
+}

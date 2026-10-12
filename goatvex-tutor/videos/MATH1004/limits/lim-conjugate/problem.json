@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "lim-conjugate",
+  "course": "MATH1004",
+  "type": "limit",
+  "statement": "lim x→0 of (sqrt(x + 4) - 2)/x.",
+  "given": {
+    "function": "(sqrt(x + 4) - 2)/x",
+    "variable": "x",
+    "point": "0"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "1/4",
+    "kind": "expr"
+  },
+  "topic": "limits"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-u-sub-cos",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ x cos(x^2) dx.",
+  "given": {
+    "integrand": "x cos(x^2)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "sin(x^2)/2",
+    "kind": "antiderivative"
+  }
+}

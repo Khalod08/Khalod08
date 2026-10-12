@@ -1,0 +1,80 @@
+[
+  {
+    "segment": "problem",
+    "start": 0.0,
+    "end": 8.867,
+    "caption": "Let's work through this problem: Riemann sum. First we'll see the idea, then every step, each one checked by a computer."
+  },
+  {
+    "segment": "intuition",
+    "start": 9.4,
+    "end": 14.067,
+    "caption": "Rectangles under the curve approximate the area; thinner rectangles do better."
+  },
+  {
+    "segment": "s1",
+    "start": 14.6,
+    "end": 20.133,
+    "caption": "Δx = (b − a)/n. Width of each of the 4 rectangles."
+  },
+  {
+    "segment": "s2",
+    "start": 20.733,
+    "end": 25.8,
+    "caption": "Sample points. Right endpoints: 1/2, 1, 3/2, 2."
+  },
+  {
+    "segment": "s3",
+    "start": 26.4,
+    "end": 30.667,
+    "caption": "f(x₀). f at x = 1/2."
+  },
+  {
+    "segment": "s4",
+    "start": 31.267,
+    "end": 34.667,
+    "caption": "f(x₁). f at x = 1."
+  },
+  {
+    "segment": "s5",
+    "start": 35.267,
+    "end": 39.533,
+    "caption": "f(x₂). f at x = 3/2."
+  },
+  {
+    "segment": "s6",
+    "start": 40.133,
+    "end": 43.533,
+    "caption": "f(x₃). f at x = 2."
+  },
+  {
+    "segment": "s7",
+    "start": 44.133,
+    "end": 51.267,
+    "caption": "Sum = Δx·(f(x₁) + … ). Add the heights and multiply by the width."
+  },
+  {
+    "segment": "result",
+    "start": 52.2,
+    "end": 55.2,
+    "caption": "So the answer is 15/4."
+  },
+  {
+    "segment": "check",
+    "start": 55.6,
+    "end": 64.867,
+    "caption": "Every step you just saw was checked by a computer algebra system, and the final answer was confirmed a second, independent way."
+  },
+  {
+    "segment": "recap",
+    "start": 65.267,
+    "end": 72.867,
+    "caption": "Find the width, list the sample points, evaluate the heights, add them up, and multiply by the width."
+  },
+  {
+    "segment": "practice",
+    "start": 73.267,
+    "end": 80.867,
+    "caption": "Now it's your turn. Pause the video and try this one. Your answer is checked in the write-up."
+  }
+]

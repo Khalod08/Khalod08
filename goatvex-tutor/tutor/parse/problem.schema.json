@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GoatVex problem.json",
+  "description": "A transcribed problem. Math is stored as strings SymPy parses exactly ('1/3', '3x^2 + 1', 'sqrt(x)', 'e^(2x)', 'ln(x)'). Validated in tutor/parse/schema.py.",
+  "type": "object",
+  "required": ["slug", "course", "type", "given"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "folder name for outputs"},
+    "course": {"enum": ["MATH1104", "MATH1004"]},
+    "topic": {"type": "string", "description": "defaults per type: row-reduction, matrix-inverse, derivatives"},
+    "type": {"enum": ["rref", "matrix_inverse", "derivative"]},
+    "statement": {"type": "string", "description": "the problem as the student sees it, in readable Unicode"},
+    "given": {"type": "object"},
+    "source": {
+      "type": "object",
+      "properties": {
+        "kind": {"enum": ["typed", "photo", "screenshot", "pdf"]},
+        "ref": {"type": "string", "description": "file name / page / textbook reference"}
+      }
+    },
+    "context": {
+      "type": "object",
+      "properties": {"graded": {"type": "boolean", "description": "true => hint mode / parallel problem only"}}
+    },
+    "confirmed_by_student": {"type": "boolean", "description": "set only after the student says the transcription is exactly right"},
+    "expected": {"type": "object", "description": "benchmark problems only: the known answer"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"type": {"const": "rref"}}},
+      "then": {"properties": {"given": {
+        "required": ["matrix"],
+        "properties": {
+          "matrix": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}},
+          "augmented": {"type": "boolean", "description": "last column is the right-hand side b"}
+        }}}}
+    },
+    {
+      "if": {"properties": {"type": {"const": "matrix_inverse"}}},
+      "then": {"properties": {"given": {
+        "required": ["matrix"],
+        "properties": {"matrix": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}}}}}
+    },
+    {
+      "if": {"properties": {"type": {"const": "derivative"}}},
+      "then": {"properties": {"given": {
+        "required": ["function", "variable"],
+        "properties": {"function": {"type": "string"}, "variable": {"type": "string", "pattern": "^[A-Za-z]$"}}}}}
+    }
+  ]
+}

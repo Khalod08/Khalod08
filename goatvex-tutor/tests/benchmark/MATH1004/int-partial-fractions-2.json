@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-partial-fractions-2",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ (x + 5)/(x^2 + x - 2) dx.",
+  "given": {
+    "integrand": "(x + 5)/(x^2 + x - 2)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "2ln(abs(x - 1)) - ln(abs(x + 2))",
+    "kind": "antiderivative"
+  }
+}

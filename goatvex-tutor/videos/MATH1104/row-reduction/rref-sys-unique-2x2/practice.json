@@ -1,0 +1,21 @@
+{
+  "given": {
+    "matrix": [
+      [
+        "1",
+        "1",
+        "2"
+      ],
+      [
+        "-2",
+        "-1",
+        "0"
+      ]
+    ],
+    "augmented": true
+  },
+  "statement": "Solve the system: x + y = 2;  −2x − y = 0",
+  "latex": "\\begin{aligned}x + y &= 2\\\\- 2 x - y &= 0\\end{aligned}",
+  "answer_text": "⎡ 1  0  −2 ⎤\n⎣ 0  1   4 ⎦",
+  "type": "rref"
+}

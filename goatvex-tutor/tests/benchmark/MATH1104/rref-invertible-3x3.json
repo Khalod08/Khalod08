@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "slug": "rref-invertible-3x3",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Row reduce A to reduced row echelon form.",
+  "given": {
+    "matrix": [
+      [
+        "2",
+        "1",
+        "1"
+      ],
+      [
+        "4",
+        "-6",
+        "0"
+      ],
+      [
+        "-2",
+        "7",
+        "2"
+      ]
+    ],
+    "augmented": false
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1"
+      ]
+    ]
+  }
+}

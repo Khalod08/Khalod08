@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "lim-factor-cancel",
+  "course": "MATH1004",
+  "type": "limit",
+  "statement": "lim x→2 of (x^2 - 4)/(x - 2).",
+  "given": {
+    "function": "(x^2 - 4)/(x - 2)",
+    "variable": "x",
+    "point": "2"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "4",
+    "kind": "expr"
+  }
+}

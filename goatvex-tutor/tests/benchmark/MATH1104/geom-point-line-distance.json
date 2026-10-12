@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "slug": "geom-point-line-distance",
+  "course": "MATH1104",
+  "type": "geometry",
+  "statement": "Distance from (1,2,3) to the line t(1,1,1).",
+  "given": {
+    "task": "point_line_distance",
+    "Q": [
+      "1",
+      "2",
+      "3"
+    ],
+    "line": {
+      "point": [
+        "0",
+        "0",
+        "0"
+      ],
+      "direction": [
+        "1",
+        "1",
+        "1"
+      ]
+    }
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "sqrt(2)",
+    "kind": "expr"
+  }
+}

@@ -1,0 +1,13 @@
+# GoatVex — exact versions tested together (install with: pip install -r requirements.txt)
+# Math engine
+sympy==1.14.0
+mpmath==1.3.0
+numpy==2.4.6
+# Video + voice
+manim==0.21.0
+manim-voiceover==0.4.0
+edge-tts==7.2.8
+# Course materials (PDF text extraction, Phase 5)
+pymupdf==1.28.2
+# Tests
+pytest==9.1.1

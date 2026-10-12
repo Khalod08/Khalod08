@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "slug": "bases-rank-2",
+  "course": "MATH1104",
+  "type": "subspaces",
+  "statement": "Rank and bases.",
+  "given": {
+    "task": "bases",
+    "matrix": [
+      [
+        "1",
+        "2",
+        "0",
+        "1"
+      ],
+      [
+        "2",
+        "4",
+        "1",
+        "3"
+      ],
+      [
+        "3",
+        "6",
+        "1",
+        "4"
+      ]
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "2",
+    "kind": "expr"
+  }
+}

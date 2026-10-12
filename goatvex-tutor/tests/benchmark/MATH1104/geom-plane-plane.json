@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "slug": "geom-plane-plane",
+  "course": "MATH1104",
+  "type": "geometry",
+  "statement": "Line of intersection of x + y + z = 1 and x − y + 2z = 3.",
+  "given": {
+    "task": "plane_plane_intersection",
+    "plane1": "x + y + z = 1",
+    "plane2": "x - y + 2z = 3"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "3",
+      "-1",
+      "-2"
+    ],
+    "kind": "line_direction"
+  }
+}

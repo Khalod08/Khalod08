@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "domain-log",
+  "course": "MATH1004",
+  "type": "function_domain",
+  "statement": "Domain of ln(4 − x²).",
+  "given": {
+    "function": "ln(4 - x^2)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "Interval.open(-2, 2)",
+    "kind": "set"
+  }
+}

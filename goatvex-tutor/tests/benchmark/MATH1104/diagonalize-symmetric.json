@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "slug": "diagonalize-symmetric",
+  "course": "MATH1104",
+  "type": "eigen",
+  "statement": "Diagonalize [[2,1],[1,2]].",
+  "given": {
+    "matrix": [
+      [
+        "2",
+        "1"
+      ],
+      [
+        "1",
+        "2"
+      ]
+    ],
+    "task": "diagonalize"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "1",
+      "3"
+    ],
+    "kind": "eigenvalues"
+  }
+}

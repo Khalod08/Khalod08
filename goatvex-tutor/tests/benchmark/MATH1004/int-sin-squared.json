@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-sin-squared",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ sin(x)^2 dx.",
+  "given": {
+    "integrand": "sin(x)^2",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "x/2 - sin(2x)/4",
+    "kind": "antiderivative"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "slug": "geom-line-plane",
+  "course": "MATH1104",
+  "type": "geometry",
+  "statement": "Where does (1,2,3) + t(2,−1,1) meet x + y + z = 12?",
+  "given": {
+    "task": "line_plane_intersection",
+    "line": {
+      "point": [
+        "1",
+        "2",
+        "3"
+      ],
+      "direction": [
+        "2",
+        "-1",
+        "1"
+      ]
+    },
+    "plane": "x + y + z = 12"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "7",
+      "-1",
+      "6"
+    ],
+    "kind": "list"
+  }
+}

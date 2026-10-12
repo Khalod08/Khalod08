@@ -1,0 +1,74 @@
+[
+  {
+    "segment": "problem",
+    "start": 0.0,
+    "end": 9.667,
+    "caption": "Let's work through this problem: Derivative (rules, chain rule). First we'll see the idea, then every step, each one checked by a computer."
+  },
+  {
+    "segment": "intuition",
+    "start": 10.167,
+    "end": 16.5,
+    "caption": "The derivative is the slope of the tangent line at each point of the graph."
+  },
+  {
+    "segment": "s1",
+    "start": 17.033,
+    "end": 32.967,
+    "caption": "Chain rule (power outside). Chain rule: the outside is (inside)^5, the inside is u = 3x² + 1. Differentiate the outside (power rule), keep the inside, then multiply by du/dx."
+  },
+  {
+    "segment": "s2",
+    "start": 33.567,
+    "end": 41.127,
+    "caption": "Sum/difference rule. The derivative of a sum is the sum of the derivatives, term by term."
+  },
+  {
+    "segment": "s3",
+    "start": 41.727,
+    "end": 48.039,
+    "caption": "Constant multiple rule. The constant 3 can be pulled out in front of the derivative."
+  },
+  {
+    "segment": "s4",
+    "start": 48.639,
+    "end": 54.951,
+    "caption": "Power rule. Power rule: bring down the exponent 2 and lower the power by 1."
+  },
+  {
+    "segment": "s5",
+    "start": 55.551,
+    "end": 61.023,
+    "caption": "Constant rule. 1 does not depend on x, so its derivative is 0."
+  },
+  {
+    "segment": "s6",
+    "start": 61.623,
+    "end": 65.439,
+    "caption": "Simplify. Multiply out the constants and combine like terms."
+  },
+  {
+    "segment": "result",
+    "start": 66.339,
+    "end": 72.272,
+    "caption": "So the answer is 30x·(3x² + 1)⁴."
+  },
+  {
+    "segment": "check",
+    "start": 72.672,
+    "end": 81.972,
+    "caption": "Every step you just saw was checked by a computer algebra system, and the final answer was confirmed a second, independent way."
+  },
+  {
+    "segment": "recap",
+    "start": 82.372,
+    "end": 91.239,
+    "caption": "Apply a single rule at a time: sums, constant multiples, powers, products, quotients, and the chain rule from the outside in."
+  },
+  {
+    "segment": "practice",
+    "start": 91.639,
+    "end": 99.239,
+    "caption": "Now it's your turn. Pause the video and try this one. Your answer is checked in the write-up."
+  }
+]

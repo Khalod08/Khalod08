@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-chain-ln",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = ln(x^2 + 1).",
+  "given": {
+    "function": "ln(x^2 + 1)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "2x/(x^2 + 1)"
+  }
+}

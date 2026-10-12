@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "slug": "cramer-singular",
+  "course": "MATH1104",
+  "type": "cramers_rule",
+  "statement": "Solve x + 2y = 3, 2x + 4y = 6 by Cramer's rule.",
+  "given": {
+    "matrix": [
+      [
+        "1",
+        "2"
+      ],
+      [
+        "2",
+        "4"
+      ]
+    ],
+    "vector": [
+      "3",
+      "6"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "cramer_does_not_apply",
+    "kind": "symbol"
+  }
+}

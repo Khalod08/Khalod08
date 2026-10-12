@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "slug": "inverse-4x4-block",
+  "course": "MATH1104",
+  "type": "matrix_inverse",
+  "statement": "Find A\u207b\u00b9 if it exists.",
+  "given": {
+    "matrix": [
+      [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "2",
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "3",
+        "1"
+      ]
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "inverse": [
+      [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "-2",
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "-3",
+        "1"
+      ]
+    ]
+  }
+}

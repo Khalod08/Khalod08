@@ -1,0 +1,80 @@
+1
+00:00:00,000 --> 00:00:02,083
+Let's work through this problem:
+
+2
+00:00:02,083 --> 00:00:02,500
+Determinant.
+
+3
+00:00:02,500 --> 00:00:04,583
+First we'll see the idea,
+
+4
+00:00:04,583 --> 00:00:05,833
+then every step,
+
+5
+00:00:05,833 --> 00:00:08,400
+each one checked by a computer.
+
+6
+00:00:08,933 --> 00:00:13,100
+The determinant measures how the matrix scales area or volume,
+
+7
+00:00:13,100 --> 00:00:16,493
+and its sign tells whether it flips orientation.
+
+8
+00:00:17,066 --> 00:00:18,733
+2×2 determinant.
+
+9
+00:00:18,733 --> 00:00:23,378
+For a 2×2 matrix, det = ad − bc.
+
+10
+00:00:24,000 --> 00:00:24,416
+Arithmetic.
+
+11
+00:00:24,416 --> 00:00:25,728
+Multiply and add.
+
+12
+00:00:26,666 --> 00:00:28,802
+So the answer is 22.
+
+13
+00:00:29,466 --> 00:00:34,466
+Every step you just saw was checked by a computer algebra system,
+
+14
+00:00:34,466 --> 00:00:37,800
+and the final answer was confirmed a second,
+
+15
+00:00:37,800 --> 00:00:38,706
+independent way.
+
+16
+00:00:39,133 --> 00:00:43,300
+Expand along the row or column with the most zeros,
+
+17
+00:00:43,300 --> 00:00:45,853
+or row reduce while tracking swaps.
+
+18
+00:00:46,266 --> 00:00:47,933
+Now it's your turn.
+
+19
+00:00:47,933 --> 00:00:50,850
+Pause the video and try this one.
+
+20
+00:00:50,850 --> 00:00:53,826
+Your answer is checked in the write-up.
+

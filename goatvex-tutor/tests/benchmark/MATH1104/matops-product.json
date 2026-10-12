@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "slug": "matops-product",
+  "course": "MATH1104",
+  "type": "matrix_arithmetic",
+  "statement": "Compute AB.",
+  "given": {
+    "matrices": {
+      "A": [
+        [
+          "1",
+          "2",
+          "0"
+        ],
+        [
+          "3",
+          "-1",
+          "4"
+        ]
+      ],
+      "B": [
+        [
+          "2",
+          "1"
+        ],
+        [
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "-2"
+        ]
+      ]
+    },
+    "expression": "AB"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      [
+        "2",
+        "3"
+      ],
+      [
+        "10",
+        "-6"
+      ]
+    ],
+    "kind": "matrix"
+  }
+}

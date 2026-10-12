@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "inverse-restricted",
+  "course": "MATH1004",
+  "type": "inverse_function",
+  "statement": "Inverse of x² + 1, x ≥ 0.",
+  "given": {
+    "function": "x^2 + 1",
+    "variable": "x",
+    "domain_from": "0"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "sqrt(x - 1)",
+    "kind": "expr_pos"
+  }
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "segment": "problem",
+    "start": 0.0,
+    "end": 9.267,
+    "caption": "Let's work through this problem: Definite integral (FTC). First we'll see the idea, then every step, each one checked by a computer."
+  },
+  {
+    "segment": "intuition",
+    "start": 9.767,
+    "end": 15.3,
+    "caption": "The definite integral adds up signed area under the curve between the limits."
+  },
+  {
+    "segment": "s1",
+    "start": 15.833,
+    "end": 18.433,
+    "caption": "Sum rule. Integrate term by term."
+  },
+  {
+    "segment": "s2",
+    "start": 19.033,
+    "end": 23.7,
+    "caption": "Constant multiple rule. Pull the constant 3 out of the integral."
+  },
+  {
+    "segment": "s3",
+    "start": 24.3,
+    "end": 37.7,
+    "caption": "Power rule. ∫ xⁿ dx = xⁿ⁺¹/(n + 1) with n = 2: raise the power by 1 and divide by the new power."
+  },
+  {
+    "segment": "s4",
+    "start": 38.3,
+    "end": 43.772,
+    "caption": "Integral of a constant. ∫ c dx = c·x."
+  },
+  {
+    "segment": "s5",
+    "start": 44.372,
+    "end": 46.1,
+    "caption": "Simplify. Combine the constants."
+  },
+  {
+    "segment": "s6",
+    "start": 46.7,
+    "end": 55.967,
+    "caption": "Fundamental Theorem: F(b) − F(a). Evaluate F at the top limit 2 and subtract F at the bottom limit 0."
+  },
+  {
+    "segment": "s7",
+    "start": 56.567,
+    "end": 57.767,
+    "caption": "Arithmetic. Simplify."
+  },
+  {
+    "segment": "result",
+    "start": 58.667,
+    "end": 61.067,
+    "caption": "So the answer is 10."
+  },
+  {
+    "segment": "check",
+    "start": 61.467,
+    "end": 70.767,
+    "caption": "Every step you just saw was checked by a computer algebra system, and the final answer was confirmed a second, independent way."
+  },
+  {
+    "segment": "recap",
+    "start": 71.167,
+    "end": 78.3,
+    "caption": "Find an antiderivative, evaluate it at the top limit, and subtract its value at the bottom limit."
+  },
+  {
+    "segment": "practice",
+    "start": 78.7,
+    "end": 86.3,
+    "caption": "Now it's your turn. Pause the video and try this one. Your answer is checked in the write-up."
+  }
+]

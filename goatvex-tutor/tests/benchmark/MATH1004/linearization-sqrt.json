@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "linearization-sqrt",
+  "course": "MATH1004",
+  "type": "linearization",
+  "statement": "Estimate √4.1.",
+  "given": {
+    "function": "sqrt(x)",
+    "variable": "x",
+    "point": "4",
+    "estimate_at": "41/10"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "81/40",
+    "kind": "expr"
+  }
+}

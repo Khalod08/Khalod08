@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "slug": "rref-sys-inconsistent-3x3",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Solve x + y + z = 1, x + 2y + 3z = 2, 2x + 3y + 4z = 4.",
+  "given": {
+    "matrix": [
+      [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      [
+        "1",
+        "2",
+        "3",
+        "2"
+      ],
+      [
+        "2",
+        "3",
+        "4",
+        "4"
+      ]
+    ],
+    "augmented": true
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "0",
+        "-1",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "2",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1"
+      ]
+    ],
+    "system": {
+      "status": "inconsistent"
+    }
+  }
+}

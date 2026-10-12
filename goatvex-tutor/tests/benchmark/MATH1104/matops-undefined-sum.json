@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "slug": "matops-undefined-sum",
+  "course": "MATH1104",
+  "type": "matrix_arithmetic",
+  "statement": "Compute A + B.",
+  "given": {
+    "matrices": {
+      "A": [
+        [
+          "1",
+          "2",
+          "0"
+        ],
+        [
+          "3",
+          "-1",
+          "4"
+        ]
+      ],
+      "B": [
+        [
+          "2",
+          "1"
+        ],
+        [
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "-2"
+        ]
+      ]
+    },
+    "expression": "A + B"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "undefined",
+    "kind": "symbol"
+  }
+}

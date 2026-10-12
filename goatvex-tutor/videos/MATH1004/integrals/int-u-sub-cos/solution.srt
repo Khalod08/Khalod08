@@ -1,0 +1,104 @@
+1
+00:00:00,000 --> 00:00:02,083
+Let's work through this problem:
+
+2
+00:00:02,083 --> 00:00:03,333
+Antiderivative (indefinite integral).
+
+3
+00:00:03,333 --> 00:00:05,416
+First we'll see the idea,
+
+4
+00:00:05,416 --> 00:00:06,666
+then every step,
+
+5
+00:00:06,666 --> 00:00:09,240
+each one checked by a computer.
+
+6
+00:00:09,800 --> 00:00:11,883
+An antiderivative undoes the derivative:
+
+7
+00:00:11,883 --> 00:00:15,680
+differentiate the answer and you get back the integrand.
+
+8
+00:00:16,266 --> 00:00:16,683
+u-substitution.
+
+9
+00:00:16,683 --> 00:00:23,826
+Let u = x², so du = 2x dx. Rewrite everything in terms of u.
+
+10
+00:00:24,466 --> 00:00:25,716
+Constant multiple rule.
+
+11
+00:00:25,716 --> 00:00:29,938
+Pull the constant 1/2 out of the integral.
+
+12
+00:00:30,600 --> 00:00:31,433
+Basic antiderivative.
+
+13
+00:00:31,433 --> 00:00:34,824
+Standard antiderivative: ∫ cos = sin.
+
+14
+00:00:35,466 --> 00:00:37,966
+Substitute back u = x².
+
+15
+00:00:37,966 --> 00:00:41,778
+Write the answer in terms of the original variable.
+
+16
+00:00:42,733 --> 00:00:46,117
+So the answer is sin(x²)/2.
+
+17
+00:00:46,533 --> 00:00:51,533
+Every step you just saw was checked by a computer algebra system,
+
+18
+00:00:51,533 --> 00:00:54,866
+and the final answer was confirmed a second,
+
+19
+00:00:54,866 --> 00:00:55,773
+independent way.
+
+20
+00:00:56,200 --> 00:00:57,866
+Pick the right method,
+
+21
+00:00:57,866 --> 00:00:59,533
+integrate piece by piece,
+
+22
+00:00:59,533 --> 00:01:00,366
+substitute back,
+
+23
+00:01:00,366 --> 00:01:02,080
+and add a constant.
+
+24
+00:01:02,533 --> 00:01:04,200
+Now it's your turn.
+
+25
+00:01:04,200 --> 00:01:07,116
+Pause the video and try this one.
+
+26
+00:01:07,116 --> 00:01:10,093
+Your answer is checked in the write-up.
+

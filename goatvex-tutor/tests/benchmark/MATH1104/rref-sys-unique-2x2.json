@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "slug": "rref-sys-unique-2x2",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Solve 2x + 3y = 8, x \u2212 y = \u22121.",
+  "given": {
+    "matrix": [
+      [
+        "2",
+        "3",
+        "8"
+      ],
+      [
+        "1",
+        "-1",
+        "-1"
+      ]
+    ],
+    "augmented": true
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "0",
+        "1"
+      ],
+      [
+        "0",
+        "1",
+        "2"
+      ]
+    ],
+    "system": {
+      "status": "unique",
+      "x": [
+        "1",
+        "2"
+      ]
+    }
+  }
+}

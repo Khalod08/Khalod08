@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "slug": "span-no",
+  "course": "MATH1104",
+  "type": "subspaces",
+  "statement": "Is (1,0,0) in span{(1,2,3),(0,1,2)}?",
+  "given": {
+    "task": "span",
+    "vectors": [
+      [
+        "1",
+        "2",
+        "3"
+      ],
+      [
+        "0",
+        "1",
+        "2"
+      ]
+    ],
+    "w": [
+      "1",
+      "0",
+      "0"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": false,
+    "kind": "bool"
+  }
+}

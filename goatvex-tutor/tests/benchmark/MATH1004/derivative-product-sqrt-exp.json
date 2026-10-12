@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-product-sqrt-exp",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = sqrt(x) e^x.",
+  "given": {
+    "function": "sqrt(x) e^x",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "e^x (1/(2sqrt(x)) + sqrt(x))"
+  }
+}

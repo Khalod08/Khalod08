@@ -1,0 +1,144 @@
+1
+00:00:00,000 --> 00:00:03,333
+Here is the augmented matrix of our system.
+
+2
+00:00:03,333 --> 00:00:06,250
+Our goal is reduced row echelon form,
+
+3
+00:00:06,250 --> 00:00:09,648
+where the solution can simply be read off.
+
+4
+00:00:10,150 --> 00:00:11,400
+Picture it first.
+
+5
+00:00:11,400 --> 00:00:14,733
+Each equation is a line in the plane.
+
+6
+00:00:14,733 --> 00:00:18,900
+The solution is the single place where they all meet:
+
+7
+00:00:18,900 --> 00:00:20,566
+the point (1, 2).
+
+8
+00:00:20,566 --> 00:00:22,650
+Row operations change the equations,
+
+9
+00:00:22,650 --> 00:00:24,790
+but never that meeting point.
+
+10
+00:00:26,600 --> 00:00:27,016
+Next,
+
+11
+00:00:27,016 --> 00:00:29,516
+R₁ ↔ R₂,
+
+12
+00:00:29,516 --> 00:00:34,568
+to bring a nonzero entry into the pivot position of column 1.
+
+13
+00:00:35,483 --> 00:00:35,900
+Next,
+
+14
+00:00:35,900 --> 00:00:40,483
+R₂ → R₂ − 2R₁,
+
+15
+00:00:40,483 --> 00:00:44,723
+which puts a zero below the pivot in column 1.
+
+16
+00:00:45,633 --> 00:00:48,550
+Next, R₂ → (1/5)R₂.
+
+17
+00:00:48,550 --> 00:00:52,716
+Now the pivot in column 2 is a leading one.
+
+18
+00:00:52,716 --> 00:00:54,800
+That completes the forward phase:
+
+19
+00:00:54,800 --> 00:00:57,777
+the matrix is in row echelon form.
+
+20
+00:00:58,683 --> 00:00:59,100
+Next,
+
+21
+00:00:59,100 --> 00:01:02,850
+R₁ → R₁ + R₂,
+
+22
+00:01:02,850 --> 00:01:07,491
+which puts a zero above the leading one in column 2.
+
+23
+00:01:08,400 --> 00:01:10,900
+This is reduced row echelon form,
+
+24
+00:01:10,900 --> 00:01:13,400
+and the solution reads straight off:
+
+25
+00:01:13,400 --> 00:01:16,368
+x = 1, y = 2.
+
+26
+00:01:16,983 --> 00:01:19,275
+Let's check by putting these
+
+27
+00:01:19,275 --> 00:01:21,566
+values back into each original equation.
+
+28
+00:01:21,566 --> 00:01:25,383
+Each of them holds, so the answer is right.
+
+29
+00:01:25,900 --> 00:01:26,733
+To recap:
+
+30
+00:01:26,733 --> 00:01:28,400
+get a leading one,
+
+31
+00:01:28,400 --> 00:01:30,483
+clear the entries below it,
+
+32
+00:01:30,483 --> 00:01:32,566
+move to the next column,
+
+33
+00:01:32,566 --> 00:01:36,388
+and finally clear the entries above each leading one.
+
+34
+00:01:36,900 --> 00:01:38,566
+Now it's your turn.
+
+35
+00:01:38,566 --> 00:01:41,483
+Pause the video and solve this system.
+
+36
+00:01:41,483 --> 00:01:45,708
+Your answer is checked in the write-up, so no peeking.
+

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "slug": "lin-trans-matrix",
+  "course": "MATH1104",
+  "type": "linear_transformation",
+  "statement": "Standard matrix of T(x,y,z) = (2x − y, x + z).",
+  "given": {
+    "variables": [
+      "x",
+      "y",
+      "z"
+    ],
+    "formula": [
+      "2x - y",
+      "x + z"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      [
+        "2",
+        "-1",
+        "0"
+      ],
+      [
+        "1",
+        "0",
+        "1"
+      ]
+    ],
+    "kind": "matrix"
+  }
+}

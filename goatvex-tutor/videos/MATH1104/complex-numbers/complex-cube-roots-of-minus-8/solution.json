@@ -1,0 +1,185 @@
+{
+  "slug": "complex-cube-roots-of-minus-8",
+  "status": "PASS",
+  "digest": "1c519df85b2ac6d0",
+  "answer_label": "the 3 roots",
+  "answer": [
+    {
+      "srepr": "Add(Integer(1), Mul(Pow(Integer(3), Rational(1, 2)), I))",
+      "latex": "1 + i \\sqrt{3}",
+      "text": "1 + √3i"
+    },
+    {
+      "srepr": "Integer(-2)",
+      "latex": "-2",
+      "text": "−2"
+    },
+    {
+      "srepr": "Add(Integer(1), Mul(Integer(-1), Pow(Integer(3), Rational(1, 2)), I))",
+      "latex": "1 - i \\sqrt{3}",
+      "text": "1 − √3i"
+    }
+  ],
+  "notes": [],
+  "steps": [
+    {
+      "id": "s1",
+      "kind": "algebra",
+      "operation": "Modulus r = √(a² + b²)",
+      "justification": "Here a = −8 and b = 0.",
+      "before": {
+        "srepr": "Pow(Add(Pow(Integer(0), Integer(2)), Pow(Integer(-8), Integer(2))), Rational(1, 2))",
+        "latex": "\\sqrt{\\left(-8\\right)^{2} + 0^{2}}",
+        "text": "√((−8)² + 0²)"
+      },
+      "after": {
+        "srepr": "Integer(8)",
+        "latex": "8",
+        "text": "8"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s2",
+      "kind": "fact",
+      "operation": "Argument θ",
+      "justification": "The point (−8, 0) lies on an axis, so θ = π.",
+      "before": {
+        "srepr": "pi",
+        "latex": "\\pi",
+        "text": "π"
+      },
+      "after": {
+        "srepr": "pi",
+        "latex": "\\pi",
+        "text": "π"
+      },
+      "data": {
+        "chain": false,
+        "fact": "argument"
+      }
+    },
+    {
+      "id": "s3",
+      "kind": "fact",
+      "operation": "Root k = 0",
+      "justification": "z_k = r^(1/3)·(cos((θ + 2πk)/3) + i sin((θ + 2πk)/3)) with k = 0: angle π/3.",
+      "before": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(Mul(Rational(1, 3), pi)), Mul(I, sin(Mul(Rational(1, 3), pi)))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\frac{\\pi}{3} \\right)} + i \\sin{\\left(\\frac{\\pi}{3} \\right)}\\right)",
+        "text": "8^(1/3)·(cos(π/3) + i·sin(π/3))"
+      },
+      "after": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(Mul(Rational(1, 3), pi)), Mul(I, sin(Mul(Rational(1, 3), pi)))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\frac{\\pi}{3} \\right)} + i \\sin{\\left(\\frac{\\pi}{3} \\right)}\\right)",
+        "text": "8^(1/3)·(cos(π/3) + i·sin(π/3))"
+      },
+      "data": {
+        "chain": false,
+        "fact": "root_formula",
+        "k": 0
+      }
+    },
+    {
+      "id": "s4",
+      "kind": "algebra",
+      "operation": "z₀ in a + bi form",
+      "justification": "Evaluate cos and sin exactly.",
+      "before": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(Mul(Rational(1, 3), pi)), Mul(I, sin(Mul(Rational(1, 3), pi)))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\frac{\\pi}{3} \\right)} + i \\sin{\\left(\\frac{\\pi}{3} \\right)}\\right)",
+        "text": "8^(1/3)·(cos(π/3) + i·sin(π/3))"
+      },
+      "after": {
+        "srepr": "Add(Integer(1), Mul(Pow(Integer(3), Rational(1, 2)), I))",
+        "latex": "1 + i \\sqrt{3}",
+        "text": "1 + √3i"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s5",
+      "kind": "fact",
+      "operation": "Root k = 1",
+      "justification": "z_k = r^(1/3)·(cos((θ + 2πk)/3) + i sin((θ + 2πk)/3)) with k = 1: angle π.",
+      "before": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(pi), Mul(I, sin(pi))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\pi \\right)} + i \\sin{\\left(\\pi \\right)}\\right)",
+        "text": "8^(1/3)·(cos(π) + i·sin(π))"
+      },
+      "after": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(pi), Mul(I, sin(pi))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\pi \\right)} + i \\sin{\\left(\\pi \\right)}\\right)",
+        "text": "8^(1/3)·(cos(π) + i·sin(π))"
+      },
+      "data": {
+        "chain": false,
+        "fact": "root_formula",
+        "k": 1
+      }
+    },
+    {
+      "id": "s6",
+      "kind": "algebra",
+      "operation": "z₁ in a + bi form",
+      "justification": "Evaluate cos and sin exactly.",
+      "before": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(pi), Mul(I, sin(pi))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\pi \\right)} + i \\sin{\\left(\\pi \\right)}\\right)",
+        "text": "8^(1/3)·(cos(π) + i·sin(π))"
+      },
+      "after": {
+        "srepr": "Integer(-2)",
+        "latex": "-2",
+        "text": "−2"
+      },
+      "data": {
+        "chain": false
+      }
+    },
+    {
+      "id": "s7",
+      "kind": "fact",
+      "operation": "Root k = 2",
+      "justification": "z_k = r^(1/3)·(cos((θ + 2πk)/3) + i sin((θ + 2πk)/3)) with k = 2: angle 5π/3.",
+      "before": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(Mul(Rational(5, 3), pi)), Mul(I, sin(Mul(Rational(5, 3), pi)))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\frac{5 \\pi}{3} \\right)} + i \\sin{\\left(\\frac{5 \\pi}{3} \\right)}\\right)",
+        "text": "8^(1/3)·(cos(5π/3) + i·sin(5π/3))"
+      },
+      "after": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(Mul(Rational(5, 3), pi)), Mul(I, sin(Mul(Rational(5, 3), pi)))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\frac{5 \\pi}{3} \\right)} + i \\sin{\\left(\\frac{5 \\pi}{3} \\right)}\\right)",
+        "text": "8^(1/3)·(cos(5π/3) + i·sin(5π/3))"
+      },
+      "data": {
+        "chain": false,
+        "fact": "root_formula",
+        "k": 2
+      }
+    },
+    {
+      "id": "s8",
+      "kind": "algebra",
+      "operation": "z₂ in a + bi form",
+      "justification": "Evaluate cos and sin exactly.",
+      "before": {
+        "srepr": "Mul(Pow(Integer(8), Rational(1, 3)), Add(cos(Mul(Rational(5, 3), pi)), Mul(I, sin(Mul(Rational(5, 3), pi)))))",
+        "latex": "\\sqrt[3]{8} \\left(\\cos{\\left(\\frac{5 \\pi}{3} \\right)} + i \\sin{\\left(\\frac{5 \\pi}{3} \\right)}\\right)",
+        "text": "8^(1/3)·(cos(5π/3) + i·sin(5π/3))"
+      },
+      "after": {
+        "srepr": "Add(Integer(1), Mul(Integer(-1), Pow(Integer(3), Rational(1, 2)), I))",
+        "latex": "1 - i \\sqrt{3}",
+        "text": "1 − √3i"
+      },
+      "data": {
+        "chain": false
+      }
+    }
+  ]
+}

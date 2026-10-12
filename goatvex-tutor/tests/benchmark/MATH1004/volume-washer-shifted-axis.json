@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "slug": "volume-washer-shifted-axis",
+  "course": "MATH1004",
+  "type": "volume_of_revolution",
+  "statement": "Region between y = x and y = x² about y = 2.",
+  "given": {
+    "outer": "x",
+    "inner": "x^2",
+    "variable": "x",
+    "a": "0",
+    "b": "1",
+    "axis": "y=2"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "8pi/15",
+    "kind": "expr"
+  }
+}

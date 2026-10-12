@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "def-u-sub",
+  "course": "MATH1004",
+  "type": "definite_integral",
+  "statement": "Evaluate ∫ from 0 to 1 of x e^(x^2) dx.",
+  "given": {
+    "integrand": "x e^(x^2)",
+    "variable": "x",
+    "a": "0",
+    "b": "1"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "(e - 1)/2",
+    "kind": "expr"
+  }
+}

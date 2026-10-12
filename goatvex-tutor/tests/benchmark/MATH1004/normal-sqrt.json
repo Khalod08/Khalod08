@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "normal-sqrt",
+  "course": "MATH1004",
+  "type": "tangent_line",
+  "statement": "Normal line to y = sqrt(x) at x = 4.",
+  "given": {
+    "function": "sqrt(x)",
+    "variable": "x",
+    "point": "4",
+    "normal": true
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "-4x + 18",
+    "kind": "line"
+  }
+}

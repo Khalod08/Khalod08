@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "opt-open-interval",
+  "course": "MATH1004",
+  "type": "optimization",
+  "statement": "Minimum of x + 4/x for x > 0.",
+  "given": {
+    "function": "x + 4/x",
+    "variable": "x",
+    "a": "0",
+    "b": "oo"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "4",
+    "kind": "expr"
+  }
+}

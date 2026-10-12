@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "slug": "gram-schmidt-2",
+  "course": "MATH1104",
+  "type": "orthogonality",
+  "statement": "Gram–Schmidt on (1,1,0), (1,0,1).",
+  "given": {
+    "task": "gram_schmidt",
+    "vectors": [
+      [
+        "1",
+        "1",
+        "0"
+      ],
+      [
+        "1",
+        "0",
+        "1"
+      ]
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      [
+        "1",
+        "1",
+        "0"
+      ],
+      [
+        "1/2",
+        "-1/2",
+        "1"
+      ]
+    ],
+    "kind": "vectors"
+  }
+}

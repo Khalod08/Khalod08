@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "def-sin",
+  "course": "MATH1004",
+  "type": "definite_integral",
+  "statement": "Evaluate ∫ from 0 to pi of sin(x) dx.",
+  "given": {
+    "integrand": "sin(x)",
+    "variable": "x",
+    "a": "0",
+    "b": "pi"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "2",
+    "kind": "expr"
+  }
+}

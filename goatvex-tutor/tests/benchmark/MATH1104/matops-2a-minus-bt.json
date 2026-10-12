@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "slug": "matops-2a-minus-bt",
+  "course": "MATH1104",
+  "type": "matrix_arithmetic",
+  "statement": "Compute 2A − Bᵀ.",
+  "given": {
+    "matrices": {
+      "A": [
+        [
+          "1",
+          "2"
+        ],
+        [
+          "3",
+          "4"
+        ]
+      ],
+      "B": [
+        [
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "0"
+        ]
+      ]
+    },
+    "expression": "2A - B^T"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      [
+        "2",
+        "3"
+      ],
+      [
+        "5",
+        "8"
+      ]
+    ],
+    "kind": "matrix"
+  }
+}

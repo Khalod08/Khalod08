@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "slug": "def-ln",
+  "course": "MATH1004",
+  "type": "definite_integral",
+  "statement": "Evaluate ∫ from 1 to e of ln(x) dx.",
+  "given": {
+    "integrand": "ln(x)",
+    "variable": "x",
+    "a": "1",
+    "b": "e"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "1",
+    "kind": "expr"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "slug": "det-3x3-row-reduction-swap",
+  "course": "MATH1104",
+  "type": "determinant",
+  "statement": "Find det(A).",
+  "given": {
+    "matrix": [
+      [
+        "0",
+        "2",
+        "1"
+      ],
+      [
+        "1",
+        "3",
+        "2"
+      ],
+      [
+        "2",
+        "1",
+        "4"
+      ]
+    ],
+    "method": "row_reduction"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "-5",
+    "kind": "expr"
+  }
+}

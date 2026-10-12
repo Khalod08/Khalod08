@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "slug": "cramer-3x3-fractions",
+  "course": "MATH1104",
+  "type": "cramers_rule",
+  "statement": "Solve by Cramer's rule.",
+  "given": {
+    "matrix": [
+      [
+        "2",
+        "1",
+        "-1"
+      ],
+      [
+        "1",
+        "3",
+        "2"
+      ],
+      [
+        "1",
+        "0",
+        "1"
+      ]
+    ],
+    "vector": [
+      "3",
+      "13",
+      "4"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "8/5",
+      "11/5",
+      "12/5"
+    ],
+    "kind": "list"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-exponential-base",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = 2^x.",
+  "given": {
+    "function": "2^x",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "2^x ln(2)"
+  }
+}

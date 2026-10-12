@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "implicit-circle",
+  "course": "MATH1004",
+  "type": "implicit_derivative",
+  "statement": "Find dy/dx for x² + y² = 25.",
+  "given": {
+    "equation": "x^2 + y^2 = 25"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "-x/y",
+    "kind": "implicit"
+  }
+}

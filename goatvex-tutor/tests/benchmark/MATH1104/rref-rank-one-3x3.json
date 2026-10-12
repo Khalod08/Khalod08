@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "slug": "rref-rank-one-3x3",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Row reduce to RREF.",
+  "given": {
+    "matrix": [
+      [
+        "1",
+        "-2",
+        "3"
+      ],
+      [
+        "-2",
+        "4",
+        "-6"
+      ],
+      [
+        "3",
+        "-6",
+        "9"
+      ]
+    ],
+    "augmented": false
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "-2",
+        "3"
+      ],
+      [
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0"
+      ]
+    ]
+  }
+}

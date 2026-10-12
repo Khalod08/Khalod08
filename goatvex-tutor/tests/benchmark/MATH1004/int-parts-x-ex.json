@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "int-parts-x-ex",
+  "course": "MATH1004",
+  "type": "indefinite_integral",
+  "statement": "Find ∫ x e^x dx.",
+  "given": {
+    "integrand": "x e^x",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "x e^x - e^x",
+    "kind": "antiderivative"
+  }
+}

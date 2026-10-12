@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "slug": "rref-wide-2x4",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Row reduce to RREF.",
+  "given": {
+    "matrix": [
+      [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      [
+        "2",
+        "4",
+        "7",
+        "9"
+      ]
+    ],
+    "augmented": false
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "2",
+        "0",
+        "1"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "1"
+      ]
+    ]
+  }
+}

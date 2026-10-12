@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-chain-negative-power",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = 1/(x^2 + 4)^3.",
+  "given": {
+    "function": "1/(x^2 + 4)^3",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "-6x/(x^2 + 4)^4"
+  }
+}

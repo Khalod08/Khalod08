@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "lim-sin-3x",
+  "course": "MATH1004",
+  "type": "limit",
+  "statement": "lim x→0 of sin(3x)/x.",
+  "given": {
+    "function": "sin(3x)/x",
+    "variable": "x",
+    "point": "0"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "3",
+    "kind": "expr"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "given": {
+    "function": "(x^2 - 3x + 2)/(x - 2)",
+    "variable": "x",
+    "point": "2"
+  },
+  "statement": "Find the limit of (x^2 - 3x + 2)/(x - 2) as x → 2.",
+  "latex": "\\text{Find the limit of (x^2 - 3x + 2)/(x - 2) as x → 2.}",
+  "answer_text": "1",
+  "type": "limit"
+}

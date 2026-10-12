@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "slug": "implicit-folium-tangent",
+  "course": "MATH1004",
+  "type": "implicit_derivative",
+  "statement": "Tangent line to x³ + y³ = 6xy at (3, 3).",
+  "given": {
+    "equation": "x^3 + y^3 = 6 x y",
+    "point": [
+      "3",
+      "3"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "-x + 6",
+    "kind": "line"
+  }
+}

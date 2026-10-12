@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "slug": "inverse-3x3-diagonal",
+  "course": "MATH1104",
+  "type": "matrix_inverse",
+  "statement": "Find A\u207b\u00b9 if it exists.",
+  "given": {
+    "matrix": [
+      [
+        "2",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "-3",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1/2"
+      ]
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "inverse": [
+      [
+        "1/2",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "-1/3",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "2"
+      ]
+    ]
+  }
+}

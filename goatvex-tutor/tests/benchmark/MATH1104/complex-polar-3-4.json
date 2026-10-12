@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "slug": "complex-polar-3-4",
+  "course": "MATH1104",
+  "type": "complex",
+  "statement": "Write 3 + 4i in polar form.",
+  "given": {
+    "task": "polar",
+    "z": "3 + 4i"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": [
+      "5",
+      "atan(4/3)"
+    ],
+    "kind": "polar"
+  }
+}

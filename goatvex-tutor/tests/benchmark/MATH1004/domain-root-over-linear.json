@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "domain-root-over-linear",
+  "course": "MATH1004",
+  "type": "function_domain",
+  "statement": "Domain of √(x − 2)/(x − 5).",
+  "given": {
+    "function": "sqrt(x - 2)/(x - 5)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "Union(Interval.Ropen(2, 5), Interval.open(5, oo))",
+    "kind": "set"
+  }
+}

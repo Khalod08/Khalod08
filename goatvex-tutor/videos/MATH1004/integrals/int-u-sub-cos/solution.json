@@ -1,0 +1,185 @@
+{
+  "slug": "int-u-sub-cos",
+  "status": "PASS",
+  "digest": "65ff60ea0d955423",
+  "answer_label": "∫ x·cos(x²) dx  (+ C)",
+  "answer": {
+    "srepr": "Mul(Rational(1, 2), sin(Pow(Symbol('x', real=True), Integer(2))))",
+    "latex": "\\frac{\\sin{\\left(x^{2} \\right)}}{2}",
+    "text": "sin(x²)/2"
+  },
+  "notes": [
+    "Every antiderivative is sin(x²)/2 + C."
+  ],
+  "steps": [
+    {
+      "id": "s0",
+      "kind": "setup",
+      "operation": "Set up",
+      "justification": "Find all antiderivatives of x·cos(x²).",
+      "before": {
+        "srepr": "Mul(Symbol('x', real=True), cos(Pow(Symbol('x', real=True), Integer(2))))",
+        "latex": "x \\cos{\\left(x^{2} \\right)}",
+        "text": "x·cos(x²)"
+      },
+      "after": {
+        "srepr": "Integral(Mul(Symbol('x', real=True), cos(Pow(Symbol('x', real=True), Integer(2)))), Tuple(Symbol('x', real=True)))",
+        "latex": "\\int x \\cos{\\left(x^{2} \\right)}\\, dx",
+        "text": "∫ (x·cos(x²)) dx"
+      },
+      "data": {
+        "variable": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
+        }
+      }
+    },
+    {
+      "id": "s1",
+      "kind": "integral_rule",
+      "operation": "u-substitution",
+      "justification": "Let u = x², so du = 2x dx. Rewrite everything in terms of u.",
+      "before": {
+        "srepr": "Integral(Mul(Symbol('x', real=True), cos(Pow(Symbol('x', real=True), Integer(2)))), Tuple(Symbol('x', real=True)))",
+        "latex": "\\int x \\cos{\\left(x^{2} \\right)}\\, dx",
+        "text": "∫ (x·cos(x²)) dx"
+      },
+      "after": {
+        "srepr": "Integral(Mul(Rational(1, 2), cos(Symbol('u', real=True))), Tuple(Symbol('u', real=True)))",
+        "latex": "\\int \\frac{\\cos{\\left(u \\right)}}{2}\\, du",
+        "text": "∫ (cos(u)/2) du"
+      },
+      "data": {
+        "rule": "substitution",
+        "target": {
+          "srepr": "Integral(Mul(Symbol('x', real=True), cos(Pow(Symbol('x', real=True), Integer(2)))), Tuple(Symbol('x', real=True)))",
+          "latex": "\\int x \\cos{\\left(x^{2} \\right)}\\, dx",
+          "text": "∫ (x·cos(x²)) dx"
+        },
+        "replacement": {
+          "srepr": "Integral(Mul(Rational(1, 2), cos(Symbol('u', real=True))), Tuple(Symbol('u', real=True)))",
+          "latex": "\\int \\frac{\\cos{\\left(u \\right)}}{2}\\, du",
+          "text": "∫ (cos(u)/2) du"
+        },
+        "u": {
+          "srepr": "Symbol('u', real=True)",
+          "latex": "u",
+          "text": "u"
+        },
+        "u_func": {
+          "srepr": "Pow(Symbol('x', real=True), Integer(2))",
+          "latex": "x^{2}",
+          "text": "x²"
+        },
+        "du": {
+          "srepr": "Mul(Integer(2), Symbol('x', real=True))",
+          "latex": "2 x",
+          "text": "2x"
+        },
+        "x": {
+          "srepr": "Symbol('x', real=True)",
+          "latex": "x",
+          "text": "x"
+        },
+        "g": {
+          "srepr": "Mul(Rational(1, 2), cos(Symbol('u', real=True)))",
+          "latex": "\\frac{\\cos{\\left(u \\right)}}{2}",
+          "text": "cos(u)/2"
+        }
+      }
+    },
+    {
+      "id": "s2",
+      "kind": "integral_rule",
+      "operation": "Constant multiple rule",
+      "justification": "Pull the constant 1/2 out of the integral.",
+      "before": {
+        "srepr": "Integral(Mul(Rational(1, 2), cos(Symbol('u', real=True))), Tuple(Symbol('u', real=True)))",
+        "latex": "\\int \\frac{\\cos{\\left(u \\right)}}{2}\\, du",
+        "text": "∫ (cos(u)/2) du"
+      },
+      "after": {
+        "srepr": "Mul(Rational(1, 2), Integral(cos(Symbol('u', real=True)), Tuple(Symbol('u', real=True))))",
+        "latex": "\\frac{\\int \\cos{\\left(u \\right)}\\, du}{2}",
+        "text": "∫ cos(u) du/2"
+      },
+      "data": {
+        "rule": "constant_multiple",
+        "target": {
+          "srepr": "Integral(Mul(Rational(1, 2), cos(Symbol('u', real=True))), Tuple(Symbol('u', real=True)))",
+          "latex": "\\int \\frac{\\cos{\\left(u \\right)}}{2}\\, du",
+          "text": "∫ (cos(u)/2) du"
+        },
+        "replacement": {
+          "srepr": "Mul(Rational(1, 2), Integral(cos(Symbol('u', real=True)), Tuple(Symbol('u', real=True))))",
+          "latex": "\\frac{\\int \\cos{\\left(u \\right)}\\, du}{2}",
+          "text": "∫ cos(u) du/2"
+        },
+        "constant": {
+          "srepr": "Rational(1, 2)",
+          "latex": "\\frac{1}{2}",
+          "text": "1/2"
+        }
+      }
+    },
+    {
+      "id": "s3",
+      "kind": "integral_rule",
+      "operation": "Basic antiderivative",
+      "justification": "Standard antiderivative: ∫ cos = sin.",
+      "before": {
+        "srepr": "Mul(Rational(1, 2), Integral(cos(Symbol('u', real=True)), Tuple(Symbol('u', real=True))))",
+        "latex": "\\frac{\\int \\cos{\\left(u \\right)}\\, du}{2}",
+        "text": "∫ cos(u) du/2"
+      },
+      "after": {
+        "srepr": "Mul(Rational(1, 2), sin(Symbol('u', real=True)))",
+        "latex": "\\frac{\\sin{\\left(u \\right)}}{2}",
+        "text": "sin(u)/2"
+      },
+      "data": {
+        "rule": "basic",
+        "target": {
+          "srepr": "Integral(cos(Symbol('u', real=True)), Tuple(Symbol('u', real=True)))",
+          "latex": "\\int \\cos{\\left(u \\right)}\\, du",
+          "text": "∫ cos(u) du"
+        },
+        "replacement": {
+          "srepr": "sin(Symbol('u', real=True))",
+          "latex": "\\sin{\\left(u \\right)}",
+          "text": "sin(u)"
+        }
+      }
+    },
+    {
+      "id": "s4",
+      "kind": "integral_rule",
+      "operation": "Substitute back u = x²",
+      "justification": "Write the answer in terms of the original variable.",
+      "before": {
+        "srepr": "Mul(Rational(1, 2), sin(Symbol('u', real=True)))",
+        "latex": "\\frac{\\sin{\\left(u \\right)}}{2}",
+        "text": "sin(u)/2"
+      },
+      "after": {
+        "srepr": "Mul(Rational(1, 2), sin(Pow(Symbol('x', real=True), Integer(2))))",
+        "latex": "\\frac{\\sin{\\left(x^{2} \\right)}}{2}",
+        "text": "sin(x²)/2"
+      },
+      "data": {
+        "rule": "back_substitute",
+        "u": {
+          "srepr": "Symbol('u', real=True)",
+          "latex": "u",
+          "text": "u"
+        },
+        "back": {
+          "srepr": "Pow(Symbol('x', real=True), Integer(2))",
+          "latex": "x^{2}",
+          "text": "x²"
+        }
+      }
+    }
+  ]
+}

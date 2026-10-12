@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "slug": "derivative-chain-sin",
+  "course": "MATH1004",
+  "type": "derivative",
+  "statement": "Differentiate f(x) = sin(3x^2).",
+  "given": {
+    "function": "sin(3x^2)",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "derivative": "6x cos(3x^2)"
+  }
+}

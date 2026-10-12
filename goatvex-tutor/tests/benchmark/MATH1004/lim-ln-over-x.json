@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "slug": "lim-ln-over-x",
+  "course": "MATH1004",
+  "type": "limit",
+  "statement": "lim x→oo of ln(x)/x.",
+  "given": {
+    "function": "ln(x)/x",
+    "variable": "x",
+    "point": "oo"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "0",
+    "kind": "expr"
+  }
+}

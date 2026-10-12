@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "slug": "geom-angle",
+  "course": "MATH1104",
+  "type": "geometry",
+  "statement": "Angle between (1,2,2) and (2,−1,2).",
+  "given": {
+    "task": "angle",
+    "u": [
+      "1",
+      "2",
+      "2"
+    ],
+    "v": [
+      "2",
+      "-1",
+      "2"
+    ]
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "acos(4/9)",
+    "kind": "expr"
+  }
+}

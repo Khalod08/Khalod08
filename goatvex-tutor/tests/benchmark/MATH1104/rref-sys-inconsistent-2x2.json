@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "slug": "rref-sys-inconsistent-2x2",
+  "course": "MATH1104",
+  "type": "rref",
+  "statement": "Solve x + y = 2, 2x + 2y = 5.",
+  "given": {
+    "matrix": [
+      [
+        "1",
+        "1",
+        "2"
+      ],
+      [
+        "2",
+        "2",
+        "5"
+      ]
+    ],
+    "augmented": true
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "rref": [
+      [
+        "1",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1"
+      ]
+    ],
+    "system": {
+      "status": "inconsistent"
+    }
+  }
+}

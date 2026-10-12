@@ -1,0 +1,18 @@
+{
+  "given": {
+    "matrix": [
+      [
+        "0",
+        "3"
+      ],
+      [
+        "-1",
+        "0"
+      ]
+    ]
+  },
+  "statement": "Find det(A).",
+  "latex": "A = \\left[\\begin{matrix}0 & 3\\\\-1 & 0\\end{matrix}\\right]",
+  "answer_text": "3",
+  "type": "determinant"
+}

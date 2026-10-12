@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "slug": "logdiff-x-to-x",
+  "course": "MATH1004",
+  "type": "log_differentiation",
+  "statement": "y = xˣ.",
+  "given": {
+    "function": "x^x",
+    "variable": "x"
+  },
+  "source": {
+    "kind": "typed",
+    "ref": "GoatVex benchmark (hand-checked)"
+  },
+  "context": {
+    "graded": false
+  },
+  "confirmed_by_student": true,
+  "expected": {
+    "answer": "x^x (ln(x) + 1)",
+    "kind": "expr_pos"
+  }
+}

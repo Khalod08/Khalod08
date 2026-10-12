@@ -1,0 +1,582 @@
+{
+  "slug": "rref-sys-unique-3x3",
+  "status": "PASS",
+  "digest": "acec4842d8d20a45",
+  "answer_label": "RREF",
+  "answer": {
+    "matrix": [
+      [
+        "1",
+        "0",
+        "0",
+        "5"
+      ],
+      [
+        "0",
+        "1",
+        "0",
+        "3"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "-2"
+      ]
+    ],
+    "latex": "\\left[\\begin{matrix}1 & 0 & 0 & 5\\\\0 & 1 & 0 & 3\\\\0 & 0 & 1 & -2\\end{matrix}\\right]",
+    "text": "⎡ 1  0  0   5 ⎤\n⎢ 0  1  0   3 ⎥\n⎣ 0  0  1  −2 ⎦"
+  },
+  "notes": [
+    "Every variable column has a pivot, so the system has exactly one solution."
+  ],
+  "steps": [
+    {
+      "id": "s0",
+      "kind": "setup",
+      "operation": "Write the matrix",
+      "justification": "Start from the matrix exactly as given.",
+      "before": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "2",
+            "5",
+            "-4"
+          ],
+          [
+            "2",
+            "5",
+            "-1",
+            "27"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 2 & 5 & -4\\\\2 & 5 & -1 & 27\\end{matrix}\\right]",
+        "text": "⎡ 1  1   1   6 ⎤\n⎢ 0  2   5  −4 ⎥\n⎣ 2  5  −1  27 ⎦"
+      },
+      "after": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "2",
+            "5",
+            "-4"
+          ],
+          [
+            "2",
+            "5",
+            "-1",
+            "27"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 2 & 5 & -4\\\\2 & 5 & -1 & 27\\end{matrix}\\right]",
+        "text": "⎡ 1  1   1   6 ⎤\n⎢ 0  2   5  −4 ⎥\n⎣ 2  5  −1  27 ⎦"
+      },
+      "data": {
+        "augmented": true
+      }
+    },
+    {
+      "id": "s1",
+      "kind": "row_op",
+      "operation": "R₃ → R₃ − 2R₁",
+      "justification": "Create a zero below the leading 1 in column 1.",
+      "before": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "2",
+            "5",
+            "-4"
+          ],
+          [
+            "2",
+            "5",
+            "-1",
+            "27"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 2 & 5 & -4\\\\2 & 5 & -1 & 27\\end{matrix}\\right]",
+        "text": "⎡ 1  1   1   6 ⎤\n⎢ 0  2   5  −4 ⎥\n⎣ 2  5  −1  27 ⎦"
+      },
+      "after": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "2",
+            "5",
+            "-4"
+          ],
+          [
+            "0",
+            "3",
+            "-3",
+            "15"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 2 & 5 & -4\\\\0 & 3 & -3 & 15\\end{matrix}\\right]",
+        "text": "⎡ 1  1   1   6 ⎤\n⎢ 0  2   5  −4 ⎥\n⎣ 0  3  −3  15 ⎦"
+      },
+      "data": {
+        "op": "replace",
+        "row": 3,
+        "other_row": 1,
+        "multiplier": {
+          "srepr": "Integer(-2)",
+          "latex": "-2",
+          "text": "−2"
+        },
+        "subtract": true,
+        "magnitude": {
+          "srepr": "Integer(2)",
+          "latex": "2",
+          "text": "2"
+        },
+        "pivot_column": 1,
+        "phase": "forward"
+      }
+    },
+    {
+      "id": "s2",
+      "kind": "row_op",
+      "operation": "R₂ → (1/2)R₂",
+      "justification": "Scale row 2 so the pivot in column 2 becomes a leading 1.",
+      "before": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "2",
+            "5",
+            "-4"
+          ],
+          [
+            "0",
+            "3",
+            "-3",
+            "15"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 2 & 5 & -4\\\\0 & 3 & -3 & 15\\end{matrix}\\right]",
+        "text": "⎡ 1  1   1   6 ⎤\n⎢ 0  2   5  −4 ⎥\n⎣ 0  3  −3  15 ⎦"
+      },
+      "after": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "1",
+            "5/2",
+            "-2"
+          ],
+          [
+            "0",
+            "3",
+            "-3",
+            "15"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 1 & \\frac{5}{2} & -2\\\\0 & 3 & -3 & 15\\end{matrix}\\right]",
+        "text": "⎡ 1  1    1   6 ⎤\n⎢ 0  1  5/2  −2 ⎥\n⎣ 0  3   −3  15 ⎦"
+      },
+      "data": {
+        "op": "scale",
+        "row": 2,
+        "multiplier": {
+          "srepr": "Rational(1, 2)",
+          "latex": "\\frac{1}{2}",
+          "text": "1/2"
+        },
+        "pivot_column": 2,
+        "phase": "forward"
+      }
+    },
+    {
+      "id": "s3",
+      "kind": "row_op",
+      "operation": "R₃ → R₃ − 3R₂",
+      "justification": "Create a zero below the leading 1 in column 2.",
+      "before": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "1",
+            "5/2",
+            "-2"
+          ],
+          [
+            "0",
+            "3",
+            "-3",
+            "15"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 1 & \\frac{5}{2} & -2\\\\0 & 3 & -3 & 15\\end{matrix}\\right]",
+        "text": "⎡ 1  1    1   6 ⎤\n⎢ 0  1  5/2  −2 ⎥\n⎣ 0  3   −3  15 ⎦"
+      },
+      "after": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "1",
+            "5/2",
+            "-2"
+          ],
+          [
+            "0",
+            "0",
+            "-21/2",
+            "21"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 1 & \\frac{5}{2} & -2\\\\0 & 0 & - \\frac{21}{2} & 21\\end{matrix}\\right]",
+        "text": "⎡ 1  1      1   6 ⎤\n⎢ 0  1    5/2  −2 ⎥\n⎣ 0  0  −21/2  21 ⎦"
+      },
+      "data": {
+        "op": "replace",
+        "row": 3,
+        "other_row": 2,
+        "multiplier": {
+          "srepr": "Integer(-3)",
+          "latex": "-3",
+          "text": "−3"
+        },
+        "subtract": true,
+        "magnitude": {
+          "srepr": "Integer(3)",
+          "latex": "3",
+          "text": "3"
+        },
+        "pivot_column": 2,
+        "phase": "forward"
+      }
+    },
+    {
+      "id": "s4",
+      "kind": "row_op",
+      "operation": "R₃ → (−2/21)R₃",
+      "justification": "Scale row 3 so the pivot in column 3 becomes a leading 1.",
+      "before": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "1",
+            "5/2",
+            "-2"
+          ],
+          [
+            "0",
+            "0",
+            "-21/2",
+            "21"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 1 & \\frac{5}{2} & -2\\\\0 & 0 & - \\frac{21}{2} & 21\\end{matrix}\\right]",
+        "text": "⎡ 1  1      1   6 ⎤\n⎢ 0  1    5/2  −2 ⎥\n⎣ 0  0  −21/2  21 ⎦"
+      },
+      "after": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "1",
+            "5/2",
+            "-2"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "-2"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 1 & \\frac{5}{2} & -2\\\\0 & 0 & 1 & -2\\end{matrix}\\right]",
+        "text": "⎡ 1  1    1   6 ⎤\n⎢ 0  1  5/2  −2 ⎥\n⎣ 0  0    1  −2 ⎦"
+      },
+      "data": {
+        "op": "scale",
+        "row": 3,
+        "multiplier": {
+          "srepr": "Rational(-2, 21)",
+          "latex": "- \\frac{2}{21}",
+          "text": "−2/21"
+        },
+        "pivot_column": 3,
+        "phase": "forward"
+      }
+    },
+    {
+      "id": "s5",
+      "kind": "row_op",
+      "operation": "R₁ → R₁ − R₃",
+      "justification": "Create a zero above the leading 1 in column 3.",
+      "before": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "1",
+            "6"
+          ],
+          [
+            "0",
+            "1",
+            "5/2",
+            "-2"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "-2"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 1 & 6\\\\0 & 1 & \\frac{5}{2} & -2\\\\0 & 0 & 1 & -2\\end{matrix}\\right]",
+        "text": "⎡ 1  1    1   6 ⎤\n⎢ 0  1  5/2  −2 ⎥\n⎣ 0  0    1  −2 ⎦"
+      },
+      "after": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "0",
+            "8"
+          ],
+          [
+            "0",
+            "1",
+            "5/2",
+            "-2"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "-2"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 0 & 8\\\\0 & 1 & \\frac{5}{2} & -2\\\\0 & 0 & 1 & -2\\end{matrix}\\right]",
+        "text": "⎡ 1  1    0   8 ⎤\n⎢ 0  1  5/2  −2 ⎥\n⎣ 0  0    1  −2 ⎦"
+      },
+      "data": {
+        "op": "replace",
+        "row": 1,
+        "other_row": 3,
+        "multiplier": {
+          "srepr": "Integer(-1)",
+          "latex": "-1",
+          "text": "−1"
+        },
+        "subtract": true,
+        "magnitude": {
+          "srepr": "Integer(1)",
+          "latex": "1",
+          "text": "1"
+        },
+        "pivot_column": 3,
+        "phase": "backward"
+      }
+    },
+    {
+      "id": "s6",
+      "kind": "row_op",
+      "operation": "R₂ → R₂ − (5/2)R₃",
+      "justification": "Create a zero above the leading 1 in column 3.",
+      "before": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "0",
+            "8"
+          ],
+          [
+            "0",
+            "1",
+            "5/2",
+            "-2"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "-2"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 0 & 8\\\\0 & 1 & \\frac{5}{2} & -2\\\\0 & 0 & 1 & -2\\end{matrix}\\right]",
+        "text": "⎡ 1  1    0   8 ⎤\n⎢ 0  1  5/2  −2 ⎥\n⎣ 0  0    1  −2 ⎦"
+      },
+      "after": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "0",
+            "8"
+          ],
+          [
+            "0",
+            "1",
+            "0",
+            "3"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "-2"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 0 & 8\\\\0 & 1 & 0 & 3\\\\0 & 0 & 1 & -2\\end{matrix}\\right]",
+        "text": "⎡ 1  1  0   8 ⎤\n⎢ 0  1  0   3 ⎥\n⎣ 0  0  1  −2 ⎦"
+      },
+      "data": {
+        "op": "replace",
+        "row": 2,
+        "other_row": 3,
+        "multiplier": {
+          "srepr": "Rational(-5, 2)",
+          "latex": "- \\frac{5}{2}",
+          "text": "−5/2"
+        },
+        "subtract": true,
+        "magnitude": {
+          "srepr": "Rational(5, 2)",
+          "latex": "\\frac{5}{2}",
+          "text": "5/2"
+        },
+        "pivot_column": 3,
+        "phase": "backward"
+      }
+    },
+    {
+      "id": "s7",
+      "kind": "row_op",
+      "operation": "R₁ → R₁ − R₂",
+      "justification": "Create a zero above the leading 1 in column 2.",
+      "before": {
+        "matrix": [
+          [
+            "1",
+            "1",
+            "0",
+            "8"
+          ],
+          [
+            "0",
+            "1",
+            "0",
+            "3"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "-2"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 1 & 0 & 8\\\\0 & 1 & 0 & 3\\\\0 & 0 & 1 & -2\\end{matrix}\\right]",
+        "text": "⎡ 1  1  0   8 ⎤\n⎢ 0  1  0   3 ⎥\n⎣ 0  0  1  −2 ⎦"
+      },
+      "after": {
+        "matrix": [
+          [
+            "1",
+            "0",
+            "0",
+            "5"
+          ],
+          [
+            "0",
+            "1",
+            "0",
+            "3"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "-2"
+          ]
+        ],
+        "latex": "\\left[\\begin{matrix}1 & 0 & 0 & 5\\\\0 & 1 & 0 & 3\\\\0 & 0 & 1 & -2\\end{matrix}\\right]",
+        "text": "⎡ 1  0  0   5 ⎤\n⎢ 0  1  0   3 ⎥\n⎣ 0  0  1  −2 ⎦"
+      },
+      "data": {
+        "op": "replace",
+        "row": 1,
+        "other_row": 2,
+        "multiplier": {
+          "srepr": "Integer(-1)",
+          "latex": "-1",
+          "text": "−1"
+        },
+        "subtract": true,
+        "magnitude": {
+          "srepr": "Integer(1)",
+          "latex": "1",
+          "text": "1"
+        },
+        "pivot_column": 2,
+        "phase": "backward"
+      }
+    }
+  ]
+}
